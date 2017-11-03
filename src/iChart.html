@@ -5,12 +5,23 @@
     <title>iChart</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0">
-    <link href="./css/iChart.css" type="text/css">
+    <link href="./css/iChart.css" type="text/css" rel="stylesheet">
 </head>
 <body ng-app="iChartApp" ng-controller="iChartController">
-
+    <div class="iChart-main">
+        <div class="loadBar">
+            <div class="loadPart" ng-style="loadPartBar"></div>
+            <div class="noLoadPart" ng-style="noloadPartBar"></div>
+        </div>
+    </div>
+    <div class="iChart-hidden"></div>
 </body>
 <script src="./script/angular.min.js" type="text/javascript"></script>
 <script src="script/iChartApp.js" type="text/javascript"></script>
+<script src="script/service/iChartService.js" type="text/javascript"></script>
 <script src="script/controller/iChartController.js" type="text/javascript"></script>
+<script src="script/directive/iChartDirective.js" type="text/javascript"></script>
+<script>
+//    document.getElementsByClassName("loadPart")[0].style.width=document.getElementsByTagName("body")[0].offsetWidth+"px";
+</script>
 </html>
