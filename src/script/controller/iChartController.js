@@ -1,9 +1,17 @@
-app.controller("iChartController", function ($scope, $timeout, slowLoadStep, fastLoadStep) {
-    $timeout(function () {
-        slowLoadStep.slowLoad($scope,document.getElementsByTagName("body")[0].offsetWidth/4);
-    }, 0);
-    $timeout(function () {
-        fastLoadStep.fastLoad($scope,document.getElementsByTagName("body")[0].offsetWidth);
-    }, 1000);
+iChartApp.controller("iChartController", function ($scope, $timeout, loadStep,initLoadStep) {
+
 });
 
+// $timeout(function () {
+//     loadStep.loadStep($scope,"30%","10s");
+// }, 0);
+// $timeout(function () {
+//     loadStep.loadStep($scope,"100%","1s");
+// }, 1000);
+// $timeout(function () {
+//     initLoadStep.init($scope);
+// }, 2000);
+//
+// $timeout(function () {
+//     loadStep.loadStep($scope,"100%","1s");
+// }, 5000);

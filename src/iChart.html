@@ -7,11 +7,18 @@
     <meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0">
     <link href="./css/iChart.css" type="text/css" rel="stylesheet">
 </head>
-<body ng-app="iChartApp" ng-controller="iChartController">
+<body ng-app="iChartApp" ng-controller="iChartController" >
     <div class="iChart-main">
         <div class="loadBar">
             <div class="loadPart" ng-style="loadPartBar"></div>
             <div class="noLoadPart" ng-style="noloadPartBar"></div>
+        </div>
+        <div class="headers">
+            <div class="headers-logo"></div>
+            <div class="headers-name">iChart</div>
+            <div class="headers-menu switch-menu"  switch-button="编辑区,工作表,数据源"></div>
+            <div class="headers-space"></div>
+            <div class="headers-avatar"></div>
         </div>
     </div>
     <div class="iChart-hidden"></div>
@@ -22,6 +29,5 @@
 <script src="script/controller/iChartController.js" type="text/javascript"></script>
 <script src="script/directive/iChartDirective.js" type="text/javascript"></script>
 <script>
-//    document.getElementsByClassName("loadPart")[0].style.width=document.getElementsByTagName("body")[0].offsetWidth+"px";
 </script>
 </html>

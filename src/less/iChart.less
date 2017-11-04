@@ -2,6 +2,8 @@
 //- gobal style
 //- less style
 //- componts loadBar
+//- componts headers
+
 
 
 //global style
@@ -14,7 +16,16 @@ html,body{margin:0;padding:0;height: 100%;width: 100%;}
 .iChart-hidden{position: absolute;top: 0;bottom: 0;left: 0;right: 0;display: none;}
 
 
-//componts
+//componts loadBar
 .loadBar{width: 100%;height: 3px;display: flex;flex-direction: row;flex-wrap: nowrap;}
-.loadPart{background: #3da8f5;transition: all 5s;width: 0;}
-.noLoadPart{background: transparent;flex: 1;transition: all 5s;}
+.loadPart{background: #3da8f5;width: 0;}
+.noLoadPart{background: transparent;flex: 1;}
+
+//componts headers
+.headers{display:flex;flex-direction:row;align-items: center;width: 100%;height: 3.5em;border-bottom: #797979 1px solid;}
+.headers-logo{height: 3.5em;width: 3.5em;background: url("../image/icon/logo1.png") center center no-repeat;background-size: 52% 52%;margin: 0 0 0 1em;}
+.headers-name{color: #3da8f5;font-size: 160%;user-select: none;margin: 0 3em 0 0;}
+.switch-menu{display: flex;flex-direction: row;width: 21em;height: 100%;position: relative;}
+.switch-menu-item{flex: 1;color: white;display: flex;align-items: center;justify-content: center;cursor: pointer;}
+.switch-menu-bottom{position: absolute;bottom: 0;left: 0;background:#3da8f5;height: 2px;transition: all .3s}
+.headers-space{flex: 1;color: white;}

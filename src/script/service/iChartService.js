@@ -1,16 +1,19 @@
-app.service("slowLoadStep",function () {
-    this.slowLoad=function ($scope,ToPostion){
+iChartApp.service("loadStep",function () {
+    this.loadStep=function ($scope,ToPostion,Seconds){
+        console.log(ToPostion);
         $scope.loadPartBar = {
-            width : ToPostion+"px",
-            transition: "all 20s"
+            width : ToPostion,
+            transition: "all "+Seconds,
+            opacity: "1"
         };
     }
 });
-app.service("fastLoadStep",function () {
-   this.fastLoad=function ($scope, ToPostion) {
-       $scope.loadPartBar = {
-           width : ToPostion+"px",
-           transition: "all .5s"
-       };
-   }
+iChartApp.service("initLoadStep",function () {
+    this.init=function ($scope) {
+        $scope.loadPartBar = {
+            width : "0",
+            transition: "none",
+            opacity: "1"
+        };
+    }
 });
