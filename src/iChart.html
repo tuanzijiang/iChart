@@ -16,14 +16,34 @@
         <div class="headers">
             <div class="headers-logo"></div>
             <div class="headers-name">iChart</div>
-            <div class="headers-menu switch-menu"  switch-button="编辑区,工作表,数据源"></div>
+            <div class="headers-menu switch-menu" switch-button="编辑区,工作表,数据源" switch-button-size="90"></div>
             <div class="headers-space"></div>
-            <div class="headers-avatar"></div>
+            <div class="headers-avatar">
+                <img src="image/icon/avatar-default.png" class="img-avatar">
+            </div>
+        </div>
+        <div class="mainContent">
+            <div class="mainContent-menus">
+                <a href="#/leftMenu1"><img ng-src="image/icon/{{srcs[0]}}" class="content-menu" ng-click="switchMenuButton(0)" ></a>
+                <a href="#/leftMenu2"><img ng-src="image/icon/{{srcs[1]}}" class="content-menu" ng-click="switchMenuButton(1)"></a>
+                <a href="#/leftMenu3"><img ng-src="image/icon/{{srcs[2]}}" class="content-menu" ng-click="switchMenuButton(2)"></a>
+                <a href="#/leftMenu4"><img ng-src="image/icon/{{srcs[3]}}" class="content-menu" ng-click="switchMenuButton(3)"></a>
+                <a href="#/leftMenu5"><img ng-src="image/icon/{{srcs[4]}}" class="content-menu" ng-click="switchMenuButton(4)"></a>
+            </div>
+            <div class="mainContent-tool-bottom"></div>
+            <div class="mainContent-tool-upper">
+                <div ng-view class="tool-menu-content"></div>
+            </div>
+            <div class="mainContent-workspace" ng-click="leftMenuFlag=0">
+                <div class="workspace"></div>
+            </div>
+            <div class="mainContent-attr"></div>
         </div>
     </div>
     <div class="iChart-hidden"></div>
 </body>
 <script src="./script/angular.min.js" type="text/javascript"></script>
+<script src="./script/angular-route.js" type="text/javascript"></script>
 <script src="script/iChartApp.js" type="text/javascript"></script>
 <script src="script/service/iChartService.js" type="text/javascript"></script>
 <script src="script/controller/iChartController.js" type="text/javascript"></script>
