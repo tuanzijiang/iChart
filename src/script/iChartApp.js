@@ -1,1 +1,1 @@
-iChartApp=angular.module("iChartApp",["ngRoute"]);
+iChartApp=angular.module("iChartApp",["ui.router"]);

@@ -5,11 +5,13 @@
 iChartApp.directive("switchButton",function () {
    return {
        restrict: "A",
-       scope:{},
-       template:"                <div class=\"switch-menu-item\" ng-click=\"bottom_position=0\" ng-init=\"bottom_position=0\"></div>\n" +
-       "                <div class=\"switch-menu-item\" ng-click=\"bottom_position=1\" ></div>\n" +
-       "                <div class=\"switch-menu-item\" ng-click=\"bottom_position=2\" ></div>\n" +
-       "                <div class=\"switch-menu-item\" ng-click=\"bottom_position=3\" ></div>\n" +
+       scope:{
+           switchButtonAction :"&"
+       },
+       template:"                <a class=\"switch-menu-item\" ng-click=\"bottom_position=0;switchButtonAction({flag:0});\" ng-init=\"bottom_position=0\"></a>\n" +
+       "                <a  class=\"switch-menu-item\" ng-click=\"bottom_position=1;switchButtonAction({flag:1});\" ></a>\n" +
+       "                <a  class=\"switch-menu-item\" ng-click=\"bottom_position=2;switchButtonAction({flag:2});\" ></a>\n" +
+       "                <a  class=\"switch-menu-item\" ng-click=\"bottom_position=3;switchButtonAction({flag:3});\" ></a>\n" +
        "                <div class=\"switch-menu-bottom\"></div>",
        link: function (scope,element,attr) {
            var item_len=attr.switchButton.split(",").length;
