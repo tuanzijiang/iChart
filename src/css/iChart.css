@@ -193,3 +193,147 @@ body {
   background: white;
   margin: 10em auto;
 }
+.workpage-main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.workpage-menus {
+  width: 17em;
+  height: calc(100% - 1.4em);
+  margin: .7em 0 0 0;
+  border-right: 1.5px solid #363d3f;
+  box-shadow: 1em 0 2em -1em rgba(0, 0, 0, 0.4);
+}
+.workpage-scroll {
+  width: 1em;
+  height: 100%;
+}
+.workpage-tablespace {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.workpage-menus-name-line {
+  margin: .2em auto 0 ;
+  width: 85%;
+  height: 2.5em;
+  line-height: 2.5em;
+}
+.workpage-menus-name {
+  display: inline-block;
+  color: white;
+  font-size: 115%;
+}
+.workpage-menus-add {
+  display: inline-block;
+  height: 2.5em;
+  width: 2.5em;
+  background: url("../image/icon/iChartDataPage/add.png") right center no-repeat;
+  background-size: 50% 50%;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+.workpage-menus-more {
+  display: inline-block;
+  height: 2.5em;
+  width: 2.5em;
+  background: url("../image/icon/iChartDataPage/more.png") right center no-repeat;
+  background-size: 50% 50%;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+.workpage-menus-search-line {
+  width: 85%;
+  line-height: 2.5em;
+  height: 2.5em;
+  margin: .2em auto 0;
+  position: relative;
+  border-bottom: 1px solid #3DA8F5;
+}
+.workpage-menus-search-bg {
+  position: absolute;
+  width: 1.6em;
+  height: 1.6em;
+  left: calc(50% - .8em);
+  top: calc(50% - .8em);
+}
+.workpage-menus-search-input {
+  height: 100%;
+  width: calc(100% - 1px);
+  background: transparent;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 115%;
+  text-align: center;
+}
+.workpage-menus-databases {
+  line-height: 2.5em;
+  height: 2.5em;
+  width: 85%;
+  margin: 2em auto 0;
+}
+.workpage-menus-databases-title {
+  color: white;
+  display: inline-block;
+}
+.workpage-menus-databases-item {
+  line-height: 2.5em;
+  height: 2.5em;
+  width: 85%;
+  margin: 0 auto;
+}
+.workpage-menus-db {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.6em;
+  width: 1.6em;
+  margin: 0 .5em 0 1.6em;
+  overflow: hidden;
+}
+.workpage-menus-file {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.6em;
+  width: 1.6em;
+  margin: 0 .5em 0 0;
+}
+.workpage-menus-xlss {
+  line-height: 2.5em;
+  height: 2.5em;
+  width: 85%;
+  margin: 0 auto;
+}
+.workpage-menus-xlss-title {
+  color: white;
+  display: inline-block;
+}
+.table-attrs {
+  width: 100%;
+  height: 8em;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+.table-show {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.table-box {
+  height: 80%;
+  width: 97%;
+  border: 1px solid #555;
+}
+.table-fields {
+  width: 100%;
+  line-height: 2em;
+  height: 2em;
+}

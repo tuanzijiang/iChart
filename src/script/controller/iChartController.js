@@ -1,5 +1,5 @@
 iChartApp.controller("iChartController", function ($scope,$state) {
-    $state.go("iChartEditPage");
+    $state.go("iChartWorkPage");
     $scope.mainContentSwitch=function(flag) {
         switch (flag){
             case 0:

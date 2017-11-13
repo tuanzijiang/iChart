@@ -1,1 +1,42 @@
-<div style="color: white">WorkPage</div>
+<div class="workpage-main">
+    <div class="workpage-menus">
+        <div class="workpage-menus-name-line">
+            <div class="workpage-menus-name">我的工作表</div><!--
+            --><div class="workpage-menus-more"></div><!--
+            --><div class="workpage-menus-add"></div>
+        </div>
+        <div class="workpage-menus-search-line">
+            <img ng-src="./image/icon/iChartDataPage/{{inputValue==null?'search.png':'search_default.png'}}" class="workpage-menus-search-bg">
+            <input class="workpage-menus-search-input" ng-model="inputValue"/>
+        </div>
+        <div class="workpage-menus-databases">
+            <img src="./image/icon/iChartDataPage/file.png" class="workpage-menus-file">
+            <div class="workpage-menus-databases-title">来自数据库</div>
+        </div>
+        <div class="workpage-menus-databases-list">
+            <div class="workpage-menus-databases-item">
+                <img src="./image/icon/iChartDataPage/db.png" class="workpage-menus-db">
+                <div class="workpage-menus-databases-title">iChart</div>
+            </div>
+            <div class="workpage-menus-databases-item">
+                <img src="./image/icon/iChartDataPage/db.png" class="workpage-menus-db">
+                <div class="workpage-menus-databases-title">Teambox</div>
+            </div>
+        </div>
+        <div class="workpage-menus-xlss">
+            <img src="./image/icon/iChartDataPage/file.png" class="workpage-menus-file">
+            <div class="workpage-menus-xlss-title">来自表格</div>
+        </div>
+    </div>
+    <div class="workpage-scroll"></div>
+    <div class="workpage-tablespace">
+        <div class="table-attrs"></div>
+        <div class="table-seperate"></div>
+        <div class="table-show">
+            <div class="table-box">
+                <div class="table-fields"></div>
+                <div class="table-values"></div>
+            </div>
+        </div>
+    </div>
+</div>
