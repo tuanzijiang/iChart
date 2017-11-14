@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iChart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0">
+    <link href="./css/update.css" type="text/css" rel="stylesheet">
+</head>
+<body ng-app="updateApp" ng-controller="updateController" >
+<div class="update-main">
+    <div class="loadBar">
+        <div class="loadPart" ng-style="loadPartBar"></div>
+        <div class="noLoadPart" ng-style="noloadPartBar"></div>
+    </div>
+    <div class="headers">
+        <div class="headers-logo"></div>
+        <div class="headers-name">上传数据</div>
+        <div class="headers-space"></div>
+        <div class="headers-avatar">
+            <img src="image/icon/avatar-default.png" class="img-avatar">
+        </div>
+    </div>
+    <div class="steps">
+        <div class="step" ng-click="mainContentSwitch(0)">1.上传文件</div>
+        <div class="step" ng-click="mainContentSwitch(1)">2.预览数据</div>
+        <div class="step" ng-click="mainContentSwitch(2)">3.设置属性</div>
+    </div>
+    <div class="mainContent" ui-view></div>
+</div>
+<div class="update-hidden"></div>
+</body>
+<script src="./script/angular.min.js" type="text/javascript"></script>
+<script src="./script/angular-ui-router.min.js" type="text/javascript"></script>
+<script src="script/updateApp.js" type="text/javascript"></script>
+<script src="script/service/updateService.js" type="text/javascript"></script>
+<script src="script/controller/updateController.js" type="text/javascript"></script>
+<script src="script/directive/updateDirective.js" type="text/javascript"></script>
+<script src="script/config/updateRouter.js" type="text/javascript"></script>
+<script>
+</script>
+</html>

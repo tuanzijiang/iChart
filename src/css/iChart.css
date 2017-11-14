@@ -4,8 +4,10 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
+  background: #1f2326;
 }
 ::-webkit-scrollbar-track {
+  height: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background-color: transparent;
@@ -15,22 +17,21 @@ body {
   background-color: transparent;
 }
 ::-webkit-scrollbar:horizontal {
-  height: 12px;
+  height: 10px;
   background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   background-color: rgba(85, 85, 85, 0.2);
 }
 ::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   background-color: rgba(85, 85, 85, 0.6);
 }
 ::-webkit-scrollbar-track:horizontal {
-  background: black;
-  -webkit-box-shadow: 0 0 6px 6px black;
+  background: transparent;
 }
 .iChart-main {
   display: flex;
@@ -205,13 +206,14 @@ body {
   margin: .7em 0 0 0;
   border-right: 1.5px solid #363d3f;
   box-shadow: 1em 0 2em -1em rgba(0, 0, 0, 0.4);
+  overflow: auto;
 }
 .workpage-scroll {
   width: 1em;
   height: 100%;
 }
 .workpage-tablespace {
-  flex: 1;
+  width: calc(100% - 17em);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -231,7 +233,7 @@ body {
   display: inline-block;
   height: 2.5em;
   width: 2.5em;
-  background: url("../image/icon/iChartDataPage/add.png") right center no-repeat;
+  background: url("../image/icon/iChartWorkPage/add.png") right center no-repeat;
   background-size: 50% 50%;
   float: right;
   position: relative;
@@ -241,7 +243,7 @@ body {
   display: inline-block;
   height: 2.5em;
   width: 2.5em;
-  background: url("../image/icon/iChartDataPage/more.png") right center no-repeat;
+  background: url("../image/icon/iChartWorkPage/more.png") right center no-repeat;
   background-size: 50% 50%;
   float: right;
   position: relative;
@@ -280,6 +282,7 @@ body {
   height: 2.5em;
   width: 85%;
   margin: 2em auto 0;
+  cursor: pointer;
 }
 .workpage-menus-databases-title {
   color: white;
@@ -290,6 +293,8 @@ body {
   height: 2.5em;
   width: 85%;
   margin: 0 auto;
+  cursor: pointer;
+  padding: 0 7.5%;
 }
 .workpage-menus-db {
   display: inline-block;
@@ -311,29 +316,159 @@ body {
   height: 2.5em;
   width: 85%;
   margin: 0 auto;
+  cursor: pointer;
 }
 .workpage-menus-xlss-title {
   color: white;
   display: inline-block;
 }
+.workpage-menus-xlss-item {
+  line-height: 2.5em;
+  height: 2.5em;
+  width: 85%;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 0 7.5%;
+}
+.workpage-menus-xls {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.6em;
+  width: 1.6em;
+  margin: 0 .5em 0 1.6em;
+  overflow: hidden;
+}
+.workpage-menus-active {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: -0.5em 0.1em 0.5em 0 rgba(0, 0, 0, 0.2), 0 1.5em 4em 1em #283033 inset;
+}
 .table-attrs {
-  width: 100%;
-  height: 8em;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+  width: 90%;
+  margin: 1em auto;
+  border-bottom: 1px solid #363d3f;
+  box-shadow: 0 -0.5em 1em -0.5em rgba(0, 0, 0, 0.2) inset;
+}
+.table-name-line {
+  height: 4em;
+  line-height: 4em;
+  color: white;
+  position: relative;
+}
+.table-name {
+  display: inline-block;
+  font-size: 140%;
+}
+.table-operation-name {
+  display: inline-block;
+  float: right;
+  margin: 0 0 0 1em;
+  user-select: none;
+  cursor: pointer;
+}
+.table-operation-icon-1 {
+  display: inline-block;
+  float: right;
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+  background: url("../image/icon/iChartWorkPage/save1.png") right center no-repeat;
+  background-size: 60% 60%;
+  position: relative;
+  top: calc(50% - 1em);
+}
+.table-operation-icon-2 {
+  display: inline-block;
+  float: right;
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+  background: url("../image/icon/iChartWorkPage/save2.png") right center no-repeat;
+  background-size: 60% 60%;
+  position: relative;
+  top: calc(50% - 1em);
+}
+.table-operation-icon-3 {
+  display: inline-block;
+  float: right;
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+  background: url("../image/icon/iChartWorkPage/save3.png") right center no-repeat;
+  background-size: 60% 60%;
+  position: relative;
+  top: calc(50% - 1em);
+}
+.table-name-selects-line {
+  margin: 0 0 1em 0;
+  height: 3em;
+  line-height: 3em;
+  color: white;
+  position: relative;
+}
+.table-name-select-icon {
+  margin: 0 2em 0 0;
+  display: inline-block;
+  height: 2em;
+  width: 2em;
+  background: url("../image/icon/iChartWorkPage/tablespace_add.png") center center no-repeat;
+  background-size: 40% 40%;
+  vertical-align: middle;
+}
+.table-name-select-op {
+  display: inline-block;
+  user-select: none;
+  cursor: pointer;
+  vertical-align: middle;
 }
 .table-show {
+  background: #242527;
+  width: 90%;
   flex: 1;
-  width: 100%;
-  display: flex;
-  align-items: center;
+  margin: 0 auto;
+  overflow: auto;
+  display: block;
+  position: relative;
+  float: left;
 }
-.table-box {
-  height: 80%;
-  width: 97%;
-  border: 1px solid #555;
+.table-body {
+  color: white;
 }
-.table-fields {
-  width: 100%;
-  line-height: 2em;
-  height: 2em;
+td {
+  padding: .7em 5em .7em 1em;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 20em;
+  overflow: auto;
+  outline: none;
+}
+td::-webkit-scrollbar:horizontal {
+  height: 0;
+}
+th {
+  text-align: left;
+  padding: .7em 5em .7em 1em;
+  font-weight: normal;
+  background: #262729;
+  white-space: nowrap;
+  max-width: 20em;
+  overflow: auto;
+}
+th::-webkit-scrollbar:horizontal {
+  height: 0;
+}
+tr:nth-child(odd) > td {
+  background: #303030;
+}
+tr:nth-child(even) > td {
+  background: #414345;
+}
+.table-body-tr-active {
+  box-shadow: 0 0 0 1px #3DA8F5;
+}
+.table-page-control {
+  height: 3em;
+  width: 90%;
+  margin: 1em auto 1.5em;
+  color: white;
+  text-align: center;
 }

@@ -1,14 +1,16 @@
 iChartApp.config(["$stateProvider",function($stateProvider){
     $stateProvider
         .state("iChartDataPage",{
-            templateUrl: './view/iChartDataPage.html'
+            templateUrl: './view/iChartDataPage.html',
+            controller: 'iChartDataPController'
         })
         .state("iChartEditPage",{
             templateUrl: './view/iChartEditPage.html',
-            controller: 'iChartEditLController'
+            controller: 'iChartEditPController'
         })
         .state("iChartWorkPage",{
-            templateUrl: './view/iChartWorkPage.html'
+            templateUrl: './view/iChartWorkPage.html',
+            controller: 'iChartWorkPController'
         })
         .state("iChartEditPage.leftMenu1",{
             templateUrl: './view/iChartEditPage/leftMenu1.html'

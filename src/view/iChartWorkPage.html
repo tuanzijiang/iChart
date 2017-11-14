@@ -6,37 +6,60 @@
             --><div class="workpage-menus-add"></div>
         </div>
         <div class="workpage-menus-search-line">
-            <img ng-src="./image/icon/iChartDataPage/{{inputValue==null?'search.png':'search_default.png'}}" class="workpage-menus-search-bg">
+            <img ng-src="./image/icon/iChartWorkPage/{{inputValue==''?'search.png':'search_default.png'}}" class="workpage-menus-search-bg">
             <input class="workpage-menus-search-input" ng-model="inputValue"/>
         </div>
         <div class="workpage-menus-databases">
-            <img src="./image/icon/iChartDataPage/file.png" class="workpage-menus-file">
+            <img src="./image/icon/iChartWorkPage/file.png" class="workpage-menus-file">
             <div class="workpage-menus-databases-title">来自数据库</div>
         </div>
         <div class="workpage-menus-databases-list">
-            <div class="workpage-menus-databases-item">
-                <img src="./image/icon/iChartDataPage/db.png" class="workpage-menus-db">
-                <div class="workpage-menus-databases-title">iChart</div>
-            </div>
-            <div class="workpage-menus-databases-item">
-                <img src="./image/icon/iChartDataPage/db.png" class="workpage-menus-db">
-                <div class="workpage-menus-databases-title">Teambox</div>
+            <div class="workpage-menus-databases-item" ng-repeat="(x,y) in xlss_name" ng-class="menuClassFlag==x?'workpage-menus-active':''" ng-click="controlMenu(x);">
+                <img src="./image/icon/iChartWorkPage/db.png" class="workpage-menus-db" >
+                <div class="workpage-menus-databases-title">{{y}}</div>
             </div>
         </div>
         <div class="workpage-menus-xlss">
-            <img src="./image/icon/iChartDataPage/file.png" class="workpage-menus-file">
+            <img src="./image/icon/iChartWorkPage/file.png" class="workpage-menus-file">
             <div class="workpage-menus-xlss-title">来自表格</div>
+        </div>
+        <div class="workpage-menus-xlss-list">
+            <div class="workpage-menus-xlss-item" ng-repeat="(x,y) in dbs_name" ng-class="menuClassFlag==x+xlss_name.length?'workpage-menus-active':''" ng-click="controlMenu(x+xlss_name.length);">
+                <img src="./image/icon/iChartWorkPage/xls.png" class="workpage-menus-xls" >
+                <div class="workpage-menus-xlss-title">{{y}}</div>
+            </div>
         </div>
     </div>
     <div class="workpage-scroll"></div>
     <div class="workpage-tablespace">
-        <div class="table-attrs"></div>
-        <div class="table-seperate"></div>
-        <div class="table-show">
-            <div class="table-box">
-                <div class="table-fields"></div>
-                <div class="table-values"></div>
+        <div class="table-attrs">
+            <div class="table-name-line">
+                <div class="table-name">共享单车数据表格</div>
+                <div class="table-operation-name">修改数据</div>
+                <div class="table-operation-icon-3"></div>
+                <div class="table-operation-name">修改数据</div>
+                <div class="table-operation-icon-2"></div>
+                <div class="table-operation-name">保存修改</div>
+                <div class="table-operation-icon-1"></div>
+            </div>
+            <div class="table-name-selects-line">
+                <div class="table-name-select-op">数值筛选</div>
+                <div class="table-name-select-icon"></div>
+                <div class="table-name-select-op">设置显示字段</div>
+                <div class="table-name-select-icon"></div>
             </div>
         </div>
+        <div class="table-seperate"></div>
+        <div class="table-show">
+            <table class="table-body">
+                <tr>
+                    <th ng-repeat="x in table_info[0] track by $index">{{x}}</th>
+                </tr>
+                <tr ng-repeat="(x,y) in table_info track by $index" ng-if="$index>0">
+                    <td ng-repeat="y in table_info[$index] track by $index" ng-class="(tableX==x&&tableY==$index)?'table-body-tr-active':''" ng-click="controlTableClick(x,$index)" id="{{'tr-'+x+'-'+$index}}" ng-dblclick="controlTabledbClick(x,$index)" contenteditable="{{(tableX==x&&tableY==$index)}}">&nbsp;{{y}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-page-control">每页显示20条&nbsp;&nbsp;&nbsp;1/100</div>
     </div>
 </div>

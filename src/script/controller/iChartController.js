@@ -17,9 +17,8 @@ iChartApp.controller("iChartController", function ($scope,$state) {
         }
     };
     //左边的菜单栏点击事件
-
 });
-iChartApp.controller("iChartEditLController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
+iChartApp.controller("iChartEditPController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
     $state.go("iChartEditPage.leftMenu1");
     $scope.flags=[true,false,false,false,false];
     $scope.srcs=['menu1_selected.png','menu2.png','menu3.png','menu4.png','menu5.png']
@@ -60,8 +59,51 @@ iChartApp.controller("iChartEditLController",function ($scope,$state,openLeftMen
        }
     });
 });
+iChartApp.controller("iChartWorkPController",function ($scope,$timeout,adjustTableInfo) {
+    //$http result
+    $scope.xlss_name=["iChart1","iChart2","iChart3","iChart4"];
+    $scope.dbs_name=["iChart1","iChart2","iChart3","iChart4"];
+    $scope.table_info=[
+        ["日期","性别","来源","地区","支付量"],
+        ["2015-10-12 00:00","男","app","北京","12384884561235"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"]
+    ];
+    //init
+    $scope.inputValue="";//input search value
+    $scope.menuClassFlag=0;//init menu flag
+    $scope.tableX=0;
+    $scope.tableY=0;
+    $scope.afterAdjust=[];
+    adjustTableInfo.adjustTableInfo($scope);
 
 
+    $scope.controlMenu=function(flag){
+        $scope.menuClassFlag=flag;
+    };
+    $scope.controlTableClick=function(x,y){
+      $scope.tableX=x;
+      $scope.tableY=y;
+    };
+
+});
+iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
+});
 
 
 
