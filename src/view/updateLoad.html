@@ -1,1 +1,7 @@
-<div style="color:white">上传文件</div>
+<div class="load-drop-box" id="drop-box">
+    <div class="load-drop-click-line">
+        <div class="load-drop-click"><div>点击上传文件</div><input type="file" class="drop-box-file-input" onchange="fileOnChange(this.files)"></div>
+        <div class="load-drop-prompt">或拖拽上传</div>
+    </div>
+    <div class="load-drop-prompt2">支持excel文件（单个excel文件最大10MB），默认识别第一个sheet文件</div>
+</div>

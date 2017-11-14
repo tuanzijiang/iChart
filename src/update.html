@@ -22,9 +22,9 @@
         </div>
     </div>
     <div class="steps">
-        <div class="step" ng-click="mainContentSwitch(0)">1.上传文件</div>
-        <div class="step" ng-click="mainContentSwitch(1)">2.预览数据</div>
-        <div class="step" ng-click="mainContentSwitch(2)">3.设置属性</div>
+        <div class="step" ng-click="mainContentSwitch(0)" ng-class="currentPage>=0?'step-active':''">1.上传文件</div>
+        <div class="step" ng-click="mainContentSwitch(1)" ng-class="currentPage>=1?'step-active':''">2.预览数据</div>
+        <div class="step" ng-click="mainContentSwitch(2)" ng-class="currentPage>=2?'step-active':''">3.设置属性</div>
     </div>
     <div class="mainContent" ui-view></div>
 </div>
