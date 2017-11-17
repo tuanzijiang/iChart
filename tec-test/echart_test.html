@@ -10,7 +10,7 @@
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="width: 600px;height:400px;"></div>
 <div>123123</div>
-<div id="test"></div>
+<div id="test" style="width: 100%;"></div>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
@@ -39,7 +39,7 @@
     myChart.setOption(option);
     setTimeout(function () {
         document.getElementById("test").appendChild(convertCanvasToImage(document.getElementsByTagName("canvas")[0]));
-
+        console.log(document.getElementsByTagName("img")[0].style.cssText="display:block;position: relative;float:right;width: 50%;margin: auto;");
     },2000);
 
     setTimeout(function(){

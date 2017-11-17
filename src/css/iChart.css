@@ -188,9 +188,46 @@ body {
   height: 100%;
   width: 100%;
 }
-.workspace {
-  width: 36em;
-  height: 80em;
+.menu-title {
+  margin: 0 auto;
+  text-align: center;
+  width: 85%;
+  color: white;
+  line-height: 3em;
+  height: 3em;
+  font-size: 115%;
+  box-shadow: 0 2px 0 0 #3DA8F5;
+  transition: all .5s;
+  cursor: pointer;
+}
+.menu-title:hover {
+  box-shadow: 0 3px 0 0 #3DA8F5;
+}
+.menu-graphic-items-title {
+  width: 85%;
+  margin: 0 auto;
+  color: white;
+  user-select: none;
+  line-height: 2.5em;
+  font-size: 105%;
+}
+.menu-graphic-items-box {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.menu-graphic-item {
+  width: 30%;
+  height: 3.75em;
+  display: block;
+  cursor: pointer;
+}
+.editPage_workspace {
+  width: 32em;
+  min-height: 64em;
   background: white;
   margin: 10em auto;
 }

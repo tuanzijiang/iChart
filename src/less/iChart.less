@@ -7,6 +7,7 @@
 //- componts mainContent
 //  |- editpage
 //    |- mainContent-menus
+//       |- leftMenu2(normal table)
 //    |- mainContent-tool
 //    |- mainContent-workspace
 //      |- workspace
@@ -59,8 +60,18 @@ html,body{margin:0;padding:0;height: 100%;width: 100%;background: #1f2326;}
 //    |- content-menu
 .content-menu{height: 1.8em;width: 1.8em;margin: 1.2em 0;cursor: pointer;}
 .tool-menu-content{overflow: auto;height: 100%;width: 100%;}
+//       |- leftMenu2(normal table)
+.menu-title{margin: 0 auto;text-align: center;width: 85%;color:white;line-height: 3em;height: 3em;font-size: 115%;box-shadow: 0 2px 0 0 #3DA8F5;transition: all .5s;cursor: pointer;}
+.menu-title:hover{box-shadow: 0 3px 0 0 #3DA8F5;}
+.menu-graphic-items-title{width: 85%;margin: 0 auto;color: white;user-select: none;line-height: 2.5em;font-size: 105%;}
+.menu-graphic-items-box{width: 85%;margin: 0 auto;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-between;}
+.menu-graphic-item{width: 30%;height: 3.75em;display: block;cursor: pointer;}
+
+
+
+
 //    |- workspace
-.workspace{width: 36em;height: 80em;background: white;margin: 10em auto;}
+.editPage_workspace{width: 32em;min-height: 64em;background: white;margin: 10em auto;}
 
 //  |- workpage
 .workpage-main{height: 100%;width: 100%;display: flex;flex-direction: row;}
@@ -115,6 +126,7 @@ tr:nth-child(even)>td{background: #414345;};
 
 
 .table-page-control{height: 3em;width: 90%;margin:1em auto 1.5em;color: white;text-align: center;}
+
 
 
 

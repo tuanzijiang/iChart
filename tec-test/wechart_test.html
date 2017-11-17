@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .test1{
+            width: 100%;
+        }
+        .test2{
+            width: 50%;height: 100px;margin: 0 auto;background: red;text-align: center;
+        }
+    </style>
 </head>
-<body>
+<body contenteditable="true">
+<div class="test1">
+    <div class="test2">
 
+    </div>
+</div>
+<img src="../src/image/icon/logo1.png">
 </body>
+<script>
+setTimeout(function () {
+    document.execCommand("selectAll");
+},2000);
+</script>
 </html>

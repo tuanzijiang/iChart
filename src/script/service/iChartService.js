@@ -23,6 +23,7 @@ iChartApp.service("initLoadStep",function () {
         };
     }
 });
+
 //control the leftMenu in iChartEditPage
 iChartApp.service("openLeftMenu",function () {
    this.openLeftMenu=function () {
@@ -36,6 +37,27 @@ iChartApp.service("closeLeftMenu",function () {
         document.getElementsByClassName("mainContent-tool-upper")[0].style.cssText="left: -"+((document.getElementsByClassName("mainContent-tool-bottom")[0].offsetWidth-document.getElementsByClassName("mainContent-menus")[0].offsetWidth)+1+"px");
     }
 });
+
+
+iChartApp.service("addTableDom",function () {
+    this.addTableDom=function ($scope,$compile,kind) {
+        var compileTestNode=$compile('<div ng-click="clickTableDom()"></div>')($scope);
+        console.log(compileTestNode);
+
+        var editTestNode=compileTestNode;
+        editTestNode.attr("id","editTest");
+        console.log(iChartInitData.normalTable.barTable["kind0"]);
+        editTestNode[0].style.height="512px";
+        editTestNode[0].style.width="512px";
+        // 指定图表的配置项和数据
+        var myChart = echarts.init(editTestNode[0]);
+        var option = iChartInitData.normalTable.barTable["kind0"];
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
+    }
+});
+
 
 //adjust the table info in the workPage
 iChartApp.service("adjustTableInfo",function () {

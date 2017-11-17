@@ -1,27 +1,42 @@
 iChartApp.controller("iChartController", function ($scope,$state) {
-    $state.go("iChartWorkPage");
+    $scope.mainOrSub=0;
     $scope.mainContentSwitch=function(flag) {
         switch (flag){
             case 0:
-                $state.go("iChartEditPage");
+                // $state.go("iChartEditPage");
+                $scope.mainOrSub=0;
                 break;
             case 1:
                 $state.go("iChartWorkPage");
+                $scope.mainOrSub=1;
                 break;
             case 2:
                 $state.go("iChartDataPage");
+                $scope.mainOrSub=1;
                 break;
             default:
-                $state.go("iChartEditPage");
+                // $state.go("iChartEditPage");
+                $scope.mainOrSub=0;
                 break;
         }
     };
     //左边的菜单栏点击事件
 });
-iChartApp.controller("iChartEditPController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
+
+
+iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,addTableDom,openLeftMenu,closeLeftMenu) {
+    /**
+     * 页面初始化
+     */
     $state.go("iChartEditPage.leftMenu1");
-    $scope.flags=[true,false,false,false,false];
-    $scope.srcs=['menu1_selected.png','menu2.png','menu3.png','menu4.png','menu5.png']
+
+
+    /**
+     * 控制菜单打开与关闭
+     * @param i 菜单编号
+     */
+    $scope.flags=[true,false,false,false,false];//控制菜单图片列表
+    $scope.srcs=['menu1_selected.png','menu2.png','menu3.png','menu4.png','menu5.png'];//激活菜单图片效果
     $scope.switchMenuButton=function (i) {
         $scope.flags=[false,false,false,false,false];
         $scope.flags[i]=true;
@@ -49,6 +64,11 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,openLeftMen
                 break;
         }
     };
+
+
+    /**
+     * 控制菜单开启和关闭
+     */
     $scope.leftMenuFlag=0;
     $scope.$watch("leftMenuFlag",function () {
        if($scope.leftMenuFlag===0){
@@ -58,7 +78,26 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,openLeftMen
            openLeftMenu.openLeftMenu();
        }
     });
+
+    /**
+     * 增加一个表单元素
+     */
+    $scope.addTableDom=function (kind) {
+        addTableDom.addTableDom($scope,$compile,kind);
+    };
+    /**
+     * 点击一个表单元素
+     */
+    $scope.clickTableDom=function () {
+        console.log("123123");
+    };
+
+
+
 });
+
+
+
 iChartApp.controller("iChartWorkPController",function ($scope,$timeout,adjustTableInfo) {
     //$http result
     $scope.xlss_name=["iChart1","iChart2","iChart3","iChart4"];
@@ -102,6 +141,9 @@ iChartApp.controller("iChartWorkPController",function ($scope,$timeout,adjustTab
     };
 
 });
+
+
+
 iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
 });
 
