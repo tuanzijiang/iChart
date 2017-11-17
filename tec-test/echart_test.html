@@ -6,9 +6,11 @@
     <!-- 引入 echarts.js -->
     <script src="../src/script/echarts.js"></script>
 </head>
-<body>
+<body >
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="width: 600px;height:400px;"></div>
+<div>123123</div>
+<div id="test"></div>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
@@ -35,6 +37,24 @@
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
+    setTimeout(function () {
+        document.getElementById("test").appendChild(convertCanvasToImage(document.getElementsByTagName("canvas")[0]));
+
+    },2000);
+
+    setTimeout(function(){
+        console.log("123");
+        document.execCommand('selectAll');
+    },4000);
+//    console.log(document.getElementsByTagName("canvas")[0]);
+//    console.log(convertCanvasToImage(document.getElementsByTagName("canvas")[0]));
+//    document.getElementById("test").appendChild(convertCanvasToImage(document.getElementsByTagName("canvas")[0]));
+    function convertCanvasToImage(canvas) {
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png");
+        return image;
+    }
+
 </script>
 </body>
 </html>
