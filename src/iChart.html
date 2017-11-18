@@ -22,8 +22,8 @@
                 <img src="image/icon/avatar-default.png" class="img-avatar">
             </div>
         </div>
-        <div class="mainContent" ng-include="'./view/iChartEditPage.html'" ng-show="mainOrSub==0" ng-controller="iChartEditPController"></div>
-        <div class="mainContent" ng-show="mainOrSub==1" ui-view></div>
+        <div class="mainContent" ng-show="mainOrSub===1" ng-include="'./view/iChartEditPage.html'"  ng-controller="iChartEditPController"></div>
+        <div class="mainContent" ng-show="mainOrSub===2" ui-view="subPages"></div>
     </div>
     <div class="iChart-hidden"></div>
 </body>

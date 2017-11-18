@@ -1,22 +1,22 @@
 iChartApp.controller("iChartController", function ($scope,$state) {
-    $scope.mainOrSub=0;
+    $scope.mainOrSub=1;
     $scope.mainContentSwitch=function(flag) {
         switch (flag){
             case 0:
-                // $state.go("iChartEditPage");
-                $scope.mainOrSub=0;
+                $scope.mainOrSub=1;
+                $state.go("leftMenu1");
                 break;
             case 1:
+                console.log($scope);
+                $scope.mainOrSub=2;
                 $state.go("iChartWorkPage");
-                $scope.mainOrSub=1;
                 break;
             case 2:
+                $scope.mainOrSub=2;
                 $state.go("iChartDataPage");
-                $scope.mainOrSub=1;
                 break;
             default:
-                // $state.go("iChartEditPage");
-                $scope.mainOrSub=0;
+                $scope.mainOrSub=1;
                 break;
         }
     };
@@ -28,7 +28,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ad
     /**
      * 页面初始化
      */
-    $state.go("iChartEditPage.leftMenu1");
+
 
 
     /**
@@ -45,22 +45,22 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ad
         $scope.leftMenuFlag=1;
         switch (i){
             case 0:
-                $state.go("iChartEditPage.leftMenu1");
+                $state.go("leftMenu1");
                 break;
             case 1:
-                $state.go("iChartEditPage.leftMenu2");
+                $state.go("leftMenu2");
                 break;
             case 2:
-                $state.go("iChartEditPage.leftMenu3");
+                $state.go("leftMenu3");
                 break;
             case 3:
-                $state.go("iChartEditPage.leftMenu4");
+                $state.go("leftMenu4");
                 break;
             case 4:
-                $state.go("iChartEditPage.leftMenu5");
+                $state.go("leftMenu5");
                 break;
             default:
-                $state.go("iChartEditPage.leftMenu1");
+                $state.go("leftMenu1");
                 break;
         }
     };
@@ -74,10 +74,13 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ad
        if($scope.leftMenuFlag===0){
            closeLeftMenu.closeLeftMenu();
        }
-       else{
+       else if ($scope.leftMenuFlag===1){
            openLeftMenu.openLeftMenu();
        }
     });
+    $scope.closeMenu=function () {
+        $scope.leftMenuFlag=0;
+    };
 
     /**
      * 增加一个表单元素
@@ -89,7 +92,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ad
      * 点击一个表单元素
      */
     $scope.clickTableDom=function () {
-        console.log("123123");
+        console.log("click_table");
     };
 
 

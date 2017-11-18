@@ -25,7 +25,6 @@ iChartApp.directive("switchButton",function () {
                var buttonNum=attr.switchButton.split(",").length;
                var buttonHalf=(attr.switchButtonSize*element[0].offsetWidth)/(buttonNum*200);//the half width of the button
                var buttonLeft=((2*scope.bottom_position+1)*element[0].offsetWidth)/(buttonNum*2);//the offset from left point
-               console.log((buttonLeft-buttonHalf));
                element[0].children[element[0].children.length-1].style.cssText="left: "+(buttonLeft-buttonHalf)+"px;width: "+attr.switchButtonSize/buttonNum+"%";
            });
        }

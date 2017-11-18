@@ -230,6 +230,7 @@ body {
   min-height: 64em;
   background: white;
   margin: 10em auto;
+  transition: all .5s;
 }
 .workpage-main {
   height: 100%;
