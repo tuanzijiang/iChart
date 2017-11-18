@@ -11,6 +11,7 @@
 //    |- mainContent-tool
 //    |- mainContent-workspace
 //      |- workspace
+//      |- mainContent-attr
 //  |- workpage
 //    |- workpage-menus
 //    |- workpage-tablespace
@@ -19,6 +20,11 @@
 
 //global style
 html,body{margin:0;padding:0;height: 100%;width: 100%;background: #1f2326;}
+input{outline: none;border:none;width: 100%;height: 100%;padding: 0;background: transparent;color: white;}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 0 transparent inset !important;
+  -webkit-text-fill-color: white;
+}
 //scroll bar
 ::-webkit-scrollbar-track {height: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 10px;  background-color: transparent;}
 ::-webkit-scrollbar{width: 12px;background-color: transparent;}
@@ -56,7 +62,7 @@ html,body{margin:0;padding:0;height: 100%;width: 100%;background: #1f2326;}
 .mainContent-tool-bottom{width: 0;height: 100%;background: #393f41;min-width: 0;transition: all linear .3s;}
 .mainContent-tool-upper{width: 17%;height: 100%;background: #393f41;min-width: 17em;left: -17%;position: absolute;transition: all linear .3s;}
 .mainContent-workspace{flex: 1;height: 100%;min-width: 50em;overflow: auto;}
-.mainContent-attr{width: 17%;height: 100%;background: #393f41;min-width: 17em;}
+.mainContent-attr{width: 17%;height: 100%;background: #393f41;min-width: 17em;user-select: none;}
 //    |- content-menu
 .content-menu{height: 1.8em;width: 1.8em;margin: 1.2em 0;cursor: pointer;}
 .tool-menu-content{overflow: auto;height: 100%;width: 100%;}
@@ -67,11 +73,29 @@ html,body{margin:0;padding:0;height: 100%;width: 100%;background: #1f2326;}
 .menu-graphic-items-box{width: 85%;margin: 0 auto;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-between;}
 .menu-graphic-item{width: 30%;height: 3.75em;display: block;cursor: pointer;}
 
-
-
-
-//    |- workspace
+//      |- workspace
 .editPage_workspace{width: 32em;min-height: 64em;background: white;margin: 10em auto;transition: all .5s;}
+.editPage_workspace_item:hover{cursor: pointer;box-shadow: 0 0 0 2px #3DA8F5}
+//      |- mainContent-attr
+.mainContent-attr-kinds{margin: .5em 0 0 0;height: 3em;width: 100%;}
+.mainContent-attr-kind{width: 100%;}
+.mainContent-attr-kind > .switch-menu-bottom{height: 4px;}
+.mainContent-attr-content{color: white;}
+.mainContent-attr-item{border-bottom: 1px solid #797979}
+// singleItem
+.mainContent-attr-item-normal-title{cursor: pointer;display: flex;flex-direction: row;align-items: center;height: 2.5em;}
+.mainContent-attr-item-content{transition: all .5s;display: block;overflow: hidden;}
+.mainContent-attr-item-content-inactive{height: 0;}
+.mainContent-attr-item-normal-titleBox{width: 70%;margin: 0 .5em;font-size: 95%;}
+.mainContent-attr-item-normal-titleBox_arround{flex:1;height: 100%;}
+.mainContent-attr-item-normal-titleBox_A{transition: all .5s;position: relative;top: calc(~'50% - .5em');background: url("../image/icon/iChartEditPage/attr_item_arrow.png") center center no-repeat;background-size: 100% 100%;float: right;height: 1em;width: 1em;}
+.mainContent-attr-item-normal-titleBox_B{transition: all .5s;transform: rotate(-90deg);}
+.mainContent-attr-item-normal-input-box-headerName{width: 70%;margin: 0 auto;height: 2em;box-shadow: 0 2px 0 0 #3DA8F5;background: transparent;}
+
+
+//specific active height
+.mainContent-attr-item-content-headerName{height: 3em;}
+
 
 //  |- workpage
 .workpage-main{height: 100%;width: 100%;display: flex;flex-direction: row;}

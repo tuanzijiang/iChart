@@ -7,7 +7,6 @@ iChartApp.controller("iChartController", function ($scope,$state) {
                 $state.go("leftMenu1");
                 break;
             case 1:
-                console.log($scope);
                 $scope.mainOrSub=2;
                 $state.go("iChartWorkPage");
                 break;
@@ -21,15 +20,20 @@ iChartApp.controller("iChartController", function ($scope,$state) {
         }
     };
     //左边的菜单栏点击事件
+
+
 });
 
 
-iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,addTableDom,openLeftMenu,closeLeftMenu) {
+iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,changeTableAttr,addTableDom,openLeftMenu,closeLeftMenu) {
     /**
      * 页面初始化
      */
-
-
+    $scope.eleDomOrders=[];//记录增加元素的相关信息
+    $scope.eleDomInfos={};//记录增加元素的相关信息
+    $scope.attrKindFlag=0;
+    $scope.attrsIsExieted=[true,true,false,true];
+    $scope.attrsIsClose=[];
 
     /**
      * 控制菜单打开与关闭
@@ -91,10 +95,26 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ad
     /**
      * 点击一个表单元素
      */
-    $scope.clickTableDom=function () {
-        console.log("click_table");
+    $scope.clickTableDom=function (id) {
+        console.log(id);
     };
 
+    /**
+     * 控制属性栏显示种类的切换
+     * @param flag
+     */
+    $scope.mainContentAttrKinds=function (flag) {
+        if(flag){
+            $scope.attrKindFlag=1;
+        }
+        else{
+            $scope.attrKindFlag=0;
+        }
+    }
+
+    $scope.changeTableAttr=function () {
+        changeTableAttr.changeTableAttr($scope,arguments);
+    }
 
 
 });

@@ -40,23 +40,37 @@ iChartApp.service("closeLeftMenu",function () {
     }
 });
 
-
+//增加表单元素
 iChartApp.service("addTableDom",function () {
     this.addTableDom=function ($scope,$compile,kind) {
-        var compileTestNode=$compile('<div ng-click="clickTableDom()"></div>')($scope);
+        var compileTestNode=$compile('<div ng-click="clickTableDom(\'editTest'+$scope.eleDomOrders.length+'\')"></div>')($scope);
         console.log(compileTestNode);
 
         var editTestNode=compileTestNode;
-        editTestNode.attr("id","editTest");
-        console.log(iChartInitData.normalTable.barTable["kind0"]);
-        editTestNode[0].style.height="512px";
-        editTestNode[0].style.width="512px";
+        editTestNode.attr("id","editTable"+$scope.eleDomOrders.length);//设置dom元素的id
+        editTestNode.attr("class","editPage_workspace_item");
+        editTestNode[0].style.height=iChartInitData.normalTable.barTable["kind0"].iChartHeight;
+        editTestNode[0].style.width=iChartInitData.normalTable.barTable["kind0"].iChartWidth;
         // 指定图表的配置项和数据
         var myChart = echarts.init(editTestNode[0]);
         var option = iChartInitData.normalTable.barTable["kind0"];
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
         document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
+        $scope.eleDomInfos["editTest"+$scope.eleDomOrders.length]={"chartHandler":myChart};
+        $scope.eleDomOrders.push("editTest"+$scope.eleDomOrders.length);//记录顺序
+    }
+});
+
+iChartApp.service("changeTableAttr",function () {
+    this.changeTableAttr=function ($scope,args) {
+        console.log(document.getElementById(args[0]).value);
+        var option={
+            title:{
+                text: document.getElementById(args[0]).value
+            }
+        };
+        console.log($scope.eleDomInfos["editTest0"].chartHandler.setOption(option));
     }
 });
 
