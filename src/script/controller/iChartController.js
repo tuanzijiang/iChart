@@ -50,6 +50,7 @@ iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
     $timeout(function () {
         console.log($scope.$$childHead.$$nextSibling);
     },1000);
+
 });
 
 
