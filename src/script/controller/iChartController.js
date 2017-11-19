@@ -30,7 +30,6 @@ iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
     };
     $scope.latitudeListTemp={};//保留弹窗内部纬度值
     $scope.settingLatitude=function (valueKind,value) {
-        console.log($scope.latitudeListTemp);
         var key=valueKind+value;
         if($scope.latitudeListTemp[key]){
             if($scope.latitudeListTemp[key]===2){
@@ -45,12 +44,38 @@ iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
         }
     };
     $scope.settingLatitudeOK=function () {
-        //TODO 遍历latitudeListTemp 去赋值到latitudeList中去
+        for(var key in $scope.latitudeListTemp){
+            var keyKind=key.substring(0,1);
+            var keyNum=key.substring(1);
+            switch (keyKind){
+                case 'a':
+                    $scope.$$childHead.$$nextSibling.latitudeList.push($scope.fieldList.date[keyNum]);
+                    break;
+                case 'b':
+                    $scope.$$childHead.$$nextSibling.latitudeList.push($scope.fieldList.text[keyNum]);
+                    break;
+                case 'c':
+                    $scope.$$childHead.$$nextSibling.latitudeList.push($scope.fieldList.number[keyNum]);
+                    break;
+                default:
+                    break;
+            }
+            var newLatitude=[];
+            for(var i=0;i<$scope.$$childHead.$$nextSibling.latitudeList.length;i++){
+                var flag=true;
+                for(var j=0;j<newLatitude.length;j++){
+                    if(newLatitude[j]===$scope.$$childHead.$$nextSibling.latitudeList[i]){
+                        flag=false;
+                    }
+                }
+                if(flag){
+                    newLatitude.push($scope.$$childHead.$$nextSibling.latitudeList[i]);
+                }
+            }
+            $scope.$$childHead.$$nextSibling.latitudeList=newLatitude;
+            $scope.iChart_hidden=0;
+        }
     };
-    $timeout(function () {
-        console.log($scope.$$childHead.$$nextSibling);
-    },1000);
-
 });
 
 
@@ -66,7 +91,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
     $scope.currentDomId="";//正在处理的DOM
     $scope.currentHoverID="";
 
-    $scope.latitudeList=[];//选中纬度值
+    $scope.latitudeList=["日期"];//选中纬度值
     $scope.valueList=[];
     $scope.valueListTemp=[];
 
@@ -166,6 +191,28 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
      */
     $scope.showHidden_Latitude=function () {
         $scope.$parent.iChart_hidden=2;
+        $scope.$parent.latitudeListTemp={};
+        for(var i=0;i<$scope.latitudeList.length;i++){
+            var key;
+            for(var j=0;j<$scope.$parent.fieldList.date.length;j++){
+                if($scope.latitudeList[i]===$scope.$parent.fieldList.date[j]){
+                    key='a'+j;
+                }
+            }
+            for(var j=0;j<$scope.$parent.fieldList.text.length;j++){
+                if($scope.latitudeList[i]===$scope.$parent.fieldList.text[j]){
+                    key='b'+j;
+                }
+            }
+            for(var j=0;j<$scope.$parent.fieldList.number.length;j++){
+                if($scope.latitudeList[i]===$scope.$parent.fieldList.number[j]){
+                    key='c'+j;
+                }
+            }
+            if(key){
+                $scope.$parent.latitudeListTemp[key]=2;
+            }
+        }
     };
 
 });

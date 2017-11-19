@@ -58,7 +58,7 @@
                         <div class="input-add" ng-click="showHidden_Latitude()"></div>
                         <div class="mainContent-attr-item-normal-dataLatitudeInput">
                             <div class="dataLatitudeItems">
-                                <div class="dataLatitudeItem" ng-repeat="latitudeitem in latitudeList"  ng-mouseenter="currentHoverID=latitudeitem" ng-mouseleave="currentHoverID=''">
+                                <div class="dataLatitudeItem" ng-repeat="latitudeitem in latitudeList track by $index"  ng-mouseenter="currentHoverID=latitudeitem" ng-mouseleave="currentHoverID=''">
                                     <div class="dataLatitudeItems-show">
                                         <div class="dataLatitudeItems-show-content">{{latitudeitem}}</div>
                                         <img src="./image/icon/iChartEditPage/close-empty.png" class="dataLatitudeItems-show-close">
