@@ -1,5 +1,6 @@
-iChartApp.controller("iChartController", function ($scope,$state) {
+iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
     $scope.mainOrSub=1;
+    $scope.iChart_hidden=0;
     $scope.mainContentSwitch=function(flag) {
         switch (flag){
             case 0:
@@ -21,7 +22,34 @@ iChartApp.controller("iChartController", function ($scope,$state) {
     };
     //左边的菜单栏点击事件
 
-
+    //纬度字段弹窗
+    $scope.fieldList={
+        date:["日期"],
+        text:["订单来源","用户注册来源","订单地区"],
+        number:["支付订单量","被投诉订单量"]
+    };
+    $scope.latitudeListTemp={};//保留弹窗内部纬度值
+    $scope.settingLatitude=function (valueKind,value) {
+        console.log($scope.latitudeListTemp);
+        var key=valueKind+value;
+        if($scope.latitudeListTemp[key]){
+            if($scope.latitudeListTemp[key]===2){
+                $scope.latitudeListTemp[key]=0
+            }
+            else{
+                $scope.latitudeListTemp[key]=2;
+            }
+        }
+        else{
+            $scope.latitudeListTemp[key]=2;
+        }
+    };
+    $scope.settingLatitudeOK=function () {
+        //TODO 遍历latitudeListTemp 去赋值到latitudeList中去
+    };
+    $timeout(function () {
+        console.log($scope.$$childHead.$$nextSibling);
+    },1000);
 });
 
 
@@ -31,9 +59,16 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
      */
     $scope.eleDomOrders=[];//记录增加元素的相关信息
     $scope.eleDomInfos={};//记录增加元素的相关信息
-    $scope.attrKindFlag=0;
-    $scope.attrsIsExieted=[true,true,false,true];
-    $scope.attrsIsClose=[];
+    $scope.attrKindFlag=0;//属性种类集合
+    $scope.attrsIsExieted=[true,true,false,true];//属性是否显示
+    $scope.attrsIsClose=[];//属性是否关闭
+    $scope.currentDomId="";//正在处理的DOM
+    $scope.currentHoverID="";
+
+    $scope.latitudeList=[];//选中纬度值
+    $scope.valueList=[];
+    $scope.valueListTemp=[];
+
 
     /**
      * 控制菜单打开与关闭
@@ -96,8 +131,9 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
      * 点击一个表单元素
      */
     $scope.clickTableDom=function (id) {
-        console.log(id);
+        $scope.currentDomId=id;
     };
+
 
     /**
      * 控制属性栏显示种类的切换
@@ -110,12 +146,26 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
         else{
             $scope.attrKindFlag=0;
         }
-    }
-
+    };
+    /**
+     * 改变图表的相关属性
+     */
     $scope.changeTableAttr=function () {
         changeTableAttr.changeTableAttr($scope,arguments);
-    }
+    };
 
+    /**
+     *  数据来源弹窗
+     */
+    $scope.showHidden_DataSource=function () {
+        $scope.$parent.iChart_hidden=1;
+    };
+    /**
+     *  纬度弹窗
+     */
+    $scope.showHidden_Latitude=function () {
+        $scope.$parent.iChart_hidden=2;
+    };
 
 });
 

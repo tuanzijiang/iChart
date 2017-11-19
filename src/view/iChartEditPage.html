@@ -17,6 +17,7 @@
         <div class="switch-menu mainContent-attr-kind" switch-button="数据,设置" switch-button-size="70" switch-button-action="mainContentAttrKinds(flag)"></div>
         <div class="mainContent-attr-content" ng-show="attrKindFlag===0">数据</div>
         <div class="mainContent-attr-content" ng-show="attrKindFlag===1">
+            <!--表格标题-->
             <div class="mainContent-attr-item" ng-show="attrsIsExieted[0]">
                 <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[0]=!attrsIsClose[0];">
                     <div class="mainContent-attr-item-normal-titleBox_arround">
@@ -27,18 +28,70 @@
                 </div>
                 <div class="mainContent-attr-item-content" ng-class="attrsIsClose[0]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-headerName'">
                     <div class="mainContent-attr-item-normal-input-box-headerName">
-                        <input id="input-headerName" ng-change="changeTableAttr('input-headerName');" ng-model="headerName">
+                        <input id="input-headerName" ng-change="changeTableAttr(0,'input-headerName');" ng-model="headerName">
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mainContent-attr-content" ng-show="attrKindFlag===1">
-            <div class="mainContent-attr-item" ng-show="attrsIsExieted[0]">
-                <div class="mainContent-attr-item-normal-title">
-                    234234
+            <!--数据设置-->
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[1]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[1]=!attrsIsClose[1];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[1]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox">数据设置</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
                 </div>
-                <div class="mainContent-attr-item-cotent">
-                    asdasd
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[1]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-dataSetting'">
+                    <!--数据来源-->
+                    <div class="mainContent-attr-item-normal-dataSourceLine">
+                        <div class="mainContent-attr-item-normal-dataSourceName">数据来源</div>
+                        <div class="mainContent-attr-item-normal-dataSourceInput">
+                            <div class="input-box">
+                                <input id="input-dataSource" readonly>
+                            </div>
+                            <div class="input-pencil" ng-click="showHidden_DataSource()"></div>
+                        </div>
+                    </div>
+                    <!--维度-->
+                    <div class="mainContent-attr-item-normal-dataLatitudeLine">
+                        <div class="mainContent-attr-item-normal-dataLatitudeName">纬度</div>
+                        <div class="input-add" ng-click="showHidden_Latitude()"></div>
+                        <div class="mainContent-attr-item-normal-dataLatitudeInput">
+                            <div class="dataLatitudeItems">
+                                <div class="dataLatitudeItem" ng-repeat="latitudeitem in latitudeList"  ng-mouseenter="currentHoverID=latitudeitem" ng-mouseleave="currentHoverID=''">
+                                    <div class="dataLatitudeItems-show">
+                                        <div class="dataLatitudeItems-show-content">{{latitudeitem}}</div>
+                                        <img src="./image/icon/iChartEditPage/close-empty.png" class="dataLatitudeItems-show-close">
+                                    </div>
+                                    <div class="dataLatitudeItems-hidden" ng-class="currentHoverID==latitudeitem?'dataLatitudeItems-hidden-active':''">
+                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">总数</div>
+                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">平均数</div>
+                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">计数</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--数值-->
+                    <div class="mainContent-attr-item-normal-dataLatitudeLine">
+                        <div class="mainContent-attr-item-normal-dataLatitudeName">数值</div>
+                        <div class="input-add" ng-click="showHidden_DataSource()"></div>
+                        <div class="mainContent-attr-item-normal-dataLatitudeInput">
+                            <div class="dataLatitudeItems">
+                                <div class="dataLatitudeItem" ng-repeat="valueitem in valueList" ng-mouseenter="currentHoverID=valueitem" ng-mouseleave="currentHoverID=''">
+                                    <div class="dataLatitudeItems-show" >
+                                        <div class="dataLatitudeItems-show-content">{{valueitem}}</div>
+                                        <img src="./image/icon/iChartEditPage/close-empty.png" class="dataLatitudeItems-show-close">
+                                    </div>
+                                    <div class="dataLatitudeItems-hidden" ng-class="currentHoverID==valueitem?'dataLatitudeItems-hidden-active':''">
+                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">总数</div>
+                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">平均数</div>
+                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">计数</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
