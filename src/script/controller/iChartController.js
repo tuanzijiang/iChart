@@ -47,6 +47,7 @@ iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
     $scope.settingLatitudeOK=function () {
         //TODO 遍历latitudeListTemp 去赋值到latitudeList中去
     };
+
     $timeout(function () {
         console.log($scope.$$childHead.$$nextSibling);
     },1000);
