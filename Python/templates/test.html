@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This is a test!</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		//alert('a');
+
+    		/*$("#a").click(function(){
+    			//alert("a");
+    			//var formData = new FormData();
+    			//formData.append('file', $('#file')[0].files[0]);
+    			//formData.append("name","123");
+    			$.ajax({
+    				url:"/post_test",
+    				type:"post",
+    				//contentType: false,
+    				//processData: false,
+    				data:{
+                        a:'{asa,xas:d}'
+                    },
+    				success:function(ans){
+    					console.log(ans);
+    				}
+
+    			});
+    		});*/
+    		$("#signup").click(function () {
+                $.ajax({
+                    url:"/newuser",
+                    type:"post",
+                    data:{
+                        account:"abcde",
+                        password:"abcde"
+                    },
+                    success:function ($ans) {
+                        console.log($ans);
+                    }
+                });
+            });
+    		$("#login").click(function () {
+                $.ajax({
+                    url:"/login",
+                    type:"post",
+                    data:{
+                        id:1
+                    },
+                    success:function ($ans) {
+                        console.log($ans);
+                    }
+                });
+            });
+
+    	});
+    </script>
+</head>
+<body>
+   <form enctype="multipart/form-data" action="/upload" method="post">
+       {% csrf_token %}
+       {{ uf.as_p }}
+   <input type="file" name="file" />  
+   <input type="submit" value="upload"/>  
+   </form>  
+    <input type="button" id="signup" value="signup">
+    <input type="button" id="login" value="login">
+</body>
+</html>
