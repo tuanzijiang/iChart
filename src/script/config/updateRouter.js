@@ -5,7 +5,8 @@ updateApp.config(["$stateProvider",function ($stateProvider) {
             controller: 'updateLoadController'
         })
         .state("updateScan",{
-            templateUrl: './view/updateScan.html'
+            templateUrl: './view/updateScan.html',
+            controller: 'updateScanController'
         })
         .state("updateAttrs",{
             templateUrl: './view/updateAttrs.html'
