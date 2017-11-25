@@ -1,1 +1,25 @@
-<div style="color:white">预览数据</div>
+<div class="table-show">
+    <table class="table-body">
+        <tr>
+            <th>
+                <div class="table-header-flag">表头</div>
+            </th>
+            <th ng-repeat="x in table_info[0] track by $index">
+                <div class="table-header-kind-box" ng-class="{'table-header-kind-pic-txt':table_kind[$index]===0,'table-header-kind-pic-num':table_kind[$index]===1,'table-header-kind-pic-date':table_kind[$index]===2}">
+                    <div class="table-header-hidden-box">
+                        <div class="table-header-hidden-item">文本</div>
+                        <div class="table-header-hidden-item">数字</div>
+                        <div class="table-header-hidden=item">时间</div>
+                    </div>
+                </div>
+                <div class="table-header-name">{{x}}</div>
+            </th>
+        </tr>
+        <tr ng-repeat="(x,y) in table_info track by $index" ng-if="$index>0">
+            <td>{{$index}}</td>
+            <td ng-repeat="y in table_info[$index] track by $index"  id="{{'tr-'+x+'-'+$index}}" >&nbsp;
+                {{y}}
+            </td>
+        </tr>
+    </table>
+</div>

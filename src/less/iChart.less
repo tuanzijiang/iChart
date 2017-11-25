@@ -15,6 +15,9 @@
 //  |- workpage
 //    |- workpage-menus
 //    |- workpage-tablespace
+//- iChart-hidden
+//  |- iChart-hidden-dataSource-content
+//  |- iChart-hidden-latitudeSource-content
 
 
 
@@ -36,8 +39,10 @@ input:-webkit-autofill {
 
 
 .iChart-main{display:flex;flex-direction:column;position: absolute;height: 100%;width: 100%;min-width:90em;background: #1f2326;}
-.iChart-hidden{position: absolute;top: 0;bottom: 0;left: 0;right: 0;display: none;}
-
+.iChart-mainBlur{filter: blur(3px);}
+.iChart-hidden{position: absolute;top: 0;bottom: 0;left: 0;right: 0;display: none;transition: all 2.5s;background:transparent;opacity: 0;}
+.iChart-hidden-dataSource{display: flex;justify-content: center;align-items: center;background: rgba(112,112,112,.6);opacity: 1;z-index: 100;}
+.iChart-hidden-latitudeSource{display: flex;justify-content: center;align-items: center;background: rgba(112,112,112,.6);opacity: 1;z-index: 100;}
 
 //- componts loadBar
 .loadBar{width: 100%;height: 3px;display: flex;flex-direction: row;flex-wrap: nowrap;}
@@ -61,8 +66,8 @@ input:-webkit-autofill {
 .mainContent-menus{width: 4.2em;min-width:4.2em;height: 100%;background: #393f41;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;position: relative;z-index: 10;border-right: 1px solid #787878;}
 .mainContent-tool-bottom{width: 0;height: 100%;background: #393f41;min-width: 0;transition: all linear .3s;}
 .mainContent-tool-upper{width: 17%;height: 100%;background: #393f41;min-width: 17em;left: -17%;position: absolute;transition: all linear .3s;}
-.mainContent-workspace{flex: 1;height: 100%;min-width: 50em;overflow: auto;}
-.mainContent-attr{width: 17%;height: 100%;background: #393f41;min-width: 17em;user-select: none;}
+.mainContent-workspace{flex: 1;height: 100%;min-width: 47em;overflow: auto;}
+.mainContent-attr{width: 20%;height: 100%;background: #393f41;min-width: 20em;user-select: none;}
 //    |- content-menu
 .content-menu{height: 1.8em;width: 1.8em;margin: 1.2em 0;cursor: pointer;}
 .tool-menu-content{overflow: auto;height: 100%;width: 100%;}
@@ -91,10 +96,29 @@ input:-webkit-autofill {
 .mainContent-attr-item-normal-titleBox_A{transition: all .5s;position: relative;top: calc(~'50% - .5em');background: url("../image/icon/iChartEditPage/attr_item_arrow.png") center center no-repeat;background-size: 100% 100%;float: right;height: 1em;width: 1em;}
 .mainContent-attr-item-normal-titleBox_B{transition: all .5s;transform: rotate(-90deg);}
 .mainContent-attr-item-normal-input-box-headerName{width: 70%;margin: 0 auto;height: 2em;box-shadow: 0 2px 0 0 #3DA8F5;background: transparent;}
-
+//数据来源
+.mainContent-attr-item-normal-dataSourceLine{width: 70%;margin: 0 auto;height: 2em;line-height: 2em;}
+.mainContent-attr-item-normal-dataSourceName{display: inline-block;vertical-align: middle;color: white;line-height: 2em;font-size:95%;}
+.mainContent-attr-item-normal-dataSourceInput{display: inline-block;vertical-align:middle;float: right;position:relative;width: calc(~'100% - 5em');height: 2em;box-shadow: 0 2px 0 0 #3DA8F5;background: transparent;}
+.mainContent-attr-item-normal-dataSourceInput> .input-box{height: 2em;width: calc(~'100% - 2em');position: relative;float: left;}
+.input-pencil{position: relative;float: right;height: 2em;width: 2em;cursor: pointer;background: url("../image/icon/iChartEditPage/pencil.png") right center no-repeat;background-size: 50% 50%; }
+.mainContent-attr-item-normal-dataLatitudeLine{width: 70%;margin: .3em auto 0;line-height: 2em;}
+.mainContent-attr-item-normal-dataLatitudeName{display: inline-block;vertical-align: middle;color: white;line-height: 2em;font-size:95%;}
+.mainContent-attr-item-normal-dataLatitudeInput{display: flex;min-height: 1.7em;box-shadow: 0 2px 0 0 #3DA8F5;background: transparent;margin: .3em 0;}
+.input-add{position: relative;display: inline-block;vertical-align: middle;height: 2em;width: 2em;cursor: pointer;background: url("../image/icon/iChartEditPage/add.png") center center no-repeat;background-size: 50% 50%; }
+.dataLatitudeItems{width: 100%;display: flex;flex-direction: row;flex-wrap: wrap;justify-content:flex-start;align-items:center;}
+.dataLatitudeItems-show-content{display: inline-block;}
+.dataLatitudeItems-show-close{position: relative;top:-1px;margin: 0 0 0 .3em;height: .8em;width: .8em;display: inline-block;vertical-align: middle;}
+.dataLatitudeItem{margin: 0 .5em .3em 0;position: relative;}
+.dataLatitudeItems-show{background: #3DA8F5;height: 1.7em;line-height:1.7em;min-width: 3em;padding: 0 .7em;cursor: pointer;clip-path: polygon(0% 0%,calc(100% - 8px) 0, 100% 8px, 100% 100%, 0% 100%);}
+.dataLatitudeItems-hidden{display: none;width: 100%;background: #3DA8F5;position: absolute;transition: all .5s;opacity: 0;box-shadow: 0 0 0 0 transparent;}
+.dataLatitudeItems-hidden-active{display: block;z-index: 1;opacity: 1;box-shadow: .3em .4em .4em 0 hsla(0,0,40%,.6);}
+.dataLatitudeItems-hidden-item{line-height: 1.3em;font-size: 85%;height: 1.3em;border-top: 1px solid white;padding: .5em;cursor: pointer;}
+.dataLatitudeItems-hidden-item:hover{background: #168dfa;transition: all .3s;}
 
 //specific active height
 .mainContent-attr-item-content-headerName{height: 3em;}
+.mainContent-attr-item-content-dataSetting{height: 13em;overflow-y: scroll;}
 
 
 //  |- workpage
@@ -150,6 +174,42 @@ tr:nth-child(even)>td{background: #414345;};
 
 
 .table-page-control{height: 3em;width: 90%;margin:1em auto 1.5em;color: white;text-align: center;}
+
+
+
+//  |- iChart-hidden-dataSource-content
+.iChart-hidden-dataSource-content{display: block;width: 33em;height: 23em;background: white;border-radius: 5px;}
+.iChart-hidden-dataSource-content-titleLine{width: 85%;margin: 1em auto;height: 2em;line-height: 2em;}
+.iChart-hidden-dataSource-content-titleName{color: #333;line-height: 2em;float: left;}
+.iChart-hidden-dataSource-content-close{background: url("../image/icon/iChartEditPage/close.png") right center no-repeat;background-size: 50% 50%;height: 2em;width: 2em;position: relative;float: right;cursor: pointer;}
+.iChart-hidden-dataSource-content-fileBox{width: 85%;margin: 1em auto;height: 15em;overflow: auto;}
+.iChart-hidden-dataSource-content-fileLine{width: 100%;line-height: 2em;height: 2em;cursor: pointer;}
+.iChart-hidden-dataSource-content-fileLine:hover{background: hsla(0,0,50%,.3);}
+.iChart-hidden-dataSource-file-xlsx{display: inline-block;vertical-align:middle;height: 2em;line-height: 2em;width: 2em;background: url("../image/icon/iChartEditPage/xls.png") center center no-repeat;background-size: 50% 50%;}
+.iChart-hidden-dataSource-file-xlsx-name{display: inline-block;vertical-align:middle;color: #666;line-height: 2em;user-select: none;}
+.iChart-hidden-dataSource-content-stateLine{line-height: 2em;height: 2em;color: #769ce7;width: 85%;margin: 0 auto;}
+.iChart-hidden-dataSource-yes{position: relative;float: right;margin: 0 0 0 1em;cursor: pointer;}
+.iChart-hidden-dataSource-no{position: relative;float: right;margin: 0 0 0 1em;cursor: pointer;}
+
+//  |-iChart-hidden-latitudeSource-content
+.iChart-hidden-latitudeSource-content{display: block;width: 50em;height: 23em;border-radius: 5px;background: #f0f2f3;}
+.iChart-hidden-latitudeSource-content-titleLine{width: 85%;margin: 1em auto;height: 2em;line-height: 2em;}
+.iChart-hidden-latitudeSource-content-titleName{color: #333;line-height: 2em;float: left;}
+.iChart-hidden-latitudeSource-content-close{background: url("../image/icon/iChartEditPage/close.png") right center no-repeat;background-size: 50% 50%;height: 2em;width: 2em;position: relative;float: right;cursor: pointer;}
+.iChart-hidden-latitudeSource-content-stateLine{line-height: 2em;height: 2em;color: #999;width: 85%;margin: 0 auto;}
+.iChart-hidden-latitudeSource-yes{position: relative;float: right;margin: 0 0 0 1em;cursor: pointer;color: #769ce7;}
+.iChart-hidden-latitudeSource-no{position: relative;float: right;margin: 0 0 0 1em;cursor: pointer;color: #769ce7;}
+.iChart-hidden-latitudeSource-content-itemsBox{width: 85%;margin: 1em auto;height: 15em;overflow: auto;}
+.iChart-hidden-latitudeSource-content-items{display: flex;width: 100%;margin: 0 auto;font-size: 95%;}
+.iChart-hidden-latitudeSource-kind-name{color: #999;line-height: 1.5em;}
+.iChart-hidden-latitudeSource-date:before{display: inline-block;content:" "; width: 1.5em;height: 1.5em;margin: 0 .7em 0 0;background:url("../image/icon/iChartEditPage/date .png") center center no-repeat;background-size: 100% 100%;vertical-align: middle;}
+.iChart-hidden-latitudeSource-txt:before{display: inline-block;content:" "; width: 1.5em;height: 1.5em;margin: 0 .7em 0 0;background:url("../image/icon/iChartEditPage/text.png") center center no-repeat;background-size: 100% 100%;vertical-align: middle;}
+.iChart-hidden-latitudeSource-num:before{display: inline-block;content:" "; width: 1.5em;height: 1.5em;margin: 0 .7em 0 0;background:url("../image/icon/iChartEditPage/number.png") center center no-repeat;background-size: 100% 100%;vertical-align: middle;}
+.iChart-hidden-latitudeSource-date-content{margin: 0 0 1em 3em;display: flex;flex:1;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: center;}
+.iChart-hidden-latitudeSource-date-content-item{min-width: 6em;line-height: 1.5em;height: 1.5em;margin: 0 3em .3em 0;}
+.iChart-hidden-latitudeSource-date-content-item-checkbox{height: 1.5em;width: 1.7em;display: inline-block;background: url("../image/icon/iChartEditPage/check_off.png") center center no-repeat;background-size: 100% 100%;vertical-align: middle;cursor: pointer;}
+.iChart-hidden-latitudeSource-date-content-item-checkbox-active{background: url("../image/icon/iChartEditPage/check_on.png") center center no-repeat;background-size: 100% 100%;}
+.iChart-hidden-latitudeSource-date-content-item-checkname{color: #999;line-height: 1.5em;display: inline-block;height: 1.5em;vertical-align: middle;}
 
 
 

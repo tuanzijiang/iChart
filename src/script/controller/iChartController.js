@@ -1,5 +1,6 @@
-iChartApp.controller("iChartController", function ($scope,$state) {
+iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
     $scope.mainOrSub=1;
+    $scope.iChart_hidden=0;
     $scope.mainContentSwitch=function(flag) {
         switch (flag){
             case 0:
@@ -21,7 +22,60 @@ iChartApp.controller("iChartController", function ($scope,$state) {
     };
     //左边的菜单栏点击事件
 
-
+    //纬度字段弹窗
+    $scope.fieldList={
+        date:["日期"],
+        text:["订单来源","用户注册来源","订单地区"],
+        number:["支付订单量","被投诉订单量"]
+    };
+    $scope.latitudeListTemp={};//保留弹窗内部纬度值
+    $scope.settingLatitude=function (valueKind,value) {
+        var key=valueKind+value;
+        if($scope.latitudeListTemp[key]){
+            if($scope.latitudeListTemp[key]===2){
+                $scope.latitudeListTemp[key]=0
+            }
+            else{
+                $scope.latitudeListTemp[key]=2;
+            }
+        }
+        else{
+            $scope.latitudeListTemp[key]=2;
+        }
+    };
+    $scope.settingLatitudeOK=function () {
+        for(var key in $scope.latitudeListTemp){
+            var keyKind=key.substring(0,1);
+            var keyNum=key.substring(1);
+            switch (keyKind){
+                case 'a':
+                    $scope.$$childHead.$$nextSibling.latitudeList.push($scope.fieldList.date[keyNum]);
+                    break;
+                case 'b':
+                    $scope.$$childHead.$$nextSibling.latitudeList.push($scope.fieldList.text[keyNum]);
+                    break;
+                case 'c':
+                    $scope.$$childHead.$$nextSibling.latitudeList.push($scope.fieldList.number[keyNum]);
+                    break;
+                default:
+                    break;
+            }
+            var newLatitude=[];
+            for(var i=0;i<$scope.$$childHead.$$nextSibling.latitudeList.length;i++){
+                var flag=true;
+                for(var j=0;j<newLatitude.length;j++){
+                    if(newLatitude[j]===$scope.$$childHead.$$nextSibling.latitudeList[i]){
+                        flag=false;
+                    }
+                }
+                if(flag){
+                    newLatitude.push($scope.$$childHead.$$nextSibling.latitudeList[i]);
+                }
+            }
+            $scope.$$childHead.$$nextSibling.latitudeList=newLatitude;
+            $scope.iChart_hidden=0;
+        }
+    };
 });
 
 
@@ -31,9 +85,16 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
      */
     $scope.eleDomOrders=[];//记录增加元素的相关信息
     $scope.eleDomInfos={};//记录增加元素的相关信息
-    $scope.attrKindFlag=0;
-    $scope.attrsIsExieted=[true,true,false,true];
-    $scope.attrsIsClose=[];
+    $scope.attrKindFlag=0;//属性种类集合
+    $scope.attrsIsExieted=[true,true,false,true];//属性是否显示
+    $scope.attrsIsClose=[];//属性是否关闭
+    $scope.currentDomId="";//正在处理的DOM
+    $scope.currentHoverID="";
+
+    $scope.latitudeList=["日期"];//选中纬度值
+    $scope.valueList=[];
+    $scope.valueListTemp=[];
+
 
     /**
      * 控制菜单打开与关闭
@@ -96,8 +157,9 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
      * 点击一个表单元素
      */
     $scope.clickTableDom=function (id) {
-        console.log(id);
+        $scope.currentDomId=id;
     };
+
 
     /**
      * 控制属性栏显示种类的切换
@@ -110,12 +172,48 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
         else{
             $scope.attrKindFlag=0;
         }
-    }
-
+    };
+    /**
+     * 改变图表的相关属性
+     */
     $scope.changeTableAttr=function () {
         changeTableAttr.changeTableAttr($scope,arguments);
-    }
+    };
 
+    /**
+     *  数据来源弹窗
+     */
+    $scope.showHidden_DataSource=function () {
+        $scope.$parent.iChart_hidden=1;
+    };
+    /**
+     *  纬度弹窗
+     */
+    $scope.showHidden_Latitude=function () {
+        $scope.$parent.iChart_hidden=2;
+        $scope.$parent.latitudeListTemp={};
+        for(var i=0;i<$scope.latitudeList.length;i++){
+            var key;
+            for(var j=0;j<$scope.$parent.fieldList.date.length;j++){
+                if($scope.latitudeList[i]===$scope.$parent.fieldList.date[j]){
+                    key='a'+j;
+                }
+            }
+            for(var j=0;j<$scope.$parent.fieldList.text.length;j++){
+                if($scope.latitudeList[i]===$scope.$parent.fieldList.text[j]){
+                    key='b'+j;
+                }
+            }
+            for(var j=0;j<$scope.$parent.fieldList.number.length;j++){
+                if($scope.latitudeList[i]===$scope.$parent.fieldList.number[j]){
+                    key='c'+j;
+                }
+            }
+            if(key){
+                $scope.$parent.latitudeListTemp[key]=2;
+            }
+        }
+    };
 
 });
 

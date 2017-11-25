@@ -2,7 +2,7 @@ updateApp.controller("updateController",function ($scope,$state) {
     $state.go("updateLoad");
     $scope.currentPage=0;
     $scope.mainContentSwitch=function (flag) {
-        if(flag<=$scope.currentPage){
+        // if(flag<=$scope.currentPage){
             switch (flag){
                 case 0:
                     $state.go("updateLoad");
@@ -21,7 +21,7 @@ updateApp.controller("updateController",function ($scope,$state) {
                     $scope.currentPage=0;
                     break;
             }
-        }
+        // }
     }
 });
 
@@ -51,4 +51,29 @@ updateApp.controller("updateLoadController",function ($scope,$state) {
         $scope.$parent.currentPage=1;
     }
 
+});
+
+updateApp.controller("updateScanController",function ($scope,$state) {
+    $scope.table_info=[
+        ["日期","性别","来源","地区","支付量"],
+        ["2015-10-12 00:00","男","app","北京","12384884561235"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"],
+        ["2015-10-12 00:00","男","app","北京","123"]
+    ];
+    $scope.table_kind=[0,1,2,0,0];//0--文本；1--数字；2--日期
 });

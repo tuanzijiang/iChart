@@ -8,7 +8,7 @@
     <link href="./css/iChart.css" type="text/css" rel="stylesheet">
 </head>
 <body ng-app="iChartApp" ng-controller="iChartController" >
-    <div class="iChart-main">
+    <div class="iChart-main" ng-class="iChart_hidden!=0?'iChart-mainBlur':''">
         <div class="loadBar">
             <div class="loadPart" ng-style="loadPartBar"></div>
             <div class="noLoadPart" ng-style="noloadPartBar"></div>
@@ -25,7 +25,84 @@
         <div class="mainContent" ng-show="mainOrSub===1" ng-include="'./view/iChartEditPage.html'"  ng-controller="iChartEditPController"></div>
         <div class="mainContent" ng-show="mainOrSub===2" ui-view="subPages"></div>
     </div>
-    <div class="iChart-hidden"></div>
+    <!--iChart_hidden=1: 数据来源-->
+    <div class="iChart-hidden" ng-class="iChart_hidden==1?'iChart-hidden-dataSource':''">
+        <div class="iChart-hidden-dataSource-content">
+            <div class="iChart-hidden-dataSource-content-titleLine">
+                <div class="iChart-hidden-dataSource-content-titleName">选择工作表</div>
+                <div class="iChart-hidden-dataSource-content-close" ng-click="iChart_hidden=0"></div>
+            </div>
+            <div class="iChart-hidden-dataSource-content-fileBox">
+                <div class="iChart-hidden-dataSource-content-fileLine">
+                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
+                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
+                </div>
+                <div class="iChart-hidden-dataSource-content-fileLine">
+                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
+                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
+                </div>
+                <div class="iChart-hidden-dataSource-content-fileLine">
+                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
+                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
+                </div>
+                <div class="iChart-hidden-dataSource-content-fileLine">
+                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
+                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
+                </div>
+                <div class="iChart-hidden-dataSource-content-fileLine">
+                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
+                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
+                </div>
+            </div>
+            <div class="iChart-hidden-dataSource-content-stateLine">
+                <div class="iChart-hidden-dataSource-no" ng-click="iChart_hidden=0">取消</div>
+                <div class="iChart-hidden-dataSource-yes" ng-click="iChart_hidden=0">确定</div>
+            </div>
+        </div>
+    </div>
+    <!--iChart_hidden=2: 纬度-->
+    <div class="iChart-hidden" ng-class="iChart_hidden==2?'iChart-hidden-latitudeSource':''">
+        <div class="iChart-hidden-latitudeSource-content">
+            <div class="iChart-hidden-latitudeSource-content-titleLine">
+                <div class="iChart-hidden-latitudeSource-content-titleName">批量添加纬度字段</div>
+                <div class="iChart-hidden-latitudeSource-content-close" ng-click="iChart_hidden=0"></div>
+            </div>
+            <div class="iChart-hidden-latitudeSource-content-itemsBox">
+                <div class="iChart-hidden-latitudeSource-content-items">
+                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-date">日期</div>
+                    <div class="iChart-hidden-latitudeSource-date-content">
+                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.date track by $index">
+                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingLatitude('a',$index)" ng-class="latitudeListTemp['a'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
+                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-latitudeSource-content-items">
+                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-txt">文本</div>
+                    <div class="iChart-hidden-latitudeSource-date-content">
+                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.text track by $index">
+                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingLatitude('b',$index)" ng-class="latitudeListTemp['b'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
+                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-latitudeSource-content-items">
+                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-num">数值</div>
+                    <div class="iChart-hidden-latitudeSource-date-content">
+                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.number track by $index">
+                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingLatitude('c',$index)" ng-class="latitudeListTemp['c'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
+                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="iChart-hidden-latitudeSource-content-stateLine">
+                * 注意：使用聚合函数的新字段无法作为纬度
+                <div class="iChart-hidden-latitudeSource-no" ng-click="iChart_hidden=0">取消</div>
+                <div class="iChart-hidden-latitudeSource-yes" ng-click="settingLatitudeOK()">确定</div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="./script/angular.min.js" type="text/javascript"></script>
 <script src="./script/angular-ui-router.min.js" type="text/javascript"></script>

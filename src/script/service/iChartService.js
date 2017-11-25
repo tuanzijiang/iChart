@@ -43,12 +43,10 @@ iChartApp.service("closeLeftMenu",function () {
 //增加表单元素
 iChartApp.service("addTableDom",function () {
     this.addTableDom=function ($scope,$compile,kind) {
-        var compileTestNode=$compile('<div ng-click="clickTableDom(\'editTest'+$scope.eleDomOrders.length+'\')"></div>')($scope);
-        console.log(compileTestNode);
-
-        var editTestNode=compileTestNode;
+        var editTestNode=$compile('<div ng-click="clickTableDom(\'editTest'+$scope.eleDomOrders.length+'\')"></div>')($scope);
         editTestNode.attr("id","editTable"+$scope.eleDomOrders.length);//设置dom元素的id
         editTestNode.attr("class","editPage_workspace_item");
+        console.log(iChartInitData.normalTable.barTable["kind0"]);
         editTestNode[0].style.height=iChartInitData.normalTable.barTable["kind0"].iChartHeight;
         editTestNode[0].style.width=iChartInitData.normalTable.barTable["kind0"].iChartWidth;
         // 指定图表的配置项和数据
@@ -61,16 +59,27 @@ iChartApp.service("addTableDom",function () {
         $scope.eleDomOrders.push("editTest"+$scope.eleDomOrders.length);//记录顺序
     }
 });
-
+//修改表单元素
 iChartApp.service("changeTableAttr",function () {
     this.changeTableAttr=function ($scope,args) {
-        console.log(document.getElementById(args[0]).value);
-        var option={
-            title:{
-                text: document.getElementById(args[0]).value
+        switch (args[0]){
+            case 0: {//修改表单title
+                var option={
+                    title:{
+                        text: document.getElementById(args[1]).value
+                    }
+                };
+                if($scope.eleDomInfos[$scope.currentDomId]){
+                    $scope.eleDomInfos[$scope.currentDomId].chartHandler.setOption(option);
+                }
+                else{
+                    console.log("没有选中任何元素");
+                }
+                break;
             }
-        };
-        console.log($scope.eleDomInfos["editTest0"].chartHandler.setOption(option));
+            default:
+                break;
+        }
     }
 });
 
