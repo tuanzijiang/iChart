@@ -29,11 +29,15 @@
     		});*/
     		$("#signup").click(function () {
                 $.ajax({
-                    url:"/newuser",
+                    url:"/sheet_columns",
                     type:"post",
                     data:{
-                        account:"abcde",
-                        password:"abcde"
+                        sheet_id:7,
+                        start_line:0,
+                        lines:5,
+                        columns:'["value","学号"]',
+                        accoun:"abcde",
+                        passw:"abcde"
                     },
                     success:function ($ans) {
                         console.log($ans);
@@ -42,10 +46,11 @@
             });
     		$("#login").click(function () {
                 $.ajax({
-                    url:"/login",
+                    url:"/log_in",
                     type:"post",
                     data:{
-                        id:1
+                        account:"abcde",
+                        password:"abcde"
                     },
                     success:function ($ans) {
                         console.log($ans);
@@ -58,8 +63,7 @@
 </head>
 <body>
    <form enctype="multipart/form-data" action="/upload" method="post">
-       {% csrf_token %}
-       {{ uf.as_p }}
+
    <input type="file" name="file" />  
    <input type="submit" value="upload"/>  
    </form>  
