@@ -702,7 +702,6 @@ input:-webkit-autofill {
   overflow: auto;
   display: block;
   position: relative;
-  float: left;
 }
 .table-body {
   color: white;

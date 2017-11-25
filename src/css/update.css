@@ -6,6 +6,23 @@ body {
   width: 100%;
   background: #1f2326;
 }
+input {
+  padding: 0;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+}
+textarea {
+  padding: 0;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  resize: none;
+}
 ::-webkit-scrollbar-track {
   height: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -182,18 +199,23 @@ body {
   opacity: 0;
   cursor: pointer;
 }
+.update-scan-body {
+  height: 100%;
+  width: 100%;
+}
 .table-show {
   background: #242527;
   width: 60%;
-  height: calc(100% - 9em);
+  height: calc(100% - 10.5em);
   margin: 0 auto;
   overflow: auto;
   display: block;
   position: relative;
-  float: left;
 }
 .table-body {
   color: white;
+  height: 100%;
+  width: 100%;
 }
 .table-header-flag {
   padding: .1em 2em .1em .3em;
@@ -227,8 +249,59 @@ body {
   background-size: 100% 100%;
 }
 .table-header-hidden-box {
+  padding: .3em 0;
+  top: 150%;
+  position: absolute;
+  box-shadow: 2px 1px 4px 0 rgba(26, 26, 26, 0.6);
+  background: #303030;
+}
+.table-header-hidden-box-transparent {
   top: 100%;
   position: absolute;
+  width: 5.5em;
+  height: 3em;
+}
+.table-header-hidden-item {
+  line-height: 2em;
+  height: 2em;
+  padding: .4em 1.4em .4em 1em;
+  cursor: pointer;
+  background: transparent;
+}
+.table-header-hidden-item:hover {
+  background: #777;
+  transition: all .5s;
+}
+.table-header-hidden-item:nth-child(1) > div {
+  background: url("../image/icon/updateScan/txt.png") center center no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  vertical-align: middle;
+  height: 1em;
+  width: 1em;
+  margin: 0 .7em 0 .4em;
+}
+.table-header-hidden-item:nth-child(2) > div {
+  background: url("../image/icon/updateScan/num.png") center center no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  vertical-align: middle;
+  height: 1em;
+  width: 1em;
+  margin: 0 .7em 0 .4em;
+}
+.table-header-hidden-item:nth-child(3) > div {
+  background: url("../image/icon/updateScan/date.png") center center no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  vertical-align: middle;
+  height: 1em;
+  width: 1em;
+  margin: 0 .7em 0 .4em;
+}
+.table-header-hidden-item > span {
+  display: inline-block;
+  vertical-align: middle;
 }
 td {
   padding: .7em 5em .7em 1em;
@@ -261,4 +334,119 @@ tr:nth-child(even) > td {
 }
 .table-body-tr-active {
   box-shadow: 0 0 0 1px #3DA8F5;
+}
+.date-setting {
+  display: inline-block;
+}
+.next-step {
+  color: white;
+  background: #3DA8F5;
+  border-radius: 5px;
+  line-height: 2em;
+  position: relative;
+  cursor: pointer;
+  top: .5em;
+  width: 7em;
+  text-align: center;
+  float: right;
+  display: inline-block;
+}
+.update-scan-line {
+  width: 60%;
+  line-height: 3em;
+  height: 3em;
+  color: #aaa;
+  margin: 0 auto .3em;
+  position: relative;
+  font-size: 115%;
+}
+.update-scan-line1 {
+  width: 60%;
+  line-height: 1.5em;
+  height: 1.5em;
+  color: #aaa;
+  margin: 0 auto;
+}
+.update-attrs {
+  width: 30%;
+  height: 100%;
+  margin: 0 auto;
+}
+.update-attrs-line {
+  display: flex;
+  flex-direction: row;
+  height: 3em;
+  line-height: 3em;
+  margin: 1em 0 0 0;
+}
+.update-attrs-line-name {
+  width: 33%;
+  height: 100%;
+  color: #aaa;
+  text-align: right;
+  font-size: 115%;
+  margin: 0 .4em 0 0;
+}
+.update-attrs-line-input {
+  flex: 1;
+  height: 100%;
+  box-shadow: 0 2px 0 0 #3DA8F5;
+}
+.update-attrs-line-input > input {
+  color: white;
+  font-size: 115%;
+}
+.update-attrs-line1 {
+  display: flex;
+  flex-direction: row;
+  height: 10em;
+  line-height: 2em;
+  margin: 3em 0 0 0;
+}
+.update-attrs-line1-name {
+  width: 33%;
+  height: 100%;
+  color: #aaa;
+  text-align: right;
+  font-size: 115%;
+  margin: 0 .4em 0 0;
+}
+.update-attrs-line1-input {
+  flex: 1;
+  height: 100%;
+  box-shadow: 0 0 0 2px #3DA8F5;
+}
+.update-attrs-line1-input > textarea {
+  color: white;
+  font-size: 115%;
+  line-height: 1.3em;
+}
+.update-attrs-line2 {
+  display: flex;
+  flex-direction: row;
+  height: 10em;
+  line-height: 2em;
+  margin: 3em 0 0 0;
+}
+.update-attrs-line2-name {
+  width: 33%;
+  height: 100%;
+  color: #aaa;
+  text-align: right;
+  font-size: 115%;
+  margin: 0 .4em 0 0;
+}
+.update-attrs-line2-input {
+  flex: 1;
+  height: 100%;
+}
+.update-save-button {
+  text-align: center;
+  border-radius: 5px;
+  line-height: 2em;
+  height: 2em;
+  width: 15em;
+  color: white;
+  background: #3DA8F5;
+  cursor: pointer;
 }

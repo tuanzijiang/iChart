@@ -1,25 +1,38 @@
-<div class="table-show">
-    <table class="table-body">
-        <tr>
-            <th>
-                <div class="table-header-flag">表头</div>
-            </th>
-            <th ng-repeat="x in table_info[0] track by $index">
-                <div class="table-header-kind-box" ng-class="{'table-header-kind-pic-txt':table_kind[$index]===0,'table-header-kind-pic-num':table_kind[$index]===1,'table-header-kind-pic-date':table_kind[$index]===2}">
-                    <div class="table-header-hidden-box">
-                        <div class="table-header-hidden-item">文本</div>
-                        <div class="table-header-hidden-item">数字</div>
-                        <div class="table-header-hidden=item">时间</div>
+<div class="update-scan-body">
+    <div class="table-show">
+        <table class="table-body">
+            <tr>
+                <th>
+                    <div class="table-header-flag">表头</div>
+                </th>
+                <th ng-repeat="x in table_info[0] track by $index">
+                    <div class="table-header-kind-box" ng-class="{'table-header-kind-pic-txt':table_kind[$index]===0,'table-header-kind-pic-num':table_kind[$index]===1,'table-header-kind-pic-date':table_kind[$index]===2}" ng-mouseover="table_hover=$index+1" ng-mouseleave="table_hover=0;">
+                        <div class="table-header-hidden-box-transparent" ng-if="table_hover===$index+1"></div>
+                        <div class="table-header-hidden-box" ng-if="table_hover===$index+1">
+                            <div class="table-header-hidden-item" ng-click="table_kind[$index]=0;table_hover=0;"><div></div><span>文本</span></div>
+                            <div class="table-header-hidden-item" ng-click="table_kind[$index]=1;table_hover=0;"><div></div><span>数值</span></div>
+                            <div class="table-header-hidden-item" ng-click="table_kind[$index]=2;table_hover=0;"><div></div><span>时间</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="table-header-name">{{x}}</div>
-            </th>
-        </tr>
-        <tr ng-repeat="(x,y) in table_info track by $index" ng-if="$index>0">
-            <td>{{$index}}</td>
-            <td ng-repeat="y in table_info[$index] track by $index"  id="{{'tr-'+x+'-'+$index}}" >&nbsp;
-                {{y}}
-            </td>
-        </tr>
-    </table>
+                    <div class="table-header-name">{{x}}</div>
+                </th>
+            </tr>
+            <tr ng-repeat="(x,y) in table_info track by $index" ng-if="$index>0">
+                <td>{{$index}}</td>
+                <td ng-repeat="y in table_info[$index] track by $index"  id="{{'tr-'+x+'-'+$index}}" >&nbsp;
+                    {{y}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="update-scan-line">
+        <div class="date-setting">数据设置</div>
+        <div class="next-step">下一步</div>
+    </div>
+    <div class="update-scan-line1">
+        <div>1.请选择表头，表头前数据将不会保留</div>
+    </div>
+    <div class="update-scan-line1">
+        <div>2.请选择表头的数据类型，只能选择文本、数字和日期</div>
+    </div>
 </div>

@@ -76,4 +76,9 @@ updateApp.controller("updateScanController",function ($scope,$state) {
         ["2015-10-12 00:00","男","app","北京","123"]
     ];
     $scope.table_kind=[0,1,2,0,0];//0--文本；1--数字；2--日期
+    $scope.table_hover=0;
+});
+
+updateApp.controller("updateAttrsController",function ($scope,$state) {
+
 });
