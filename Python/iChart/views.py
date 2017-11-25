@@ -310,8 +310,10 @@ def _log_in(request):
 #用于测试post
 @csrf_exempt
 def post_test(request):
-    data = request.POST.get('test')
-    return HttpResponse(data)
+    data = request.POST.get("test")
+    print(data)
+    print(request.POST)
+    return HttpResponse('123')
 
 def test(request):
     return render(request,"test.html")

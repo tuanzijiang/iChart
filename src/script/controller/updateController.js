@@ -46,9 +46,9 @@ updateApp.controller("updateLoadController",function ($scope,$state) {
         $scope.$parent.currentPage=1;
     }
     fileOnChange=function(value){
-        console.log(value);
-        $state.go("updateScan");
-        $scope.$parent.currentPage=1;
+        console.log(value[0]);
+        // $state.go("updateScan");
+        // $scope.$parent.currentPage=1;
     }
 
 });

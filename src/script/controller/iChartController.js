@@ -25,6 +25,19 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
 
 
 
+    $http({
+        method:'post',
+        url:'http://127.0.0.1:8000/post_test',
+        data:{
+            test:'test123'
+        },
+        headers:{
+            'Content-Type':'application/x-www-form-urlencoded'
+        }
+    }).success(function(req){
+        console.log(req);
+    });
+
     //纬度字段弹窗
     $scope.fieldList={
         date:["日期"],
