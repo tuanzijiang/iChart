@@ -1,4 +1,4 @@
-iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
+iChartApp.controller("iChartController", function ($scope,$state,$http) {
     $scope.mainOrSub=1;
     $scope.iChart_hidden=0;
     $scope.mainContentSwitch=function(flag) {
@@ -21,6 +21,9 @@ iChartApp.controller("iChartController", function ($scope,$state,$timeout) {
         }
     };
     //左边的菜单栏点击事件
+
+
+
 
     //纬度字段弹窗
     $scope.fieldList={
