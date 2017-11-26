@@ -99,7 +99,28 @@ iChartApp.service("scanTable",function () {
             var JSONObject={kind:"graph",src:img.src};
             JSONObjects.push(JSONObject);
         }
-        var JSON_str=JSON.stringify(JSONObjects);
+        $http({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/save_page',
+            withCredentials: true,
+            data: {
+                data: JSON.stringify(JSONObjects)
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }, transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                    str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+                }
+                return str.join("&");
+            }
+        }).success(function(req){
+            console.log(req);
+            window.location.href="./wxDisplay.html";
+        }).error(function (req) {
+            console.log(req);
+        });
     }
 });
 
