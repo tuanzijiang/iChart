@@ -178,9 +178,11 @@ def get_sheet_content(request):
     if not all:
         columns = json.loads(columns_json)
         target_sheet = target_sheet[columns]
-
+    else:
+        columns = sheet.columns.tolist()
     record = target_sheet.to_records()
     record_list = record.tolist()
+
     columns = columns.insert(0,"index")
     record_list = record_list.insert(0,columns)
 
