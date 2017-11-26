@@ -116,7 +116,7 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
 });
 
 
-iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$http,scanTable,changeTableAttr,addTableDom,openLeftMenu,closeLeftMenu) {
+iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$http,scanTable,changeTableAttr,addTableDom,addTextDom,openLeftMenu,closeLeftMenu) {
     /**
      * 页面初始化
      */
@@ -195,6 +195,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
      */
     $scope.clickTableDom=function (id) {
         $scope.currentDomId=id;
+        console.log($scope.currentDomId);
     };
     /**
      *
@@ -215,6 +216,10 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
             default:
                 break;
         }
+    };
+
+    $scope.addTextDom=function (kind) {
+        addTextDom.addTextDom($scope,$compile,kind);
     };
 
 

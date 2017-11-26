@@ -43,7 +43,7 @@ iChartApp.service("closeLeftMenu",function () {
 //增加表单元素
 iChartApp.service("addTableDom",function () {
     this.addTableDom=function ($scope,$compile,kind) {
-        var editTestNode=$compile('<div ng-click="clickTableDom(\'editTest'+$scope.eleDomOrders.length+'\')"></div>')($scope);
+        var editTestNode=$compile('<div ng-click="clickTableDom(\'editTable'+$scope.eleDomOrders.length+'\')"></div>')($scope);
         editTestNode.attr("id","editTable"+$scope.eleDomOrders.length);//设置dom元素的id
         editTestNode.attr("class","editPage_workspace_item");
         console.log(iChartInitData.normalTable.barTable["kind0"]);
@@ -55,8 +55,8 @@ iChartApp.service("addTableDom",function () {
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
         document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
-        $scope.eleDomInfos["editTest"+$scope.eleDomOrders.length]={"chartHandler":myChart};
-        $scope.eleDomOrders.push("editTest"+$scope.eleDomOrders.length);//记录顺序
+        $scope.eleDomInfos["editTable"+$scope.eleDomOrders.length]={"chartHandler":myChart};
+        $scope.eleDomOrders.push("editTable"+$scope.eleDomOrders.length);//记录顺序
     }
 });
 
@@ -124,6 +124,20 @@ iChartApp.service("scanTable",function () {
     }
 });
 
+//增加文本结点
+iChartApp.service("addTextDom",function () {
+   this.addTextDom=function ($scope,$compile,kind) {
+       var editTestNode=$compile('<p ng-click="clickTextDom(\'editText'+$scope.eleDomOrders.length+'\')" contenteditable="true">'+kind+'</p>')($scope);
+       editTestNode.attr("id","editTable"+$scope.eleDomOrders.length);//设置dom元素的id
+       editTestNode.attr("class","editPage_workspace_item");
+       console.log(editTestNode);
+       console.log(kind);
+       editTestNode[0].style.fontFamily=kind;
+       document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
+       $scope.eleDomInfos["editText"+$scope.eleDomOrders.length]={"chartHandler":editTestNode[0]};
+       $scope.eleDomOrders.push("editText"+$scope.eleDomOrders.length);//记录顺序
+   }
+});
 
 //adjust the table info in the workPage
 iChartApp.service("adjustTableInfo",function () {

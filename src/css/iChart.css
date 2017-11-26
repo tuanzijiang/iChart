@@ -269,12 +269,31 @@ input:-webkit-autofill {
   display: block;
   cursor: pointer;
 }
+.menu-font-items {
+  width: 80%;
+  line-height: 2.5em;
+  height: 2.5em;
+  background: white;
+  color: #666;
+  overflow: hidden;
+  margin: 1em;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+}
+.font-YaHei {
+  font-family: "Microsoft YaHei UI";
+}
+.font-SongTi {
+  font-family: "SimSun";
+}
 .editPage_workspace {
   width: 32em;
   min-height: 64em;
   background: white;
   margin: 10em auto;
   transition: all .5s;
+  border-top: 1px solid transparent;
 }
 .editPage_workspace_item:hover {
   cursor: pointer;
