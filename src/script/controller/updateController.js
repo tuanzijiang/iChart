@@ -65,6 +65,7 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
     }
 
 
+
     //文件被修改
     fileOnChange=function(value){
         var fd=new FormData();
