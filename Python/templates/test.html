@@ -29,13 +29,14 @@
     		});*/
     		$("#signup").click(function () {
                 $.ajax({
-                    url:"/sheet_columns",
+                    url:"/sheet_content",
                     type:"post",
                     data:{
                         sheet_id:7,
                         start_line:0,
                         lines:5,
-                        columns:'["value","学号"]',
+                        columns:"a",
+                        all:1,
                         accoun:"abcde",
                         passw:"abcde"
                     },
