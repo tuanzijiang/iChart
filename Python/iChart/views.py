@@ -61,11 +61,16 @@ def upload_file(request):
 
     #分类保存处理
     if ext == 'xls' or ext == 'xlsx':
-        _save_excel(request,myFile,new_name)
+        sheet = _save_excel(request,myFile,new_name)
+        if sheet != -1:
+            result.set_result({'id':sheet})
+            result.succeed()
+        else:
+            result.state('Empty File')
     else:
         _save_csv(request,myFile,new_name)
 
-    result.succeed();
+    # result.succeed();
     return HttpResponse(result.finish())
 
 #登录
@@ -148,15 +153,17 @@ def get_sheet_content(request):
     if not _session_detect(request):
         result.not_log()
         return HttpResponse(result.finish())
-    if not _post_detect(request,['sheet_id','start_line','lines','columns']):
+    if not _post_detect(request,['sheet_id','start_line','lines','columns','all']):
         result.post()
         return HttpResponse(result.finish())
     sheet_id = int(request.POST.get('sheet_id'))
     start_line = int(request.POST.get('start_line'))
     lines = int(request.POST.get('lines'))
     columns_json = request.POST.get('columns')
+    all = int(request.POST.get('all'))
+
     # return HttpResponse(columns_json)
-    columns = json.loads(columns_json)
+
     user_id = int(request.session['user_id'])
     #获取文件路径
     state, sheet_file_path = _file_detect(sheet_id=sheet_id,user_id=user_id)
@@ -167,10 +174,17 @@ def get_sheet_content(request):
     #截取内容
     excel = pd.ExcelFile(sheet_file_path)
     sheet = excel.parse(0)
-    target_lines = sheet.iloc[start_line:start_line+lines]
-    target_sheet = target_lines[columns]
+    target_sheet = sheet.iloc[start_line:start_line+lines]
+    if not all:
+        columns = json.loads(columns_json)
+        target_sheet = target_sheet[columns]
 
-    result.set_result(target_sheet.to_json())
+    record = target_sheet.to_records()
+    record_list = record.tolist()
+    columns = columns.insert(0,"index")
+    record_list = record_list.insert(0,columns)
+
+    result.set_result(json.dumps(record_list))
     result.succeed()
     return HttpResponse(result.finish())
 
@@ -233,6 +247,7 @@ def _save_excel(request,file,name):
     book = xlrd.open_workbook(file_path)
     excel = pd.ExcelFile(file_path)
     sheet_names = book.sheet_names()
+    sheet_number = -1
     for sheet_name in sheet_names:#遍历判空
         sheet = excel.parse(sheet_name)
         if not sheet.empty:
@@ -240,11 +255,14 @@ def _save_excel(request,file,name):
             file_type = name[name.rfind('.')+1:]
             newSheet = Sheet(userid=user_id,type=file_type,filename=name,sheetname=sheet_name)
             newSheet.save()
+            #记录第一个sheet
+            if sheet_number == -1:
+                sheet_number = newSheet.id
             #保存sheet
             file_sheet_name = name[:name.rfind('.')]+'_'+sheet_name+'.'+file_type
             sheet_path = os.path.join(file_dir_path,file_sheet_name)
             sheet.to_excel(sheet_path,sheet_name=sheet_name,index=True,header=True)
-    return
+    return sheet_number
 
 #保存csv文件
 def _save_csv(request,file,name):
@@ -281,7 +299,9 @@ def _file_detect(sheet_id,user_id):
 def _post_detect(request,paras):
     for item in paras:
         x = request.POST.get(item)
-        # print(x)
+        print("Post Argument:")
+        print(item+' ',end='')
+        print(x)
         if not x:
             return False
     return True
@@ -315,10 +335,10 @@ def _log_in(request):
 #用于测试post
 @csrf_exempt
 def post_test(request):
-    data = request.POST.get("test")
+    data = request.POST.get('a')
     print(data)
     print(request.POST)
-    return HttpResponse('123')
+    return HttpResponse(data)
 
 def test(request):
     return render(request,"test.html")
