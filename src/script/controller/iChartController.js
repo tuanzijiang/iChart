@@ -276,10 +276,34 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
 
 
 
-iChartApp.controller("iChartWorkPController",function ($scope,$timeout,adjustTableInfo) {
+iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adjustTableInfo) {
     //$http result
-    $scope.xlss_name=["iChart1","iChart2","iChart3","iChart4"];
+    $scope.xlss_name=[];
+    $scope.xlss_id=[];
     $scope.dbs_name=["iChart1","iChart2","iChart3","iChart4"];
+
+    $http({
+        method: 'post',
+        url: 'http://127.0.0.1:8000/sheets',
+        withCredentials: true,
+        data: {},
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }, transformRequest: function (obj) {
+            var str = [];
+            for (var s in obj) {
+                str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+            }
+            return str.join("&");
+        }
+    }).success(function(req){
+        for(var i in req.result){
+            $scope.xlss_name.push(req.result[i].sheet_name);
+            $scope.xlss_id.push(req.result[i].id);
+        }
+    }).error(function (req) {
+        console.log(req);
+    });
     $scope.table_info=[
         ["日期","性别","来源","地区","支付量"],
         ["2015-10-12 00:00","男","app","北京","12384884561235"],
@@ -317,7 +341,37 @@ iChartApp.controller("iChartWorkPController",function ($scope,$timeout,adjustTab
       $scope.tableX=x;
       $scope.tableY=y;
     };
-
+    //获取单个表格的保存值
+    $scope.getSheet=function (id) {
+        var xlssId=$scope.xlss_id[id];
+        console.log(id);
+        $http({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/sheet_content',
+            withCredentials: true,
+            data: {
+                sheet_id: xlssId,
+                start_line: 0,
+                lines: 20,
+                columns: "1,2,3,4",
+                all: 1
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }, transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                    str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+                }
+                return str.join("&");
+            }
+        }).success(function(req){
+            console.log(req);
+            $scope.table_info=JSON.parse(req.result);
+        }).error(function (req) {
+            console.log(req);
+        })
+    }
 });
 
 

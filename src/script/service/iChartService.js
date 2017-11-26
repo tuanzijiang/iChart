@@ -100,7 +100,6 @@ iChartApp.service("scanTable",function () {
             JSONObjects.push(JSONObject);
         }
         var JSON_str=JSON.stringify(JSONObjects);
-
     }
 });
 

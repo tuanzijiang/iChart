@@ -14,7 +14,7 @@
             <div class="workpage-menus-databases-title">来自数据库</div>
         </div>
         <div class="workpage-menus-databases-list">
-            <div class="workpage-menus-databases-item" ng-repeat="(x,y) in xlss_name" ng-class="menuClassFlag==x?'workpage-menus-active':''" ng-click="controlMenu(x);">
+            <div class="workpage-menus-databases-item" ng-repeat="(x,y) in dbs_name track by $index" ng-class="menuClassFlag==x?'workpage-menus-active':''" ng-click="controlMenu(x);">
                 <img src="./image/icon/iChartWorkPage/db.png" class="workpage-menus-db" >
                 <div class="workpage-menus-databases-title">{{y}}</div>
             </div>
@@ -24,7 +24,7 @@
             <div class="workpage-menus-xlss-title">来自表格</div>
         </div>
         <div class="workpage-menus-xlss-list">
-            <div class="workpage-menus-xlss-item" ng-repeat="(x,y) in dbs_name" ng-class="menuClassFlag==x+xlss_name.length?'workpage-menus-active':''" ng-click="controlMenu(x+xlss_name.length);">
+            <div class="workpage-menus-xlss-item" ng-repeat="(x,y) in  xlss_name track by $index" ng-class="menuClassFlag==x+dbs_name.length?'workpage-menus-active':''" ng-click="controlMenu(x+dbs_name.length);getSheet($index);">
                 <img src="./image/icon/iChartWorkPage/xls.png" class="workpage-menus-xls" >
                 <div class="workpage-menus-xlss-title">{{y}}</div>
             </div>
