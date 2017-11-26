@@ -29,7 +29,7 @@
     		});*/
     		$("#signup").click(function () {
                 $.ajax({
-                    url:"/sheet_content",
+                    url:"/save_page",
                     type:"post",
                     data:{
                         sheet_id:7,
@@ -38,7 +38,8 @@
                         columns:"a",
                         all:1,
                         accoun:"abcde",
-                        passw:"abcde"
+                        passw:"abcde",
+                        data:"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdawdsadzf21231ds$%@#"
                     },
                     success:function ($ans) {
                         console.log($ans);
@@ -48,6 +49,18 @@
     		$("#login").click(function () {
                 $.ajax({
                     url:"/log_in",
+                    type:"post",
+                    data:{
+                        account:"abcde",
+                        password:"abcde"
+                    },
+                    success:function ($ans) {
+                        console.log($ans);
+                    }
+                });
+            });$("#aa").click(function () {
+                $.ajax({
+                    url:"/get_page",
                     type:"post",
                     data:{
                         account:"abcde",
@@ -70,5 +83,6 @@
    </form>  
     <input type="button" id="signup" value="signup">
     <input type="button" id="login" value="login">
+    <input type="button" id="aa" value="aa">
 </body>
 </html>
