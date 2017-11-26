@@ -181,11 +181,16 @@ def get_sheet_content(request):
     else:
         columns = sheet.columns.tolist()
     record = target_sheet.to_records()
+    # print(target_sheet)
+    # print(record)
     record_list = record.tolist()
+    # print(record_list)
+    # print(columns)
+    columns.insert(0,"index")
+    # print(columns)
+    record_list.insert(0,columns)
 
-    columns = columns.insert(0,"index")
-    record_list = record_list.insert(0,columns)
-
+    # print(record_list)
     result.set_result(json.dumps(record_list))
     result.succeed()
     return HttpResponse(result.finish())

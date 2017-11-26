@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 
 # Custom Variable
 
-SAVED_FILE_PATH = 'D://iChartFile' #保存表格文件的根目录
+SAVED_FILE_PATH = 'D:\\t\\iChartFiles' #保存表格文件的根目录
 
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
