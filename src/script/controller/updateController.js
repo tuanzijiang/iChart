@@ -46,8 +46,7 @@ updateApp.controller("updateController",function ($scope,$state,$http) {
 updateApp.controller("updateLoadController",function ($scope,$state,$http) {
 
     //实现拖拽上传
-    var dropbox;
-    dropbox=document.getElementById("drop-box");
+    var dropbox=document.getElementById("drop-box");
     dropbox.addEventListener("dragenter",dragenter,false);
     dropbox.addEventListener("dragover",dragover,false);
     dropbox.addEventListener("drop",drop,false);
@@ -62,9 +61,6 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
     function drop(e){
         e.stopPropagation();
         e.preventDefault();
-        console.log(e.dataTransfer.files);
-        // $state.go("updateScan");
-        // $scope.$parent.currentPage=1;
         fileOnChange(e.dataTransfer.files);
     }
 
@@ -99,19 +95,19 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
             console.log(JSON_obj);
             console.log(JSON_obj.result.id);
             $http({
-                method:'post',
-                url:'http://127.0.0.1:8000/sheet_content',
+                method: 'post',
+                url: 'http://127.0.0.1:8000/sheet_content',
                 withCredentials: true,
-                data:{
+                data: {
                     sheet_id: JSON_obj.result.id,
                     start_line: 0,
                     lines: 20,
                     columns: "1,2,3,4",
                     all: 1
                 },
-                headers:{
+                headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
-                },transformRequest: function(obj) {
+                }, transformRequest: function (obj) {
                     var str = [];
                     for (var s in obj) {
                         str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
@@ -122,7 +118,9 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
                 console.log(req);
                 $state.go("updateScan");
                 $scope.$parent.currentPage=1;
-            });
+            }).error(function (req) {
+                console.log(req);
+            })
         }
         //上传失败
         function uploadFailed(evt) {
