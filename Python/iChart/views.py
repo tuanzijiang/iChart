@@ -14,6 +14,9 @@ import os
 @csrf_exempt
 def upload_file(request):
     result = Result()
+    if not _session_detect(request):
+        result.not_log()
+        return HttpResponse(result.finish())
     if not (request.method == "POST"):
         result.state('Wrong Method')
         return HttpResponse(result.finish())
@@ -85,6 +88,7 @@ def log_in(request):
         return HttpResponse(result.finish())
 
     request.session['user_id'] = user[0].id
+    print(request.session['user_id'])
     result.succeed()
     return HttpResponse(result.finish())
 
@@ -283,6 +287,7 @@ def _post_detect(request,paras):
     return True
 
 def _session_detect(request):
+#    request.session['user_id']=1
     if not request.session.get('user_id'):
         return False
     return True

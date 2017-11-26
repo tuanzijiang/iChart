@@ -12,6 +12,22 @@
 <div class="mainContent-workspace" ng-click="closeMenu();">
     <div class="editPage_workspace" id="editPage_workspace"></div>
 </div>
+<div class="mainContent-control-Column">
+    <div class="editPage_controlButtonBox" >
+        <div class="editPage_controlButtonItem" ng-click="controlTable(0)">
+            <div class="editPage_controlButtonName">保存</div>
+        </div>
+        <div class="editPage_controlButtonItem" ng-click="controlTable(1)">
+            <div class="editPage_controlButtonName">预览</div>
+        </div>
+        <div class="editPage_controlButtonItem" ng-click="controlTable(2)">
+            <div class="editPage_controlButtonName">撤回</div>
+        </div>
+        <div class="editPage_controlButtonItem" ng-click="controlTable(3)">
+            <div class="editPage_controlButtonName">恢复</div>
+        </div>
+    </div>
+</div>
 <div class="mainContent-attr">
     <div class="mainContent-attr-kinds">
         <div class="switch-menu mainContent-attr-kind" switch-button="数据,设置" switch-button-size="70" switch-button-action="mainContentAttrKinds(flag)"></div>

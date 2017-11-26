@@ -205,6 +205,7 @@ input:-webkit-autofill {
   height: 100%;
   min-width: 47em;
   overflow: auto;
+  position: relative;
 }
 .mainContent-attr {
   width: 20%;
@@ -212,6 +213,13 @@ input:-webkit-autofill {
   background: #393f41;
   min-width: 20em;
   user-select: none;
+}
+.mainContent-control-Column {
+  height: 100%;
+  width: 1px;
+  background: transparent;
+  overflow: visible;
+  position: relative;
 }
 .content-menu {
   height: 1.8em;
@@ -271,6 +279,51 @@ input:-webkit-autofill {
 .editPage_workspace_item:hover {
   cursor: pointer;
   box-shadow: 0 0 0 2px #3DA8F5;
+}
+.editPage_controlButtonBox {
+  position: absolute;
+  right: 11px;
+  width: 3em;
+  height: 13em;
+  top: calc(50% - 6.5em);
+  bottom: calc(50% + 6.5em);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.editPage_controlButtonItem {
+  position: relative;
+  width: 3em;
+  height: 3em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.editPage_controlButtonItem:hover {
+  box-shadow: 0 0 0 3px #666;
+}
+.editPage_controlButtonItem:nth-child(1) {
+  background: url("../image/icon/iChartEditPage/save.png") center 30% no-repeat, linear-gradient(white, white) center center repeat;
+  background-size: 20% 20%,100% 100%;
+}
+.editPage_controlButtonItem:nth-child(2) {
+  background: url("../image/icon/iChartEditPage/scan.png") center 30% no-repeat, linear-gradient(white, white) center center repeat;
+  background-size: 20% 20%,100% 100%;
+}
+.editPage_controlButtonItem:nth-child(3) {
+  background: url("../image/icon/iChartEditPage/undo.png") center 30% no-repeat, linear-gradient(white, white) center center repeat;
+  background-size: 20% 20%,100% 100%;
+}
+.editPage_controlButtonItem:nth-child(4) {
+  background: url("../image/icon/iChartEditPage/redo.png") center 30% no-repeat, linear-gradient(white, white) center center repeat;
+  background-size: 20% 20%,100% 100%;
+}
+.editPage_controlButtonName {
+  user-select: none;
+  position: relative;
+  font-size: 80%;
+  color: #666;
+  text-align: center;
+  top: 50%;
 }
 .mainContent-attr-kinds {
   margin: .5em 0 0 0;

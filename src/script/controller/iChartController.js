@@ -23,20 +23,41 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
     //左边的菜单栏点击事件
 
 
+    // $http({
+    //     method:'post',
+    //     url:'http://127.0.0.1:8000/log_in',
+    //     withCredentials: true,
+    //     data:{
+    //         account:'abcde',
+    //         password: 'abcde'
+    //     },
+    //     headers:{
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //     },transformRequest: function(obj) {
+    //         var str = [];
+    //         for (var s in obj) {
+    //             str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+    //         }
+    //         return str.join("&");
+    //     }
+    // }).success(function(req){
+    //     console.log(req);
+    // });
 
 
-    $http({
-        method:'post',
-        url:'http://127.0.0.1:8000/post_test',
-        data:{
-            test:'test123'
-        },
-        headers:{
-            'Content-Type':'application/x-www-form-urlencoded'
-        }
-    }).success(function(req){
-        console.log(req);
-    });
+
+    // $http({
+    //     method:'post',
+    //     url:'http://127.0.0.1:8000/post_test',
+    //     data:{
+    //         test:'test123'
+    //     },
+    //     headers:{
+    //         'Content-Type':'application/x-www-form-urlencoded'
+    //     }
+    // }).success(function(req){
+    //     console.log(req);
+    // });
 
     //纬度字段弹窗
     $scope.fieldList={
@@ -95,7 +116,7 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
 });
 
 
-iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,changeTableAttr,addTableDom,openLeftMenu,closeLeftMenu) {
+iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$http,scanTable,changeTableAttr,addTableDom,openLeftMenu,closeLeftMenu) {
     /**
      * 页面初始化
      */
@@ -174,6 +195,26 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,ch
      */
     $scope.clickTableDom=function (id) {
         $scope.currentDomId=id;
+    };
+    /**
+     *
+     * @param kind 0--保存，1--预览，2--撤回，3--恢复
+     */
+    $scope.controlTable=function (kind) {
+        console.log(kind);
+        switch (kind){
+            case 0:
+                break;
+            case 1:
+                scanTable.scanTable($scope,$http);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
     };
 
 

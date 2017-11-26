@@ -59,6 +59,7 @@ iChartApp.service("addTableDom",function () {
         $scope.eleDomOrders.push("editTest"+$scope.eleDomOrders.length);//记录顺序
     }
 });
+
 //修改表单元素
 iChartApp.service("changeTableAttr",function () {
     this.changeTableAttr=function ($scope,args) {
@@ -80,6 +81,26 @@ iChartApp.service("changeTableAttr",function () {
             default:
                 break;
         }
+    }
+});
+
+//预览表单元素
+iChartApp.service("scanTable",function () {
+    this.scanTable=function ($scope,$http) {
+        var JSONObjects=[];
+        //循环每一个元素
+        for(var eleDom in $scope.eleDomOrders){
+            var img = new Image();
+            var currentChart=$scope.eleDomInfos[$scope.eleDomOrders[eleDom]];
+            img.src = currentChart.chartHandler.getDataURL({
+                pixelRatio: 1,
+                backgroundColor: '#fff'
+            });
+            var JSONObject={kind:"graph",src:img.src};
+            JSONObjects.push(JSONObject);
+        }
+        var JSON_str=JSON.stringify(JSONObjects);
+
     }
 });
 
