@@ -170,7 +170,12 @@ def get_sheet_content(request):
     target_lines = sheet.iloc[start_line:start_line+lines]
     target_sheet = target_lines[columns]
 
-    result.set_result(target_sheet.to_json())
+    record = target_sheet.to_records()
+    record_list = record.tolist()
+    columns = columns.insert(0,"index")
+    record_list = record_list.insert(0,columns)
+
+    result.set_result(json.dumps(record_list))
     result.succeed()
     return HttpResponse(result.finish())
 
@@ -281,7 +286,9 @@ def _file_detect(sheet_id,user_id):
 def _post_detect(request,paras):
     for item in paras:
         x = request.POST.get(item)
-        # print(x)
+        print("Post Argument:")
+        print(item+' ',end='')
+        print(x)
         if not x:
             return False
     return True
@@ -315,10 +322,10 @@ def _log_in(request):
 #用于测试post
 @csrf_exempt
 def post_test(request):
-    data = request.POST.get("test")
+    data = request.POST.get('a')
     print(data)
     print(request.POST)
-    return HttpResponse('123')
+    return HttpResponse(data)
 
 def test(request):
     return render(request,"test.html")
