@@ -43,7 +43,9 @@ updateApp.controller("updateController",function ($scope,$state,$http) {
     // });
 });
 
-updateApp.controller("updateLoadController",function ($scope,$state) {
+updateApp.controller("updateLoadController",function ($scope,$state,$http) {
+
+    //实现拖拽上传
     var dropbox;
     dropbox=document.getElementById("drop-box");
     dropbox.addEventListener("dragenter",dragenter,false);
@@ -63,9 +65,11 @@ updateApp.controller("updateLoadController",function ($scope,$state) {
         console.log(e.dataTransfer.files);
         // $state.go("updateScan");
         // $scope.$parent.currentPage=1;
+        fileOnChange(e.dataTransfer.files);
     }
+
     //文件被修改
-    this.fileOnChange=function(value){
+    fileOnChange=function(value){
         var fd=new FormData();
         fd.append("file",value[0]);
         //上传excel文件
@@ -91,9 +95,34 @@ updateApp.controller("updateLoadController",function ($scope,$state) {
         //上传完成
         function uploadComplete(evt) {
             /* This event is raised when the server send back a response */
-            console.log(evt.target.responseText);
-            $state.go("updateScan");
-            $scope.$parent.currentPage=1;
+            var JSON_obj=JSON.parse(evt.target.responseText);
+            console.log(JSON_obj);
+            console.log(JSON_obj.result.id);
+            $http({
+                method:'post',
+                url:'http://127.0.0.1:8000/sheet_content',
+                withCredentials: true,
+                data:{
+                    sheet_id: JSON_obj.result.id,
+                    start_line: 0,
+                    lines: 20,
+                    columns: "1,2,3,4",
+                    all: 1
+                },
+                headers:{
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },transformRequest: function(obj) {
+                    var str = [];
+                    for (var s in obj) {
+                        str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+                    }
+                    return str.join("&");
+                }
+            }).success(function(req){
+                console.log(req);
+                $state.go("updateScan");
+                $scope.$parent.currentPage=1;
+            });
         }
         //上传失败
         function uploadFailed(evt) {
