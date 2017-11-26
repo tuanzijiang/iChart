@@ -287,7 +287,7 @@ def _post_detect(request,paras):
     return True
 
 def _session_detect(request):
-#    request.session['user_id']=1
+    request.session['user_id']=1
     if not request.session.get('user_id'):
         return False
     return True

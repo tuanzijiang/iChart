@@ -60,17 +60,17 @@ updateApp.controller("updateLoadController",function ($scope,$state) {
     function drop(e){
         e.stopPropagation();
         e.preventDefault();
-        $state.go("updateScan");
-        $scope.$parent.currentPage=1;
+        console.log(e.dataTransfer.files);
+        // $state.go("updateScan");
+        // $scope.$parent.currentPage=1;
     }
-    fileOnChange=function(value){
-        console.log(value[0]);
+    //文件被修改
+    this.fileOnChange=function(value){
         var fd=new FormData();
         fd.append("file",value[0]);
-        console.log(fd);
-
+        //上传excel文件
         var xhr = new XMLHttpRequest();
-        // xhr.withCredentials = true;
+        xhr.withCredentials = true;
         xhr.upload.addEventListener("progress", uploadProgress, false);
         xhr.addEventListener("load", uploadComplete, false);
         xhr.addEventListener("error", uploadFailed, false);
@@ -78,7 +78,8 @@ updateApp.controller("updateLoadController",function ($scope,$state) {
         xhr.open("POST", "http://127.0.0.1:8000/upload");
         xhr.send(fd);
 
-        function uploadProgress(evt) {//上传中
+        //上传中
+        function uploadProgress(evt) {
             if (evt.lengthComputable) {
                 var percentComplete = Math.round(evt.loaded * 100 / evt.total);
                 console.log(percentComplete.toString() + '%');
@@ -87,24 +88,22 @@ updateApp.controller("updateLoadController",function ($scope,$state) {
                 console.log('unable to compute');
             }
         }
-        function uploadComplete(evt) {//上传完成
+        //上传完成
+        function uploadComplete(evt) {
             /* This event is raised when the server send back a response */
-            alert(evt.target.responseText);
+            console.log(evt.target.responseText);
+            $state.go("updateScan");
+            $scope.$parent.currentPage=1;
         }
-
-        function uploadFailed(evt) {//上传失败
+        //上传失败
+        function uploadFailed(evt) {
             alert("There was an error attempting to upload the file.");
         }
-        function uploadCanceled(evt) {//上传被取消
+        //上传被取消
+        function uploadCanceled(evt) {
             alert("The upload has been canceled by the user or the browser dropped the connection.");
         }
-
-
-
-        // $state.go("updateScan");
-        // $scope.$parent.currentPage=1;
-    }
-
+    };
 });
 
 updateApp.controller("updateScanController",function ($scope,$state) {
