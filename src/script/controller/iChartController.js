@@ -116,15 +116,20 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
 });
 
 
-iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$http,scanTable,changeTableAttr,addTableDom,addTextDom,openLeftMenu,closeLeftMenu) {
+iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$http,scanTable,changeTableAttr,changeTextAttr,addTableDom,addTextDom,openLeftMenu,closeLeftMenu) {
     /**
      * 页面初始化
      */
     $scope.eleDomOrders=[];//记录增加元素的相关信息
     $scope.eleDomInfos={};//记录增加元素的相关信息
     $scope.attrKindFlag=0;//属性种类集合
+
     $scope.attrsIsExieted=[true,true,false,true];//属性是否显示
+    $scope.attrsTextIsExieted=[true,true,false,true];//属性是否显示(文本)
+
     $scope.attrsIsClose=[];//属性是否关闭
+    $scope.attrsTextIsClose=[];//属性是否关闭（文本）
+
     $scope.currentDomId="";//正在处理的DOM
     $scope.currentHoverID="";
 
@@ -217,11 +222,26 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
                 break;
         }
     };
-
+    /**
+     * 增加一个文本结点
+     * @param kind
+     */
     $scope.addTextDom=function (kind) {
         addTextDom.addTextDom($scope,$compile,kind);
     };
 
+
+    uploadPic=function (value) {
+        var reader = new FileReader();
+        reader.readAsDataURL(value[0]);
+        reader.onload = function(e){
+            var img=new Image();
+            img.src=this.result;
+            document.getElementById("editPage_workspace").appendChild(img);
+            $scope.eleDomInfos["editImage"+$scope.eleDomOrders.length]={"imgHandler":img,"kind":"img"};
+            $scope.eleDomOrders.push("editImage"+$scope.eleDomOrders.length);//记录顺序
+        }
+    };
 
     /**
      * 控制属性栏显示种类的切换
@@ -240,6 +260,12 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
      */
     $scope.changeTableAttr=function () {
         changeTableAttr.changeTableAttr($scope,arguments);
+    };
+    /**
+     * 改变文字结点的相关属性
+     */
+    $scope.changeTextAttr=function () {
+        changeTextAttr.changeTextAttr($scope,arguments);
     };
 
     /**

@@ -287,6 +287,28 @@ input:-webkit-autofill {
 .font-SongTi {
   font-family: "SimSun";
 }
+.menu-upload-pic {
+  border-radius: 5px;
+  width: 80%;
+  margin: 1em auto;
+  height: 2em;
+  line-height: 2em;
+  position: relative;
+  color: white;
+  background: #3DA8F5;
+}
+.menu-upload-pic > p {
+  text-align: center;
+  cursor: pointer;
+}
+#menu-upload-pic-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}
 .editPage_workspace {
   width: 32em;
   min-height: 64em;
@@ -294,6 +316,7 @@ input:-webkit-autofill {
   margin: 10em auto;
   transition: all .5s;
   border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 .editPage_workspace_item:hover {
   cursor: pointer;

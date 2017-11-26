@@ -14,10 +14,24 @@
         if(xhr.readyState===4 && xhr.status ===200){
             var JSON_obj=JSON.parse(xhr.responseText);
             var JSON_DOMs=JSON.parse(JSON_obj.result);
+            console.log(JSON_DOMs);
             for(var i in JSON_DOMs){
-                var img=new Image();
-                img.src=JSON_DOMs[i].src;
-                document.getElementById("test").appendChild(img);
+                if(JSON_DOMs[i].kind==="canvas"){
+                    var img=new Image();
+                    img.src=JSON_DOMs[i].src;
+                    document.getElementById("test").appendChild(img);
+                }
+                else if(JSON_DOMs[i].kind==="p"){
+                    var newNode=document.createElement("p");
+                    newNode.innerHTML=JSON_DOMs[i].innerHTML;
+                    newNode.style=JSON_DOMs[i].style;
+                    console.log(newNode);
+                    document.getElementById("test").appendChild(newNode);
+                }else if(JSON_DOMs[i].kind==="img"){
+                    var img=new Image();
+                    img.src=JSON_DOMs[i].src;
+                    document.getElementById("test").appendChild(img);
+                }
             }
         }
     };

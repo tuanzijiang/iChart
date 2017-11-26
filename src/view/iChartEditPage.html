@@ -30,8 +30,23 @@
 </div>
 <div class="mainContent-attr">
     <div class="mainContent-attr-kinds">
-        <div class="switch-menu mainContent-attr-kind" switch-button="数据,设置" switch-button-size="70" switch-button-action="mainContentAttrKinds(flag)"></div>
-        <div class="mainContent-attr-content" ng-show="attrKindFlag===0">数据</div>
+        <div class="switch-menu mainContent-attr-kind" switch-button="文字,设置" switch-button-size="70" switch-button-action="mainContentAttrKinds(flag)"></div>
+        <div class="mainContent-attr-content" ng-show="attrKindFlag===0">
+            <div class="mainContent-attr-item" ng-show="attrsTextIsExieted[0]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsTextIsClose[0]=!attrsTextIsClose[0];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsTextIsClose[0]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="changeTextAttr(0,'input-fontWeight');">文字大小</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[0]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-headerName'">
+                    <div class="mainContent-attr-item-normal-input-box-headerName">
+                        <input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="headerName">
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="mainContent-attr-content" ng-show="attrKindFlag===1">
             <!--表格标题-->
             <div class="mainContent-attr-item" ng-show="attrsIsExieted[0]">
@@ -44,7 +59,7 @@
                 </div>
                 <div class="mainContent-attr-item-content" ng-class="attrsIsClose[0]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-headerName'">
                     <div class="mainContent-attr-item-normal-input-box-headerName">
-                        <input id="input-headerName" ng-change="changeTableAttr(0,'input-headerName');" ng-model="headerName">
+                        <input id="input-headerName" ng-change="changeTextAttr(0,'input-headerName');" ng-model="headerName">
                     </div>
                 </div>
             </div>

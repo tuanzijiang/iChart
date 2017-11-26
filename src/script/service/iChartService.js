@@ -55,7 +55,7 @@ iChartApp.service("addTableDom",function () {
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
         document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
-        $scope.eleDomInfos["editTable"+$scope.eleDomOrders.length]={"chartHandler":myChart};
+        $scope.eleDomInfos["editTable"+$scope.eleDomOrders.length]={"chartHandler":myChart,"kind":"canvas"};
         $scope.eleDomOrders.push("editTable"+$scope.eleDomOrders.length);//记录顺序
     }
 });
@@ -90,15 +90,31 @@ iChartApp.service("scanTable",function () {
         var JSONObjects=[];
         //循环每一个元素
         for(var eleDom in $scope.eleDomOrders){
-            var img = new Image();
-            var currentChart=$scope.eleDomInfos[$scope.eleDomOrders[eleDom]];
-            img.src = currentChart.chartHandler.getDataURL({
-                pixelRatio: 1,
-                backgroundColor: '#fff'
-            });
-            var JSONObject={kind:"graph",src:img.src};
-            JSONObjects.push(JSONObject);
+            if($scope.eleDomInfos[$scope.eleDomOrders[eleDom]].kind==="canvas"){
+                var img = new Image();
+                var currentChart=$scope.eleDomInfos[$scope.eleDomOrders[eleDom]];
+                img.src = currentChart.chartHandler.getDataURL({
+                    pixelRatio: 1,
+                    backgroundColor: '#fff'
+                });
+                var JSONObject={kind:"canvas",src:img.src};
+                JSONObjects.push(JSONObject);
+            }
+            else if ($scope.eleDomInfos[$scope.eleDomOrders[eleDom]].kind==="p"){
+                var pHandler=$scope.eleDomInfos[$scope.eleDomOrders[eleDom]].pHandler;
+                pHandler.removeAttribute("ng-click");
+                pHandler.removeAttribute("contenteditable");
+                pHandler.removeAttribute("class");
+                pHandler.removeAttribute("id");
+                var JSONObject={kind:"p",innerHTML:pHandler.innerHTML,style:pHandler.style};
+                JSONObjects.push(JSONObject);
+            }else if ($scope.eleDomInfos[$scope.eleDomOrders[eleDom]].kind==="img"){
+                var imgHandler=$scope.eleDomInfos[$scope.eleDomOrders[eleDom]].imgHandler;
+                var JSONObject={kind:"img",src:imgHandler.src};
+                JSONObjects.push(JSONObject);
+            }
         }
+        console.log(JSONObject);
         $http({
             method: 'post',
             url: 'http://127.0.0.1:8000/save_page',
@@ -134,9 +150,26 @@ iChartApp.service("addTextDom",function () {
        console.log(kind);
        editTestNode[0].style.fontFamily=kind;
        document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
-       $scope.eleDomInfos["editText"+$scope.eleDomOrders.length]={"chartHandler":editTestNode[0]};
+       $scope.eleDomInfos["editText"+$scope.eleDomOrders.length]={"pHandler":editTestNode[0],"kind":"p"};
        $scope.eleDomOrders.push("editText"+$scope.eleDomOrders.length);//记录顺序
    }
+});
+
+//修改文本结点
+iChartApp.service("changeTextAttr",function () {
+    this.changeTextAttr=function ($scope,args) {
+        switch (args[0]){
+            case 0: {//修改文字尺寸
+                var newNode=document.createElement("span");
+                newNode.style.fontWeight='600';
+                console.log(document.getElementById(args[1]).value);
+                console.log(window.getSelection().getRangeAt(0).surroundContents(newNode));
+                break;
+            }
+            default:
+                break;
+        }
+    }
 });
 
 //adjust the table info in the workPage
