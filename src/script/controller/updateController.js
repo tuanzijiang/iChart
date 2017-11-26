@@ -64,6 +64,7 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
         fileOnChange(e.dataTransfer.files);
     }
 
+
     //文件被修改
     fileOnChange=function(value){
         var fd=new FormData();
