@@ -93,6 +93,7 @@ iChartApp.service("scanTable",function () {
             var img = new Image();
             var currentChart=$scope.eleDomInfos[$scope.eleDomOrders[eleDom]];
             img.src = currentChart.chartHandler.getDataURL({
+
                 pixelRatio: 1,
                 backgroundColor: '#fff'
             });
