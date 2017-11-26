@@ -1,8 +1,9 @@
 updateApp.controller("updateController",function ($scope,$state,$http) {
     $state.go("updateLoad");
     $scope.currentPage=0;
+    $scope.table_info=[];
     $scope.mainContentSwitch=function (flag) {
-        // if(flag<=$scope.currentPage){
+        if(flag<=$scope.currentPage){
             switch (flag){
                 case 0:
                     $state.go("updateLoad");
@@ -21,7 +22,7 @@ updateApp.controller("updateController",function ($scope,$state,$http) {
                     $scope.currentPage=0;
                     break;
             }
-        // }
+        }
     }
 
     // $http({
@@ -63,8 +64,6 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
         e.preventDefault();
         fileOnChange(e.dataTransfer.files);
     }
-
-
 
     //文件被修改
     fileOnChange=function(value){
@@ -117,9 +116,11 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
                     return str.join("&");
                 }
             }).success(function(req){
-                console.log(req);
+                console.log(req.result);
+                console.log($scope.$$nextSibling);
                 $state.go("updateScan");
                 $scope.$parent.currentPage=1;
+                $scope.$parent.table_info=JSON.parse(req.result);
             }).error(function (req) {
                 console.log(req);
             })
@@ -136,31 +137,20 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
 });
 
 updateApp.controller("updateScanController",function ($scope,$state) {
-    $scope.table_info=[
-        ["日期","性别","来源","地区","支付量"],
-        ["2015-10-12 00:00","男","app","北京","12384884561235"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"],
-        ["2015-10-12 00:00","男","app","北京","123"]
-    ];
-    $scope.table_kind=[0,1,2,0,0];//0--文本；1--数字；2--日期
+    $scope.table_info=$scope.$parent.table_info;
+    $scope.table_kind=[];//0--文本；1--数字；2--日期
+    for(var i in $scope.table_info[0]){
+        $scope.table_kind.push(0);
+    }
     $scope.table_hover=0;
+    $scope.nextStep=function () {
+        $scope.$parent.currentPage=2;
+        $state.go("updateAttrs");
+    };
 });
 
 updateApp.controller("updateAttrsController",function ($scope,$state) {
-
+    $scope.nextStep=function () {
+        window.location.href="./iChart.html";
+    };
 });
