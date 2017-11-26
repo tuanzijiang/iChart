@@ -195,7 +195,46 @@ def get_sheet_content(request):
     result.succeed()
     return HttpResponse(result.finish())
 
+@csrf_exempt
+def save_page(request):
+    result = Result()
+    if not _session_detect(request):
+        result.not_log()
+        return HttpResponse(result.finish())
+    if not _post_detect(request,['data']):
+        result.post()
+        return HttpResponse(result.finish())
+    user_id = request.session['user_id']
+    path = os.path.join(settings.SAVED_FILE_PATH,str(user_id))
+    if not os.path.exists(path):
+        result.fail()
+        return HttpResponse(result.finish())
+    file_path = os.path.join(path,"tempfile")
+    request.session['file_path'] = file_path
+    fp = open(file_path,mode='w')
+    fp.write(request.POST.get('data'))
+    fp.close()
+    result.succeed()
+    return HttpResponse(result.finish())
 
+@csrf_exempt
+def get_page(request):
+    result = Result()
+    if not _session_detect(request):
+        result.not_log()
+        return HttpResponse(result.finish())
+    if not request.session.get('file_path'):
+        result.fail()
+        return HttpResponse(result.finish())
+    user_id = request.session['user_id']
+    file_path = request.session['file_path']
+    fp = open(file_path,"r")
+    string = fp.read()
+    print(string)
+
+    result.set_result(string)
+    result.succeed()
+    return HttpResponse(result.finish())
 #用于存储返回值
 class Result:
     result = {}

@@ -27,6 +27,8 @@ urlpatterns = [
     url(r"^log_in$", views.log_in),
     url(r"^sheets$",views.get_sheets_names),
     url(r"^sheet_content$",views.get_sheet_content),
-    url(r"^sheet_columns$", views.get_sheet_columns)
+    url(r"^sheet_columns$", views.get_sheet_columns),
+    url(r"^save_page$", views.save_page),
+    url(r"^get_page$", views.get_page)
 
 ]
