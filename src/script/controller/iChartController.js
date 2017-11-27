@@ -66,6 +66,7 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
         number:["支付订单量","被投诉订单量"]
     };
     $scope.latitudeListTemp={};//保留弹窗内部纬度值
+    $scope.valueListTemp={};//保留弹窗内部纬度值
     $scope.settingLatitude=function (valueKind,value) {
         var key=valueKind+value;
         if($scope.latitudeListTemp[key]){
@@ -78,6 +79,20 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
         }
         else{
             $scope.latitudeListTemp[key]=2;
+        }
+    };
+    $scope.settingValue=function (valueKind,value) {
+        var key=valueKind+value;
+        if($scope.valueListTemp[key]){
+            if($scope.valueListTemp[key]===3){
+                $scope.valueListTemp[key]=0
+            }
+            else{
+                $scope.valueListTemp[key]=3;
+            }
+        }
+        else{
+            $scope.valueListTemp[key]=3;
         }
     };
     $scope.settingLatitudeOK=function () {
@@ -113,6 +128,39 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
             $scope.iChart_hidden=0;
         }
     };
+    $scope.settingValueOK=function () {
+        for(var key in $scope.valueListTemp){
+            var keyKind=key.substring(0,1);
+            var keyNum=key.substring(1);
+            switch (keyKind){
+                case 'a':
+                    $scope.$$childHead.$$nextSibling.valueList.push($scope.fieldList.date[keyNum]);
+                    break;
+                case 'b':
+                    $scope.$$childHead.$$nextSibling.valueList.push($scope.fieldList.text[keyNum]);
+                    break;
+                case 'c':
+                    $scope.$$childHead.$$nextSibling.valueList.push($scope.fieldList.number[keyNum]);
+                    break;
+                default:
+                    break;
+            }
+            var newLatitude=[];
+            for(var i=0;i<$scope.$$childHead.$$nextSibling.valueList.length;i++){
+                var flag=true;
+                for(var j=0;j<newLatitude.length;j++){
+                    if(newLatitude[j]===$scope.$$childHead.$$nextSibling.valueList[i]){
+                        flag=false;
+                    }
+                }
+                if(flag){
+                    newLatitude.push($scope.$$childHead.$$nextSibling.valueList[i]);
+                }
+            }
+            $scope.$$childHead.$$nextSibling.valueList=newLatitude;
+            $scope.iChart_hidden=0;
+        }
+    };
 });
 
 
@@ -125,17 +173,16 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.attrKindFlag=0;//属性种类集合
 
     $scope.attrsIsExieted=[true,true,false,true];//属性是否显示
-    $scope.attrsTextIsExieted=[true,true,false,true];//属性是否显示(文本)
+    $scope.attrsDataIsExieted=[true,true,false,true];//数据属性是否显示
 
     $scope.attrsIsClose=[];//属性是否关闭
-    $scope.attrsTextIsClose=[];//属性是否关闭（文本）
+    $scope.attrsDataIsClose=[];//数据属性是否关闭
 
     $scope.currentDomId="";//正在处理的DOM
     $scope.currentHoverID="";
 
-    $scope.latitudeList=["日期"];//选中纬度值
+    $scope.latitudeList=[];//选中纬度值
     $scope.valueList=[];
-    $scope.valueListTemp=[];
 
 
     /**
@@ -302,7 +349,34 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
             }
         }
     };
-
+    /**
+     *  值弹窗
+     */
+    $scope.showHidden_Value=function () {
+        $scope.$parent.iChart_hidden=3;
+        $scope.$parent.valueListTemp={};
+        for(var i=0;i<$scope.valueList.length;i++){
+            var key;
+            for(var j=0;j<$scope.$parent.fieldList.date.length;j++){
+                if($scope.valueList[i]===$scope.$parent.fieldList.date[j]){
+                    key='a'+j;
+                }
+            }
+            for(var j=0;j<$scope.$parent.fieldList.text.length;j++){
+                if($scope.valueList[i]===$scope.$parent.fieldList.text[j]){
+                    key='b'+j;
+                }
+            }
+            for(var j=0;j<$scope.$parent.fieldList.number.length;j++){
+                if($scope.valueList[i]===$scope.$parent.fieldList.number[j]){
+                    key='c'+j;
+                }
+            }
+            if(key){
+                $scope.$parent.valueListTemp[key]=2;
+            }
+        }
+    };
 });
 
 

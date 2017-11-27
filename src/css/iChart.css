@@ -85,6 +85,14 @@ input:-webkit-autofill {
   opacity: 1;
   z-index: 100;
 }
+.iChart-hidden-valueSource {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(112, 112, 112, 0.6);
+  opacity: 1;
+  z-index: 100;
+}
 .loadBar {
   width: 100%;
   height: 3px;
