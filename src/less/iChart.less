@@ -77,12 +77,22 @@ input:-webkit-autofill {
 .menu-title{margin: 0 auto;text-align: center;width: 85%;color:white;line-height: 3em;height: 3em;font-size: 115%;box-shadow: 0 2px 0 0 #3DA8F5;transition: all .5s;cursor: pointer;}
 .menu-title:hover{box-shadow: 0 3px 0 0 #3DA8F5;}
 .menu-graphic-items-title{width: 85%;margin: 0 auto;color: white;user-select: none;line-height: 2.5em;font-size: 105%;}
-.menu-graphic-items-box{width: 85%;margin: 0 auto;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-between;}
-.menu-graphic-item{width: 30%;height: 3.75em;display: block;cursor: pointer;}
+.menu-graphic-items-box{width: 85%;margin: 0 auto;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;}
+.menu-graphic-item{width: 30%;height: 4.1em;display: block;cursor: pointer;margin: .5em .2em;}
 //       |- leftMenu3(font)
-.menu-font-items{width: 80%;line-height: 2.5em;height: 2.5em;background: white;color: #666;overflow: hidden;margin: 1em;text-align: center;user-select: none;cursor: pointer;}
+.menu-font-items{width: 85%;line-height: 2.5em;height: 2.5em;background: white;color: #666;overflow: hidden;margin: 1em auto;text-align: center;user-select: none;cursor: pointer;}
 .font-YaHei{font-family: "Microsoft YaHei UI";}
 .font-SongTi{font-family: "SimSun";}
+.font-SimHei{font-family: "SimHei";}
+.font-NSimSun{font-family: "NSimSun";}
+.font-PMingLiU{font-family: "PMingLiU";}
+.font-MingLiU{font-family: "MingLiU";}
+.font-DFKai-SB{font-family: "DFKai-SB";}
+.font-FangSong{font-family: "FangSong";}
+.font-KaiTi{font-family: "KaiTi";}
+.font-FangSong_GB2312{font-family: "FangSong_GB2312";}
+.font-KaiTi_GB2312{font-family: "KaiTi_GB2312";}
+
 //       |- leftMenu4(pic)
 .menu-upload-pic{border-radius: 5px;width: 80%;margin: 1em auto;height: 2em;line-height: 2em;position: relative;color: white;background: #3DA8F5;}
 .menu-upload-pic > p{text-align: center;cursor: pointer;}
@@ -90,7 +100,8 @@ input:-webkit-autofill {
 
 //      |- workspace
 .editPage_workspace{width: 32em;min-height: 64em;background: white;margin: 10em auto;transition: all .5s;border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
-.editPage_workspace_item:hover{cursor: pointer;box-shadow: 0 0 0 2px #3DA8F5}
+.editPage_workspace_item:hover{cursor: pointer;box-shadow: 0 0 0 1px #3DA8F5}
+.editPage_workspace_item_current{cursor: pointer;box-shadow: 0 0 0 2px #3DA8F5}
 .editPage_controlButtonBox{position: absolute;right: 11px;width: 3em;height: 13em;top: calc(~'50% - 6.5em');bottom: calc(~'50% + 6.5em');;display: flex;flex-direction: column;justify-content: space-between;}
 .editPage_controlButtonItem{position: relative;width: 3em;height: 3em;border-radius: 5px;cursor: pointer;}
 .editPage_controlButtonItem:hover{box-shadow: 0 0 0 3px #666;}
@@ -133,6 +144,10 @@ input:-webkit-autofill {
 .dataLatitudeItems-hidden-active{display: block;z-index: 1;opacity: 1;box-shadow: .3em .4em .4em 0 hsla(0,0,40%,.6);}
 .dataLatitudeItems-hidden-item{line-height: 1.3em;font-size: 85%;height: 1.3em;border-top: 1px solid white;padding: .5em;cursor: pointer;}
 .dataLatitudeItems-hidden-item:hover{background: #168dfa;transition: all .3s;}
+//文字样式
+.mainContent-attr-item-content-txtLine{width: 70%;line-height: 2.5em;height: 2.5em;display: flex;flex-direction: row;align-items: center;margin: 0 auto;justify-content: center;color: white;}
+.mainContent-attr-item-content-txtName{width: 4em;height: 100%;};
+.mainContent-attr-item-content-txtContent{flex: 1;height: 100%;};
 
 //specific active height
 .mainContent-attr-item-content-headerName{height: 3em;}

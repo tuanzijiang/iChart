@@ -43,15 +43,15 @@ iChartApp.service("closeLeftMenu",function () {
 //增加表单元素
 iChartApp.service("addTableDom",function () {
     this.addTableDom=function ($scope,$compile,kind) {
-        var editTestNode=$compile('<div ng-click="clickTableDom(\'editTable'+$scope.eleDomOrders.length+'\')"></div>')($scope);
+        var editTestNode=$compile('<div ng-click="clickTableDom(\'editTable'+$scope.eleDomOrders.length+'\')" ng-class="currentDomId===\'editTable'+$scope.eleDomOrders.length+'\'?\'editPage_workspace_item_current\':\'\'"></div>')($scope);
         editTestNode.attr("id","editTable"+$scope.eleDomOrders.length);//设置dom元素的id
         editTestNode.attr("class","editPage_workspace_item");
-        console.log(iChartInitData.normalTable.barTable["kind0"]);
-        editTestNode[0].style.height=iChartInitData.normalTable.barTable["kind0"].iChartHeight;
-        editTestNode[0].style.width=iChartInitData.normalTable.barTable["kind0"].iChartWidth;
+        console.log(iChartInitData.normalTable.barTable[kind]);
+        editTestNode[0].style.height=iChartInitData.normalTable.barTable[kind].iChartHeight;
+        editTestNode[0].style.width=iChartInitData.normalTable.barTable[kind].iChartWidth;
         // 指定图表的配置项和数据
         var myChart = echarts.init(editTestNode[0]);
-        var option = iChartInitData.normalTable.barTable["kind0"];
+        var option = iChartInitData.normalTable.barTable[kind];
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
         document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
@@ -143,7 +143,7 @@ iChartApp.service("scanTable",function () {
 //增加文本结点
 iChartApp.service("addTextDom",function () {
    this.addTextDom=function ($scope,$compile,kind) {
-       var editTestNode=$compile('<p ng-click="clickTextDom(\'editText'+$scope.eleDomOrders.length+'\')" contenteditable="true">'+kind+'</p>')($scope);
+       var editTestNode=$compile('<p ng-click="clickTextDom(\'editText'+$scope.eleDomOrders.length+'\')"   contenteditable="true">'+kind+'</p>')($scope);
        editTestNode.attr("id","editTable"+$scope.eleDomOrders.length);//设置dom元素的id
        editTestNode.attr("class","editPage_workspace_item");
        console.log(editTestNode);

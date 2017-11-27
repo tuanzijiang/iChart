@@ -379,8 +379,6 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     };
 });
 
-
-
 iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adjustTableInfo) {
     //$http result
     $scope.xlss_name=[];
@@ -478,8 +476,6 @@ iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adj
         })
     }
 });
-
-
 
 iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
 });
