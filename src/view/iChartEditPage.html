@@ -53,43 +53,15 @@
                             <div class="input-pencil" ng-click="showHidden_DataSource()"></div>
                         </div>
                     </div>
-                    <!--维度-->
-                    <div class="mainContent-attr-item-normal-dataLatitudeLine">
-                        <div class="mainContent-attr-item-normal-dataLatitudeName">纬度</div>
-                        <div class="input-add" ng-click="showHidden_Latitude()"></div>
-                        <div class="mainContent-attr-item-normal-dataLatitudeInput">
-                            <div class="dataLatitudeItems">
-                                <div class="dataLatitudeItem" ng-repeat="latitudeitem in latitudeList track by $index"  ng-mouseenter="currentHoverID=latitudeitem" ng-mouseleave="currentHoverID=''">
-                                    <div class="dataLatitudeItems-show">
-                                        <div class="dataLatitudeItems-show-content">{{latitudeitem}}</div>
-                                        <img src="./image/icon/iChartEditPage/close-empty.png" class="dataLatitudeItems-show-close">
-                                    </div>
-                                    <div class="dataLatitudeItems-hidden" ng-class="currentHoverID==latitudeitem?'dataLatitudeItems-hidden-active':''">
-                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">总数</div>
-                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">平均数</div>
-                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">计数</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--数值-->
-                    <div class="mainContent-attr-item-normal-dataLatitudeLine">
-                        <div class="mainContent-attr-item-normal-dataLatitudeName">数值</div>
-                        <div class="input-add" ng-click="showHidden_Value()"></div>
-                        <div class="mainContent-attr-item-normal-dataLatitudeInput">
-                            <div class="dataLatitudeItems">
-                                <div class="dataLatitudeItem" ng-repeat="valueitem in valueList" ng-mouseenter="currentHoverID=valueitem" ng-mouseleave="currentHoverID=''">
-                                    <div class="dataLatitudeItems-show" >
-                                        <div class="dataLatitudeItems-show-content">{{valueitem}}</div>
-                                        <img src="./image/icon/iChartEditPage/close-empty.png" class="dataLatitudeItems-show-close">
-                                    </div>
-                                    <div class="dataLatitudeItems-hidden" ng-class="currentHoverID==valueitem?'dataLatitudeItems-hidden-active':''">
-                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">总数</div>
-                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">平均数</div>
-                                        <div class="dataLatitudeItems-hidden-item" ng-click="currentHoverID=''">计数</div>
-                                    </div>
-                                </div>
+                    <!--柱-->
+                    <div class="mainContent-attr-item-normal-barLine">
+                        <div class="mainContent-attr-item-normal-barName">柱</div>
+                        <div class="input-add" ng-click="showHidden_Bar()"></div>
+                        <div class="mainContent-attr-item-normal-barInput">
+                            <div class="mainContent-attr-item-barInput-item" ng-repeat="barItem in barItems track by $index">
+                                <div class="mainContent-attr-item-barInput-itemName">{{barItem}}</div>
+                                <div class="mainContent-attr-item-barInput-itemDelete"></div>
+                                <div class="mainContent-attr-item-barInput-itemConfigure"></div>
                             </div>
                         </div>
                     </div>

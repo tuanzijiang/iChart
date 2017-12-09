@@ -60,89 +60,52 @@
             </div>
         </div>
     </div>
-    <!--iChart_hidden=2: 纬度-->
-    <div class="iChart-hidden" ng-class="iChart_hidden==2?'iChart-hidden-latitudeSource':''">
-        <div class="iChart-hidden-latitudeSource-content">
-            <div class="iChart-hidden-latitudeSource-content-titleLine">
-                <div class="iChart-hidden-latitudeSource-content-titleName">批量添加纬度字段</div>
-                <div class="iChart-hidden-latitudeSource-content-close" ng-click="iChart_hidden=0"></div>
+    <!--iChart_hidden=2: 柱-->
+    <div class="iChart-hidden" ng-controller="iChartBarController" ng-class="iChart_hidden==2?'iChart-hidden-barSource':''">
+        <div class="iChart-hidden-barSource-content">
+            <div class="iChart-hidden-barSource-content-titleLine">
+                <div class="iChart-hidden-barSource-content-titleName">添加柱</div>
+                <div class="iChart-hidden-barSource-content-close" ng-click="iChart_hidden=0"></div>
             </div>
-            <div class="iChart-hidden-latitudeSource-content-itemsBox">
-                <div class="iChart-hidden-latitudeSource-content-items">
-                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-date">日期</div>
-                    <div class="iChart-hidden-latitudeSource-date-content">
-                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.date track by $index">
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingLatitude('a',$index)" ng-class="latitudeListTemp['a'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
-                        </div>
-                    </div>
+            <div class="iChart-hidden-barSource-content-Lines">
+                <div class="iChart-hidden-barSource-content-Line">
+                    <div class="iChart-hidden-barSource-content-LineName">X轴项：</div>
+                    <div class="iChart-hidden-barSource-content-xAttriBox"></div>
+                    <div class="iChart-hidden-barSource-content-LineMore" ng-click="attrListFlag=true;">change >></div>
                 </div>
-                <div class="iChart-hidden-latitudeSource-content-items">
-                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-txt">文本</div>
-                    <div class="iChart-hidden-latitudeSource-date-content">
-                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.text track by $index">
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingLatitude('b',$index)" ng-class="latitudeListTemp['b'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
-                        </div>
-                    </div>
+                <div class="iChart-hidden-barSource-content-Line">
+                    <div class="iChart-hidden-barSource-content-LineName">属性内部筛选：</div>
+                    <div class="iChart-hidden-barSource-content-xAttriBox"></div>
+                    <div class="iChart-hidden-barSource-content-LineMore">add >></div>
                 </div>
-                <div class="iChart-hidden-latitudeSource-content-items">
-                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-num">数值</div>
-                    <div class="iChart-hidden-latitudeSource-date-content">
-                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.number track by $index">
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingLatitude('c',$index)" ng-class="latitudeListTemp['c'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
-                        </div>
+                <div class="iChart-hidden-barSource-content-Box">
+                    <div class="iChart-hidden-barSource-content-BoxItem">
+                        <img src="./image/icon/iChartEditPage/range.png" class="iChart-hidden-barSource-content-BoxRangeItem">
+                        <img src="./image/icon/iChartEditPage/equal.png" class="iChart-hidden-barSource-content-BoxEqualItem">
                     </div>
                 </div>
             </div>
-            <div class="iChart-hidden-latitudeSource-content-stateLine">
-                * 注意：使用聚合函数的新字段无法作为纬度
-                <div class="iChart-hidden-latitudeSource-no" ng-click="iChart_hidden=0">取消</div>
-                <div class="iChart-hidden-latitudeSource-yes" ng-click="settingLatitudeOK()">确定</div>
+            <div class="iChart-hidden-dataSource-content-stateLine">
+                <div class="iChart-hidden-dataSource-no" ng-click="iChart_hidden=0">取消</div>
+                <div class="iChart-hidden-dataSource-yes" ng-click="iChart_hidden=0">确定</div>
             </div>
         </div>
-    </div>
-    <!--iChart_hidden=3: 值-->
-    <div class="iChart-hidden" ng-class="iChart_hidden==3?'iChart-hidden-valueSource':''">
-        <div class="iChart-hidden-latitudeSource-content">
-            <div class="iChart-hidden-latitudeSource-content-titleLine">
-                <div class="iChart-hidden-latitudeSource-content-titleName">批量添加纬度字段</div>
-                <div class="iChart-hidden-latitudeSource-content-close" ng-click="iChart_hidden=0"></div>
-            </div>
-            <div class="iChart-hidden-latitudeSource-content-itemsBox">
-                <div class="iChart-hidden-latitudeSource-content-items">
-                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-date">日期</div>
-                    <div class="iChart-hidden-latitudeSource-date-content">
-                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.date track by $index">
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingValue('a',$index)" ng-class="valueListTemp['a'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
-                        </div>
+        <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListFlag">
+            <div class="iChart-hidden-attrSource-content">
+                <div class="iChart-hidden-attrSource-content-titleLine">
+                    <div class="iChart-hidden-attrSource-content-titleName">选择属性</div>
+                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrListFlag=false"></div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-fileBox">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="attrListSelectState[$index]=!attrListSelectState[$index]">
+                        <div ng-class="attrListSelectState[$index]?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
+                        <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
                     </div>
                 </div>
-                <div class="iChart-hidden-latitudeSource-content-items">
-                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-txt">文本</div>
-                    <div class="iChart-hidden-latitudeSource-date-content">
-                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.text track by $index">
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingValue('b',$index)" ng-class="valueListTemp['b'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
-                        </div>
-                    </div>
+                <div class="iChart-hidden-attrSource-content-stateLine">
+                    <div class="iChart-hidden-attrSource-no" ng-click="attrListFlag=false">取消</div>
+                    <div class="iChart-hidden-attrSource-yes" ng-click="attrListFlag=false">确定</div>
                 </div>
-                <div class="iChart-hidden-latitudeSource-content-items">
-                    <div class="iChart-hidden-latitudeSource-kind-name iChart-hidden-latitudeSource-num">数值</div>
-                    <div class="iChart-hidden-latitudeSource-date-content">
-                        <div class="iChart-hidden-latitudeSource-date-content-item" ng-repeat="field in fieldList.number track by $index">
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkbox" ng-click="settingValue('c',$index)" ng-class="valueListTemp['c'+$index]==iChart_hidden?'iChart-hidden-latitudeSource-date-content-item-checkbox-active':''"></div>
-                            <div class="iChart-hidden-latitudeSource-date-content-item-checkname">{{field}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="iChart-hidden-latitudeSource-content-stateLine">
-                * 注意：使用聚合函数的新字段无法作为纬度
-                <div class="iChart-hidden-latitudeSource-no" ng-click="iChart_hidden=0">取消</div>
-                <div class="iChart-hidden-latitudeSource-yes" ng-click="settingValueOK()">确定</div>
             </div>
         </div>
     </div>
