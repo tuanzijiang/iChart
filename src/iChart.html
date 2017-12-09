@@ -65,7 +65,7 @@
         <div class="iChart-hidden-barSource-content">
             <div class="iChart-hidden-barSource-content-titleLine">
                 <div class="iChart-hidden-barSource-content-titleName">添加柱</div>
-                <div class="iChart-hidden-barSource-content-close" ng-click="iChart_hidden=0"></div>
+                <div class="iChart-hidden-barSource-content-close" ng-click="$parent.iChart_hidden=0"></div>
             </div>
             <div class="iChart-hidden-barSource-content-Lines">
                 <div class="iChart-hidden-barSource-content-Line">
@@ -86,8 +86,8 @@
                 </div>
             </div>
             <div class="iChart-hidden-dataSource-content-stateLine">
-                <div class="iChart-hidden-dataSource-no" ng-click="iChart_hidden=0">取消</div>
-                <div class="iChart-hidden-dataSource-yes" ng-click="iChart_hidden=0">确定</div>
+                <div class="iChart-hidden-dataSource-no" ng-click="$parent.iChart_hidden=0">取消</div>
+                <div class="iChart-hidden-dataSource-yes" ng-click="$parent.iChart_hidden=0">确定</div>
             </div>
         </div>
         <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListFlag">
