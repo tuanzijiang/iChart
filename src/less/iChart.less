@@ -275,8 +275,11 @@ tr:nth-child(even)>td{background: #414345;};
 .iChart-hidden-attrSource-content-xAttrScaleClose{display: inline-block;height: 2em;width: 2em;float: right;background: url("../image/icon/iChartEditPage/barItemClose.png") center center no-repeat;background-size: 50% 50%;}
 .iChart-hidden-attrSource-content-xAttrScalePrompt{color: #bbb;font-size: 75%;}
 .iChart-hidden-barSource-content-dashed{border-bottom: 1px dashed #769ce7;margin: 2em 0 1em 0;width: 100%;}
-.iChart-hidden-barSource-content-yAggregateBox{line-height: 2em;height: 1.5em;width: 6em;display: inline-block;vertical-align: middle;}
+.iChart-hidden-barSource-content-yAggregateBox{position:relative;line-height: 2em;height: 1.5em;width: 6em;display: inline-block;vertical-align: middle;overflow: visible;}
 .iChart-hidden-barSource-content-yAggregateBox-show{cursor: pointer;display: flex;height: 1.5em;line-height: 1.5em;width: 100%;flex-direction: row;border: 1px solid #666;vertical-align: middle;}
 .iChart-hidden-barSource-content-yAggregateBox-showValue{margin: 0 0 0 .5em;flex: 1;height: 100%;line-height: 1.875em;font-size: 80%;color: #666;}
 .iChart-hidden-barSource-content-yAggregateBox-showTriangle{background: url("../image/icon/iChartEditPage/triangle.png") center center no-repeat;background-size: 70% 70%;width: 1.5em;height: 1.5em;}
 .iChart-hidden-barSource-content-yAggregateLineName{color: #666;vertical-align: middle;display: inline-block;}
+.iChart-hidden-barSource-content-yAggregateBox-hide{width: 100%;font-size: 80%;color: #666;background: white;border:1px solid #666;border-top:none;cursor: pointer;position: absolute;z-index: 1;}
+.iChart-hidden-barSource-content-yAggregateBox-hideValue{background: white;transition: all .3s;padding: 0 0 0 1em;}
+.iChart-hidden-barSource-content-yAggregateBox-hideValue:hover{background: #666;color: white;}

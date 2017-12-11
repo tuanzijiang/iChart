@@ -21,8 +21,6 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
         }
     };
 
-
-
     // $http({
     //     method:'post',
     //     url:'http://127.0.0.1:8000/log_in',
@@ -43,7 +41,6 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
     // }).success(function(req){
     //     console.log(req);
     // });
-
     // $http({
     //     method:'post',
     //     url:'http://127.0.0.1:8000/post_test',
@@ -56,7 +53,6 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
     // }).success(function(req){
     //     console.log(req);
     // });
-
 });
 
 
@@ -327,8 +323,12 @@ iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adj
 iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
 });
 
-iChartApp.controller("iChartBarController",function ($scope,$compile) {
+iChartApp.controller("iChartBarController",function ($scope,$http) {
     $scope.attrList=["羊毛1","纤维2","羊毛3","纤维4","羊毛5","纤维6"];//items displayed in attrList
+    $scope.attrListKind=[0,0,0,1,2,3];
+    $scope.getAttrOperatorCN=["计数","平均数","中位数","最大值","最小值"];
+    $scope.xAttriKinds=["一班","二班","三班"];
+    $scope.yAttriKinds=["一班","二班","三班"];
     //control window open or close
     $scope.attrListFlag=false;//control window of x-filter(equal);false-close、true-open
     $scope.attrListYFlag=false;//control window of y-filter(equal);false-close、true-open
@@ -336,6 +336,7 @@ iChartApp.controller("iChartBarController",function ($scope,$compile) {
     $scope.attrScaleYAttriFilterFlag=false;//control window of x-filter(scale);false-close、true-open
     $scope.attrListXAttriFlag=false;//control window of x-filter(single);false-close、true-open
     $scope.attrListYAttriFlag=false;//control window of x-filter(single);false-close、true-open
+    $scope.attrOperatorHoverFlag=false;
     //save data from sub window
     $scope.attrListSelectState=[];
     $scope.attrListYAttribSelectState=[];
@@ -391,15 +392,61 @@ iChartApp.controller("iChartBarController",function ($scope,$compile) {
     //单项选择Y项
     $scope.setAttrListYAttriCurrentFlag=function (num) {
         $scope.attrListYAttriCurrentFlag=num;
-    }
-    //获取中文
-    $scope.getAttrOperatorCN=function () {
-        switch ($scope.attrOperatorKind){
-            case 0:
-                return "求和";
-            default:
-                return "求和";
+    };
+    //设置聚类操作类型
+    $scope.setAttrOperatorKind=function (num) {
+        $scope.attrOperatorKind=num;
+    };
+    //将数据写入到edit页面
+    $scope.sendInfoTOEditPage=function () {
+        $scope.$parent.iChart_hidden=0;
+        var sendInfo={};
+        sendInfo.xAttri=$scope.attrList[$scope.attrListXAttriCurrentFlag];
+        sendInfo.xAttriKind=$scope.attrListKind[$scope.attrListXAttriCurrentFlag];
+        sendInfo.xAttriSelf=0;
+        sendInfo.xField=[];
+        for(var i=0;i<$scope.attrListSelectState.length;i++){
+            if($scope.attrListSelectState[i]){
+                var temp={};
+                temp.min=$scope.xAttriKinds[i];
+                temp.max=$scope.xAttriKinds[i];
+                temp.left=1;
+                temp.right=1;
+                sendInfo.xField.push(temp);
+            }
         }
+        for(var i=0;i<$scope.scaleCondition.length;i++){
+            var temp={};
+            temp.min=$scope.scaleCondition[i].min;
+            temp.max=$scope.scaleCondition[i].max;
+            temp.left=$scope.scaleCondition[i].left;
+            temp.right=$scope.scaleCondition[i].right;
+            sendInfo.xField.push(temp);
+        }
+        sendInfo.yAttri=$scope.attrList[$scope.attrListYAttriCurrentFlag];
+        sendInfo.yAttriKind=$scope.attrListKind[$scope.attrListYAttriCurrentFlag];
+        sendInfo.Operator=$scope.attrOperatorKind;
+        sendInfo.yField=[];
+        for(var i=0;i<$scope.attrListYAttribSelectState.length;i++){
+            if($scope.attrListYAttribSelectState[i]){
+                var temp={};
+                temp.min=$scope.yAttriKinds[i];
+                temp.max=$scope.yAttriKinds[i];
+                temp.left=1;
+                temp.right=1;
+                sendInfo.yField.push(temp);
+            }
+        }
+        for(var i=0;i<$scope.scaleYAttribCondition.length;i++){
+            var temp={};
+            temp.min=$scope.scaleYAttribCondition[i].min;
+            temp.max=$scope.scaleYAttribCondition[i].max;
+            temp.left=$scope.scaleYAttribCondition[i].left;
+            temp.right=$scope.scaleYAttribCondition[i].right;
+            sendInfo.yField.push(temp);
+        }
+        console.log(JSON.stringify(sendInfo));
+        console.log($scope.$parent.$$childHead.$$nextSibling);
     }
 });
 

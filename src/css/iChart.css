@@ -1253,11 +1253,13 @@ tr:nth-child(even) > td {
   width: 100%;
 }
 .iChart-hidden-barSource-content-yAggregateBox {
+  position: relative;
   line-height: 2em;
   height: 1.5em;
   width: 6em;
   display: inline-block;
   vertical-align: middle;
+  overflow: visible;
 }
 .iChart-hidden-barSource-content-yAggregateBox-show {
   cursor: pointer;
@@ -1287,4 +1289,24 @@ tr:nth-child(even) > td {
   color: #666;
   vertical-align: middle;
   display: inline-block;
+}
+.iChart-hidden-barSource-content-yAggregateBox-hide {
+  width: 100%;
+  font-size: 80%;
+  color: #666;
+  background: white;
+  border: 1px solid #666;
+  border-top: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+.iChart-hidden-barSource-content-yAggregateBox-hideValue {
+  background: white;
+  transition: all .3s;
+  padding: 0 0 0 1em;
+}
+.iChart-hidden-barSource-content-yAggregateBox-hideValue:hover {
+  background: #666;
+  color: white;
 }

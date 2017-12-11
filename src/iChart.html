@@ -82,7 +82,7 @@
                     <div class="iChart-hidden-barSource-content-lineEqual">
                         <div class="iChart-hidden-barSource-content-lineKind">筛选方式：相等</div>
                         <div class="iChart-hidden-barSource-content-lineKindContent">
-                            <span ng-repeat="item in attrList track by $index" ng-if="attrListSelectState[$index]">
+                            <span ng-repeat="item in xAttriKinds track by $index" ng-if="attrListSelectState[$index]">
                                 {{item}}&nbsp;
                             </span>
                         </div>
@@ -106,12 +106,14 @@
                 </div>
                 <div class="iChart-hidden-barSource-content-Line">
                     <div class="iChart-hidden-barSource-content-yAggregateLineName">属性聚类操作：</div>
-                    <div class="iChart-hidden-barSource-content-yAggregateBox">
+                    <div class="iChart-hidden-barSource-content-yAggregateBox" ng-mouseenter="attrOperatorHoverFlag=true;" ng-mouseleave="attrOperatorHoverFlag=false;">
                         <div class="iChart-hidden-barSource-content-yAggregateBox-show">
-                            <div class="iChart-hidden-barSource-content-yAggregateBox-showValue">{{getAttrOperatorCN()}}</div>
+                            <div class="iChart-hidden-barSource-content-yAggregateBox-showValue">{{getAttrOperatorCN[attrOperatorKind]}}</div>
                             <div class="iChart-hidden-barSource-content-yAggregateBox-showTriangle"></div>
                         </div>
-                        <div class="iChart-hidden-barSource-content-yAggregateBox-hide"></div>
+                        <div class="iChart-hidden-barSource-content-yAggregateBox-hide" ng-show="attrOperatorHoverFlag">
+                            <div class="iChart-hidden-barSource-content-yAggregateBox-hideValue" ng-repeat="item in getAttrOperatorCN track by $index" ng-click="setAttrOperatorKind($index)">{{item}}</div>
+                        </div>
                     </div>
                 </div>
                 <div class="iChart-hidden-barSource-content-Line">
@@ -123,7 +125,7 @@
                     <div class="iChart-hidden-barSource-content-lineEqual">
                         <div class="iChart-hidden-barSource-content-lineKind">筛选方式：相等</div>
                         <div class="iChart-hidden-barSource-content-lineKindContent">
-                            <span ng-repeat="item in attrList track by $index" ng-if="attrListYAttribSelectState[$index]">
+                            <span ng-repeat="item in yAttriKinds track by $index" ng-if="attrListYAttribSelectState[$index]">
                                 {{item}}&nbsp;
                             </span>
                         </div>
@@ -142,7 +144,7 @@
             </div>
             <div class="iChart-hidden-dataSource-content-stateLine">
                 <div class="iChart-hidden-dataSource-no" ng-click="$parent.iChart_hidden=0">取消</div>
-                <div class="iChart-hidden-dataSource-yes" ng-click="$parent.iChart_hidden=0">确定</div>
+                <div class="iChart-hidden-dataSource-yes" ng-click="sendInfoTOEditPage()">确定</div>
             </div>
         </div>
         <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListXAttriFlag">
@@ -188,7 +190,7 @@
                     <div class="iChart-hidden-attrSource-content-close" ng-click="attrListFlag=false"></div>
                 </div>
                 <div class="iChart-hidden-attrSource-content-fileBox">
-                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="attrListSelectState[$index]=!attrListSelectState[$index]">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in xAttriKinds track by $index" ng-click="attrListSelectState[$index]=!attrListSelectState[$index]">
                         <div ng-class="attrListSelectState[$index]?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
                         <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
                     </div>
@@ -206,7 +208,7 @@
                     <div class="iChart-hidden-attrSource-content-close" ng-click="attrListYFlag=false"></div>
                 </div>
                 <div class="iChart-hidden-attrSource-content-fileBox">
-                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="attrListYAttribSelectState[$index]=!attrListYAttribSelectState[$index]">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in yAttriKinds track by $index" ng-click="attrListYAttribSelectState[$index]=!attrListYAttribSelectState[$index]">
                         <div ng-class="attrListYAttribSelectState[$index]?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
                         <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
                     </div>
