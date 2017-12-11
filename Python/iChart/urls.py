@@ -29,6 +29,8 @@ urlpatterns = [
     url(r"^sheet_content$",views.get_sheet_content),
     url(r"^sheet_columns$", views.get_sheet_columns),
     url(r"^save_page$", views.save_page),
-    url(r"^get_page$", views.get_page)
+    url(r"^get_page$", views.get_page),
+    url(r"^get_chart_content$",views.get_chart_content),
+    url(r"^get_column_content$",views.get_column_content)
 
 ]

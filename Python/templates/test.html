@@ -29,17 +29,26 @@
     		});*/
     		$("#signup").click(function () {
                 $.ajax({
-                    url:"/save_page",
+                    url:"/get_column_content",
                     type:"post",
                     data:{
                         sheet_id:7,
                         start_line:0,
                         lines:5,
-                        columns:"a",
+                        column:"学号",
                         all:1,
                         accoun:"abcde",
                         passw:"abcde",
-                        data:"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdawdsadzf21231ds$%@#"
+                        data:"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdawdsadzf21231ds$%@#",
+                        sheet_id:2,
+                        xAttri:'姓名',
+                        xAttriKind:0,
+                        xAttriSelf:0,
+                        xField:'[{"min":"李华一","max":"李华一","left":1,"right":1},{"min":"李华二","max":"李华二","left":1,"right":1},{"min":"李华三","max":"李华三","left":1,"right":1}]',
+                        yAttri:"value",
+                        yAttriKind:1,
+                        Operator:1,
+                        yField:'[{"min":" ","max":" ","left":1,"right":1}]'
                     },
                     success:function ($ans) {
                         console.log($ans);
