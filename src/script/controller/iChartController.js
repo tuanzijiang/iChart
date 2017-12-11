@@ -447,7 +447,85 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
         }
         console.log(JSON.stringify(sendInfo));
         console.log($scope.$parent.$$childHead.$$nextSibling);
-    }
+        $http({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/get_column_content',
+            withCredentials: true,
+            data: {
+                sheet_id:3,
+                column:'一'
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }, transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                    str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+                }
+                return str.join("&");
+            }
+        }).success(function(req){
+            console.log(JSON.parse(req.result));
+            $scope.xAttriKinds=JSON.parse(req.result);
+            $scope.yAttriKinds=JSON.parse(req.result);
+        }).error(function (req) {
+            console.log(req);
+        });
+    };
+
+    //获取初始化数据
+    //获取列表属性
+    $http({
+        method: 'post',
+        url: 'http://127.0.0.1:8000/sheet_columns',
+        withCredentials: true,
+        data: {
+            sheet_id:3,
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }, transformRequest: function (obj) {
+            var str = [];
+            for (var s in obj) {
+                str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+            }
+            return str.join("&");
+        }
+    }).success(function(req){
+        console.log(JSON.parse(req.result));
+        $scope.attrList=[];
+        for(var item in JSON.parse(req.result)){
+            $scope.attrList.push(item);
+        }
+    }).error(function (req) {
+        console.log(req);
+    });
+    //获取列表单个字段
+    $http({
+        method: 'post',
+        url: 'http://127.0.0.1:8000/get_column_content',
+        withCredentials: true,
+        data: {
+            sheet_id:3,
+            column:'一'
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }, transformRequest: function (obj) {
+            var str = [];
+            for (var s in obj) {
+                str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+            }
+            return str.join("&");
+        }
+    }).success(function(req){
+        console.log(JSON.parse(req.result));
+        $scope.xAttriKinds=JSON.parse(req.result);
+        $scope.yAttriKinds=JSON.parse(req.result);
+    }).error(function (req) {
+        console.log(req);
+    });
+
 });
 
 
