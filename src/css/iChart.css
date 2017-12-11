@@ -1252,3 +1252,39 @@ tr:nth-child(even) > td {
   margin: 2em 0 1em 0;
   width: 100%;
 }
+.iChart-hidden-barSource-content-yAggregateBox {
+  line-height: 2em;
+  height: 1.5em;
+  width: 6em;
+  display: inline-block;
+  vertical-align: middle;
+}
+.iChart-hidden-barSource-content-yAggregateBox-show {
+  cursor: pointer;
+  display: flex;
+  height: 1.5em;
+  line-height: 1.5em;
+  width: 100%;
+  flex-direction: row;
+  border: 1px solid #666;
+  vertical-align: middle;
+}
+.iChart-hidden-barSource-content-yAggregateBox-showValue {
+  margin: 0 0 0 .5em;
+  flex: 1;
+  height: 100%;
+  line-height: 1.875em;
+  font-size: 80%;
+  color: #666;
+}
+.iChart-hidden-barSource-content-yAggregateBox-showTriangle {
+  background: url("../image/icon/iChartEditPage/triangle.png") center center no-repeat;
+  background-size: 70% 70%;
+  width: 1.5em;
+  height: 1.5em;
+}
+.iChart-hidden-barSource-content-yAggregateLineName {
+  color: #666;
+  vertical-align: middle;
+  display: inline-block;
+}

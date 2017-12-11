@@ -329,18 +329,21 @@ iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMen
 
 iChartApp.controller("iChartBarController",function ($scope,$compile) {
     $scope.attrList=["羊毛1","纤维2","羊毛3","纤维4","羊毛5","纤维6"];//items displayed in attrList
+    //control window open or close
     $scope.attrListFlag=false;//control window of x-filter(equal);false-close、true-open
-    $scope.attrListYFlag=false;//control window of x-filter(equal);false-close、true-open
+    $scope.attrListYFlag=false;//control window of y-filter(equal);false-close、true-open
     $scope.attrScaleFilterFlag=false;//control window of x-filter(scale);false-close、true-open
     $scope.attrScaleYAttriFilterFlag=false;//control window of x-filter(scale);false-close、true-open
     $scope.attrListXAttriFlag=false;//control window of x-filter(single);false-close、true-open
     $scope.attrListYAttriFlag=false;//control window of x-filter(single);false-close、true-open
+    //save data from sub window
     $scope.attrListSelectState=[];
     $scope.attrListYAttribSelectState=[];
     $scope.scaleCondition=[];
     $scope.scaleYAttribCondition=[];
     $scope.attrListXAttriCurrentFlag=0;
     $scope.attrListYAttriCurrentFlag=0;
+
     //添加范围的筛选方式
     $scope.addScaleFilterLine=function () {
         var newScaleCondition={

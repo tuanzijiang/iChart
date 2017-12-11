@@ -105,6 +105,16 @@
                     <div class="iChart-hidden-barSource-content-LineMore" ng-click="attrListYAttriFlag=true;">change >></div>
                 </div>
                 <div class="iChart-hidden-barSource-content-Line">
+                    <div class="iChart-hidden-barSource-content-yAggregateLineName">属性聚类操作：</div>
+                    <div class="iChart-hidden-barSource-content-yAggregateBox">
+                        <div class="iChart-hidden-barSource-content-yAggregateBox-show">
+                            <div class="iChart-hidden-barSource-content-yAggregateBox-showValue">求和</div>
+                            <div class="iChart-hidden-barSource-content-yAggregateBox-showTriangle"></div>
+                        </div>
+                        <div class="iChart-hidden-barSource-content-yAggregateBox-hide"></div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-barSource-content-Line">
                     <div class="iChart-hidden-barSource-content-LineName">属性内部筛选：</div>
                     <div class="iChart-hidden-barSource-content-xAttriBox"></div>
                     <div class="iChart-hidden-barSource-content-LineMore"></div>
@@ -131,8 +141,44 @@
                 </div>
             </div>
             <div class="iChart-hidden-dataSource-content-stateLine">
-                <div class="iChart-hidden-dataSource-no" ng-click="iChart_hidden=0">取消</div>
-                <div class="iChart-hidden-dataSource-yes" ng-click="iChart_hidden=0">确定</div>
+                <div class="iChart-hidden-dataSource-no" ng-click="$parent.iChart_hidden=0">取消</div>
+                <div class="iChart-hidden-dataSource-yes" ng-click="$parent.iChart_hidden=0">确定</div>
+            </div>
+        </div>
+        <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListXAttriFlag">
+            <div class="iChart-hidden-attrSource-content">
+                <div class="iChart-hidden-attrSource-content-titleLine">
+                    <div class="iChart-hidden-attrSource-content-titleName">X轴项</div>
+                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrListXAttriFlag=false"></div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-fileBox">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListXAttriCurrentFlag($index)">
+                        <div ng-class="attrListXAttriCurrentFlag===$index?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
+                        <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-stateLine">
+                    <div class="iChart-hidden-attrSource-no" ng-click="attrListXAttriFlag=false">取消</div>
+                    <div class="iChart-hidden-attrSource-yes" ng-click="attrListXAttriFlag=false">确定</div>
+                </div>
+            </div>
+        </div>
+        <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListYAttriFlag">
+            <div class="iChart-hidden-attrSource-content">
+                <div class="iChart-hidden-attrSource-content-titleLine">
+                    <div class="iChart-hidden-attrSource-content-titleName">Y轴项</div>
+                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrListYAttriFlag=false"></div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-fileBox">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListYAttriCurrentFlag($index)">
+                        <div ng-class="attrListYAttriCurrentFlag===$index?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
+                        <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-stateLine">
+                    <div class="iChart-hidden-attrSource-no" ng-click="attrListYAttriFlag=false">取消</div>
+                    <div class="iChart-hidden-attrSource-yes" ng-click="attrListYAttriFlag=false">确定</div>
+                </div>
             </div>
         </div>
         <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListFlag">
@@ -150,6 +196,24 @@
                 <div class="iChart-hidden-attrSource-content-stateLine">
                     <div class="iChart-hidden-attrSource-no" ng-click="attrListFlag=false">取消</div>
                     <div class="iChart-hidden-attrSource-yes" ng-click="attrListFlag=false">确定</div>
+                </div>
+            </div>
+        </div>
+        <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListYFlag">
+            <div class="iChart-hidden-attrSource-content">
+                <div class="iChart-hidden-attrSource-content-titleLine">
+                    <div class="iChart-hidden-attrSource-content-titleName">Y轴项筛选方式：相等</div>
+                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrListYFlag=false"></div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-fileBox">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="attrListYAttribSelectState[$index]=!attrListYAttribSelectState[$index]">
+                        <div ng-class="attrListYAttribSelectState[$index]?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
+                        <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-stateLine">
+                    <div class="iChart-hidden-attrSource-no" ng-click="attrListYFlag=false">取消</div>
+                    <div class="iChart-hidden-attrSource-yes" ng-click="attrListYFlag=false">确定</div>
                 </div>
             </div>
         </div>
@@ -182,29 +246,11 @@
                 </div>
             </div>
         </div>
-        <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListYAttriFlag">
-            <div class="iChart-hidden-attrSource-content">
-                <div class="iChart-hidden-attrSource-content-titleLine">
-                    <div class="iChart-hidden-attrSource-content-titleName">Y轴项</div>
-                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrListyAttriFlag=false"></div>
-                </div>
-                <div class="iChart-hidden-attrSource-content-fileBox">
-                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListYAttriCurrentFlag($index)">
-                        <div ng-class="$index===attrListYAttriCurrentFlag?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
-                        <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
-                    </div>
-                </div>
-                <div class="iChart-hidden-attrSource-content-stateLine">
-                    <div class="iChart-hidden-attrSource-no" ng-click="attrListYAttriFlag=false">取消</div>
-                    <div class="iChart-hidden-attrSource-yes" ng-click="attrListYAttriFlag=false">确定</div>
-                </div>
-            </div>
-        </div>
         <div class="iChart-hidden-barSource-content-filtList" ng-show="attrScaleYAttriFilterFlag">
             <div class="iChart-hidden-attrSource-content">
                 <div class="iChart-hidden-attrSource-content-titleLine">
                     <div class="iChart-hidden-attrSource-content-titleName">Y轴项筛选方式：范围<span ng-click="addScaleYAttribFilterLine()">添加</span></div>
-                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrScaleFilterFlag=false"></div>
+                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrScaleYAttriFilterFlag=false"></div>
                 </div>
                 <div class="iChart-hidden-attrSource-content-fileBox">
                     <div class="iChart-hidden-attrSource-content-xAttrScaleLine" ng-repeat="item in scaleYAttribCondition track by $index">
