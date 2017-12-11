@@ -343,7 +343,7 @@ iChartApp.controller("iChartBarController",function ($scope,$compile) {
     $scope.scaleYAttribCondition=[];
     $scope.attrListXAttriCurrentFlag=0;
     $scope.attrListYAttriCurrentFlag=0;
-
+    $scope.attrOperatorKind=0;
     //添加范围的筛选方式
     $scope.addScaleFilterLine=function () {
         var newScaleCondition={
@@ -391,6 +391,15 @@ iChartApp.controller("iChartBarController",function ($scope,$compile) {
     //单项选择Y项
     $scope.setAttrListYAttriCurrentFlag=function (num) {
         $scope.attrListYAttriCurrentFlag=num;
+    }
+    //获取中文
+    $scope.getAttrOperatorCN=function () {
+        switch ($scope.attrOperatorKind){
+            case 0:
+                return "求和";
+            default:
+                return "求和";
+        }
     }
 });
 
