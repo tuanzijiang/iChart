@@ -1191,4 +1191,64 @@ tr:nth-child(even) > td {
   line-height: 2em;
   height: 2em;
   width: 100%;
+  cursor: pointer;
+}
+.iChart-hidden-attrSource-content-xAttrScaleLine:hover {
+  background: rgba(128, 128, 128, 0.3);
+}
+.iChart-hidden-barSource-content-filtList {
+  position: absolute;
+  display: block;
+  width: 40em;
+  height: 19em;
+  top: calc(50% - 7.5em);
+  left: calc(50% - 20em);
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #666;
+}
+.iChart-hidden-attrSource-content-xAttrScaleLeftBracket {
+  display: inline-block;
+  user-select: none;
+  margin: 0 0 0 1em;
+}
+.iChart-hidden-attrSource-content-xAttrScaleLeftValue {
+  display: inline-block;
+  height: 2em;
+  width: 4em;
+}
+.iChart-hidden-attrSource-content-xAttrScaleLeftValue > input {
+  color: #666;
+}
+.iChart-hidden-attrSource-content-xAttrScaleMiddleDash {
+  display: inline-block;
+}
+.iChart-hidden-attrSource-content-xAttrScaleRightValue {
+  display: inline-block;
+  height: 2em;
+  width: 4em;
+}
+.iChart-hidden-attrSource-content-xAttrScaleRightValue > input {
+  color: #666;
+}
+.iChart-hidden-attrSource-content-xAttrScaleRightBracket {
+  display: inline-block;
+  user-select: none;
+}
+.iChart-hidden-attrSource-content-xAttrScaleClose {
+  display: inline-block;
+  height: 2em;
+  width: 2em;
+  float: right;
+  background: url("../image/icon/iChartEditPage/barItemClose.png") center center no-repeat;
+  background-size: 50% 50%;
+}
+.iChart-hidden-attrSource-content-xAttrScalePrompt {
+  color: #bbb;
+  font-size: 75%;
+}
+.iChart-hidden-barSource-content-dashed {
+  border-bottom: 1px dashed #769ce7;
+  margin: 2em 0 1em 0;
+  width: 100%;
 }

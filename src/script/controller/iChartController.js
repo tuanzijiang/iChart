@@ -327,17 +327,68 @@ iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adj
 iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMenu,closeLeftMenu) {
 });
 
-iChartApp.controller("iChartBarController",function ($scope) {
+iChartApp.controller("iChartBarController",function ($scope,$compile) {
     $scope.attrList=["羊毛1","纤维2","羊毛3","纤维4","羊毛5","纤维6"];//items displayed in attrList
     $scope.attrListFlag=false;//control window of x-filter(equal);false-close、true-open
+    $scope.attrListYFlag=false;//control window of x-filter(equal);false-close、true-open
     $scope.attrScaleFilterFlag=false;//control window of x-filter(scale);false-close、true-open
-    $scope.attrListSelectState=[];//control window of x-filter(equal)
-    $scope.scaleCondifition=[{
-        max: 2,
-        min: 1,
-        left: 0,//开
-        right: 1//闭
-    }];
+    $scope.attrScaleYAttriFilterFlag=false;//control window of x-filter(scale);false-close、true-open
+    $scope.attrListXAttriFlag=false;//control window of x-filter(single);false-close、true-open
+    $scope.attrListYAttriFlag=false;//control window of x-filter(single);false-close、true-open
+    $scope.attrListSelectState=[];
+    $scope.attrListYAttribSelectState=[];
+    $scope.scaleCondition=[];
+    $scope.scaleYAttribCondition=[];
+    $scope.attrListXAttriCurrentFlag=0;
+    $scope.attrListYAttriCurrentFlag=0;
+    //添加范围的筛选方式
+    $scope.addScaleFilterLine=function () {
+        var newScaleCondition={
+            max: 2,//""--表示无穷大
+            min: 1,//""--表示无穷大
+            left: 0,//开
+            right: 0//闭
+        };
+        $scope.scaleCondition.push(newScaleCondition);
+    };
+    //添加Y范围的筛选方式
+    $scope.addScaleYAttribFilterLine=function () {
+        var newScaleCondition={
+            max: 2,//""--表示无穷大
+            min: 1,//""--表示无穷大
+            left: 0,//开
+            right: 0//闭
+        };
+        $scope.scaleYAttribCondition.push(newScaleCondition);
+    };
+    //删除范围的筛选方式
+    $scope.deleteScaleFilterLine=function (num) {
+        var tempCondition=[];
+        for(var i=0;i<$scope.scaleCondition.length;i++){
+            if(i!==num){
+                tempCondition[i]=$scope.scaleCondition[i];
+            }
+        }
+        $scope.scaleCondition=tempCondition;
+    };
+    //删除Y范围的筛选方式
+    $scope.deleteScaleYAttribFilterLine=function (num) {
+        var tempCondition=[];
+        for(var i=0;i<$scope.scaleYAttribCondition.length;i++){
+            if(i!==num){
+                tempCondition[i]=$scope.scaleYAttribCondition[i];
+            }
+        }
+        $scope.scaleYAttribCondition=tempCondition;
+    };
+    //单项选择X项
+    $scope.setAttrListXAttriCurrentFlag=function (num) {
+        $scope.attrListXAttriCurrentFlag=num;
+    };
+    //单项选择Y项
+    $scope.setAttrListYAttriCurrentFlag=function (num) {
+        $scope.attrListYAttriCurrentFlag=num;
+    }
 });
 
 

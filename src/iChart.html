@@ -69,9 +69,9 @@
             </div>
             <div class="iChart-hidden-barSource-content-Lines">
                 <div class="iChart-hidden-barSource-content-Line">
-                    <div class="iChart-hidden-barSource-content-LineName">X轴项：</div>
+                    <div class="iChart-hidden-barSource-content-LineName">X轴项：{{attrList[attrListXAttriCurrentFlag]}}</div>
                     <div class="iChart-hidden-barSource-content-xAttriBox"></div>
-                    <div class="iChart-hidden-barSource-content-LineMore" ng-click="attrListFlag=true;">change >></div>
+                    <div class="iChart-hidden-barSource-content-LineMore" ng-click="attrListXAttriFlag=true;">change >></div>
                 </div>
                 <div class="iChart-hidden-barSource-content-Line">
                     <div class="iChart-hidden-barSource-content-LineName">属性内部筛选：</div>
@@ -83,7 +83,7 @@
                         <div class="iChart-hidden-barSource-content-lineKind">筛选方式：相等</div>
                         <div class="iChart-hidden-barSource-content-lineKindContent">
                             <span ng-repeat="item in attrList track by $index" ng-if="attrListSelectState[$index]">
-                                {{item}}
+                                {{item}}&nbsp;
                             </span>
                         </div>
                         <div class="iChart-hidden-barSource-content-lineKindConfig" ng-click="attrListFlag=true;"></div>
@@ -91,11 +91,42 @@
                     <div class="iChart-hidden-barSource-content-lineScale">
                         <div class="iChart-hidden-barSource-content-lineKind">筛选方式：范围</div>
                         <div class="iChart-hidden-barSource-content-lineKindContent">
-                            <span ng-repeat="item in scaleCondifition track by $index" ng-if="$index%2==0">
-                                {{scaleCondifition[$index]}}-{{scaleCondifition[$index+1]}}
+                            <span ng-repeat="item in scaleCondition track by $index">
+                                {{item.left===0?'(':'['}}&nbsp;{{item.min}}&nbsp;,&nbsp;{{item.max}}&nbsp;{{item.right===0?')':']'}}
                             </span>
                         </div>
                         <div class="iChart-hidden-barSource-content-lineKindConfig" ng-click="attrScaleFilterFlag=true"></div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-barSource-content-dashed"></div>
+                <div class="iChart-hidden-barSource-content-Line">
+                    <div class="iChart-hidden-barSource-content-LineName">Y轴项：{{attrList[attrListYAttriCurrentFlag]}}</div>
+                    <div class="iChart-hidden-barSource-content-xAttriBox"></div>
+                    <div class="iChart-hidden-barSource-content-LineMore" ng-click="attrListYAttriFlag=true;">change >></div>
+                </div>
+                <div class="iChart-hidden-barSource-content-Line">
+                    <div class="iChart-hidden-barSource-content-LineName">属性内部筛选：</div>
+                    <div class="iChart-hidden-barSource-content-xAttriBox"></div>
+                    <div class="iChart-hidden-barSource-content-LineMore"></div>
+                </div>
+                <div class="iChart-hidden-barSource-content-Box">
+                    <div class="iChart-hidden-barSource-content-lineEqual">
+                        <div class="iChart-hidden-barSource-content-lineKind">筛选方式：相等</div>
+                        <div class="iChart-hidden-barSource-content-lineKindContent">
+                            <span ng-repeat="item in attrList track by $index" ng-if="attrListYAttribSelectState[$index]">
+                                {{item}}&nbsp;
+                            </span>
+                        </div>
+                        <div class="iChart-hidden-barSource-content-lineKindConfig" ng-click="attrListYFlag=true;"></div>
+                    </div>
+                    <div class="iChart-hidden-barSource-content-lineScale">
+                        <div class="iChart-hidden-barSource-content-lineKind">筛选方式：范围</div>
+                        <div class="iChart-hidden-barSource-content-lineKindContent">
+                            <span ng-repeat="item in scaleYAttribCondition track by $index">
+                                {{item.left===0?'(':'['}}&nbsp;{{item.min}}&nbsp;,&nbsp;{{item.max}}&nbsp;{{item.right===0?')':']'}}
+                            </span>
+                        </div>
+                        <div class="iChart-hidden-barSource-content-lineKindConfig" ng-click="attrScaleYAttriFilterFlag=true"></div>
                     </div>
                 </div>
             </div>
@@ -122,24 +153,79 @@
                 </div>
             </div>
         </div>
-        <div class="iChart-hidden-barSource-content-attrList" ng-show="attrScaleFilterFlag">
+        <div class="iChart-hidden-barSource-content-filtList" ng-show="attrScaleFilterFlag">
             <div class="iChart-hidden-attrSource-content">
                 <div class="iChart-hidden-attrSource-content-titleLine">
-                    <div class="iChart-hidden-attrSource-content-titleName">X轴项筛选方式：范围<span>添加</span></div>
+                    <div class="iChart-hidden-attrSource-content-titleName">X轴项筛选方式：范围<span ng-click="addScaleFilterLine()">添加</span></div>
                     <div class="iChart-hidden-attrSource-content-close" ng-click="attrScaleFilterFlag=false"></div>
                 </div>
                 <div class="iChart-hidden-attrSource-content-fileBox">
-                    <div class="iChart-hidden-attrSource-content-xAttrScaleLine">
-                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftBracket">(</div>
-                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftValue">1</div>
-                        <div class="iChart-hidden-attrSource-content-xAttrScaleMiddleDash">-</div>
-                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightValue">2</div>
-                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightBracket">)</div>
+                    <div class="iChart-hidden-attrSource-content-xAttrScaleLine" ng-repeat="item in scaleCondition track by $index">
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftBracket" ng-show="item.left===0" ng-click="item.left=1">(</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftBracket" ng-show="item.left===1" ng-click="item.left=0">[</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftValue">
+                            <input type="number" placeholder="左区间" ng-model="item.min"/>
+                        </div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleMiddleDash">，</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightValue">
+                            <input type="number" placeholder="右区间" ng-model="item.max"/>
+                        </div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightBracket" ng-show="item.right===0" ng-click="item.right=1">)</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightBracket" ng-show="item.right===1" ng-click="item.right=0">]</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleClose" ng-click="deleteScaleFilterLine($index)"></div>
                     </div>
                 </div>
                 <div class="iChart-hidden-attrSource-content-stateLine">
+                    <div class="iChart-hidden-attrSource-content-xAttrScalePrompt">*&nbsp;圆括号表示开区间，中括号表示闭区间。左区间不填代表负无穷大，右区间不填代表正无穷大</div>
                     <div class="iChart-hidden-attrSource-no" ng-click="attrScaleFilterFlag=false">取消</div>
                     <div class="iChart-hidden-attrSource-yes" ng-click="attrScaleFilterFlag=false">确定</div>
+                </div>
+            </div>
+        </div>
+        <div class="iChart-hidden-barSource-content-attrList" ng-show="attrListYAttriFlag">
+            <div class="iChart-hidden-attrSource-content">
+                <div class="iChart-hidden-attrSource-content-titleLine">
+                    <div class="iChart-hidden-attrSource-content-titleName">Y轴项</div>
+                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrListyAttriFlag=false"></div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-fileBox">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListYAttriCurrentFlag($index)">
+                        <div ng-class="$index===attrListYAttriCurrentFlag?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
+                        <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-stateLine">
+                    <div class="iChart-hidden-attrSource-no" ng-click="attrListYAttriFlag=false">取消</div>
+                    <div class="iChart-hidden-attrSource-yes" ng-click="attrListYAttriFlag=false">确定</div>
+                </div>
+            </div>
+        </div>
+        <div class="iChart-hidden-barSource-content-filtList" ng-show="attrScaleYAttriFilterFlag">
+            <div class="iChart-hidden-attrSource-content">
+                <div class="iChart-hidden-attrSource-content-titleLine">
+                    <div class="iChart-hidden-attrSource-content-titleName">Y轴项筛选方式：范围<span ng-click="addScaleYAttribFilterLine()">添加</span></div>
+                    <div class="iChart-hidden-attrSource-content-close" ng-click="attrScaleFilterFlag=false"></div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-fileBox">
+                    <div class="iChart-hidden-attrSource-content-xAttrScaleLine" ng-repeat="item in scaleYAttribCondition track by $index">
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftBracket" ng-show="item.left===0" ng-click="item.left=1">(</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftBracket" ng-show="item.left===1" ng-click="item.left=0">[</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleLeftValue">
+                            <input type="number" placeholder="左区间" ng-model="item.min"/>
+                        </div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleMiddleDash">，</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightValue">
+                            <input type="number" placeholder="右区间" ng-model="item.max"/>
+                        </div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightBracket" ng-show="item.right===0" ng-click="item.right=1">)</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleRightBracket" ng-show="item.right===1" ng-click="item.right=0">]</div>
+                        <div class="iChart-hidden-attrSource-content-xAttrScaleClose" ng-click="deleteScaleYAttribFilterLine($index)"></div>
+                    </div>
+                </div>
+                <div class="iChart-hidden-attrSource-content-stateLine">
+                    <div class="iChart-hidden-attrSource-content-xAttrScalePrompt">*&nbsp;圆括号表示开区间，中括号表示闭区间。左区间不填代表负无穷大，右区间不填代表正无穷大</div>
+                    <div class="iChart-hidden-attrSource-no" ng-click="attrScaleYAttriFilterFlag=false">取消</div>
+                    <div class="iChart-hidden-attrSource-yes" ng-click="attrScaleYAttriFilterFlag=false">确定</div>
                 </div>
             </div>
         </div>
