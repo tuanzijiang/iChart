@@ -328,9 +328,16 @@ iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMen
 });
 
 iChartApp.controller("iChartBarController",function ($scope) {
-    $scope.attrList=["羊毛","纤维"];//items displayed in attrList
-    $scope.attrListFlag=true;
-    $scope.attrListSelectState=[true,false];
+    $scope.attrList=["羊毛1","纤维2","羊毛3","纤维4","羊毛5","纤维6"];//items displayed in attrList
+    $scope.attrListFlag=false;//control window of x-filter(equal);false-close、true-open
+    $scope.attrScaleFilterFlag=false;//control window of x-filter(scale);false-close、true-open
+    $scope.attrListSelectState=[];//control window of x-filter(equal)
+    $scope.scaleCondifition=[{
+        max: 2,
+        min: 1,
+        left: 0,//开
+        right: 1//闭
+    }];
 });
 
 
