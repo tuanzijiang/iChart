@@ -245,8 +245,7 @@ def get_chart_content(request):
     if not _session_detect(request):
         result.not_log()
         return HttpResponse(result.finish())
-    if not _post_detect(request,['sheet_id','xAttri','xAttriKind','xAttriSelf','xField',
-                                 'yAttri','yAttriKind','Operator','yField']):
+    if not _post_detect(request,['sheet_id','info']):
         result.post()
         return HttpResponse(result.finish())
     user_id = int(request.session['user_id'])
@@ -258,16 +257,16 @@ def get_chart_content(request):
 
     file = pd.ExcelFile(file_path)
     sheet = file.parse(0)
+    info = json.loads(request.POST.get('info'))
+    xAttri = info['xAttri']
+    xAttriKind = int(info['xAttriKind'])
+    xAttriSelf = int(info['xAttriSelf'])
+    xField = info['xField']
 
-    xAttri = request.POST.get('xAttri')
-    xAttriKind = int(request.POST.get('xAttriKind'))
-    xAttriSelf = int(request.POST.get('xAttriSelf'))
-    xField = json.loads(request.POST.get('xField'))
-
-    yAttri = request.POST.get('yAttri')
-    yAttriKind = int(request.POST.get('yAttriKind'))
-    Operator = int(request.POST.get('Operator'))
-    yField = json.loads(request.POST.get('yField'))
+    yAttri = info['yAttri']
+    yAttriKind = int(info['yAttriKind'])
+    Operator = int(info['Operator'])
+    yField = info['yField']
 
     bar_content = []
     attri_record = []
