@@ -453,6 +453,7 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
             withCredentials: true,
             data: {
                 sheet_id:3,
+
                 column:'一'
             },
             headers: {
