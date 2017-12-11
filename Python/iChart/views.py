@@ -285,8 +285,8 @@ def get_chart_content(request):
         attri_record.append(x)
 
     result.succeed()
-    result.set("attri",json.dumps(attri_record))
-    result.set("result",json.dumps(bar_content))
+    result.set("attri",attri_record)
+    result.set("result",bar_content)
     return HttpResponse(result.finish())
 @csrf_exempt
 def get_column_content(request):
@@ -308,7 +308,7 @@ def get_column_content(request):
     column = request.POST.get('column')
     sheet = sheet[column]
     sheet = sheet.drop_duplicates()
-    result.set_result(json.dumps(sheet.tolist()))
+    result.set_result(sheet.tolist())
     result.succeed()
     return HttpResponse(result.finish())
 #用于存储返回值
