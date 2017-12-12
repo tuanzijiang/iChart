@@ -29,7 +29,7 @@
     		});*/
     		$("#signup").click(function () {
                 $.ajax({
-                    url:"/get_column_content",
+                    url:"/get_chart_content",
                     type:"post",
                     data:{
                         sheet_id:7,
@@ -40,7 +40,7 @@
                         accoun:"abcde",
                         passw:"abcde",
                         data:"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdawdsadzf21231ds$%@#",
-                        sheet_id:2,
+                        sheet_id:3,
                         xAttri:'姓名',
                         xAttriKind:0,
                         xAttriSelf:0,
@@ -48,7 +48,8 @@
                         yAttri:"value",
                         yAttriKind:1,
                         Operator:1,
-                        yField:'[{"min":" ","max":" ","left":1,"right":1}]'
+                        yField:'[{"min":" ","max":" ","left":1,"right":1}]',
+                        info:'{"xAttri":"一","xAttriKind":0,"xAttriSelf":0,"xField":[{"min":"a1","max":"a1","left":1,"right":1}],"yAttri":"一","yAttriKind":0,"Operator":0,"yField":[{"min":"a1","max":"a1","left":1,"right":1}]}'
                     },
                     success:function ($ans) {
                         console.log($ans);

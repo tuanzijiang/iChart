@@ -138,7 +138,9 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:63342',
     'localhost:63342',
-    '127.0.0.1:8000'
+    '127.0.0.1:8000',
+    '127.0.0.1:80',
+    'localhost:80'
 )
 
 CORS_ALLOW_CREDENTIALS = True

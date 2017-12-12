@@ -275,7 +275,7 @@ def get_chart_content(request):
         print(y_field)
         for field in xField:
             new_sheet = _select_data_with_x(sheet=sheet, name=xAttri, type=xAttriKind, field=field)
-            print(new_sheet)
+            # print(new_sheet)
             value = _select_data_with_y(sheet = new_sheet,name=yAttri,type =yAttriKind,field=y_field,operator=Operator)
             row_content.append(value)
         bar_content.append(row_content)
@@ -286,7 +286,11 @@ def get_chart_content(request):
     result.succeed()
     result.set("attri",attri_record)
     result.set("result",bar_content)
+    # print(attri_record)
+    # print(bar_content)
+    # print(result)
     return HttpResponse(result.finish())
+
 @csrf_exempt
 def get_column_content(request):
     result = Result()
@@ -312,7 +316,7 @@ def get_column_content(request):
     return HttpResponse(result.finish())
 #用于存储返回值
 class Result:
-    result = {}
+    result = {"a":"b"}
     def state(self,s):
         self.result['state'] = s
 
@@ -320,6 +324,7 @@ class Result:
         self.result[name] = value
 
     def finish(self):
+        print(self.result)
         return json.dumps(self.result)
 
     def succeed(self):
@@ -475,15 +480,15 @@ def _select_data_with_y(sheet,name,type,field,operator):
     if operator == 0:
         new_sheet = _select_data_with_x(sheet,name,type,field)
         new_sheet = new_sheet[name]
-        return new_sheet.count()
+        return int(new_sheet.count())
     if operator == 1:
-        return new_sheet.mean()
+        return int(new_sheet.mean())
     if operator == 2:
-        return new_sheet.median()
+        return int(new_sheet.median())
     if operator == 3:
-        return new_sheet.max()
+        return int(new_sheet.max())
     if operator == 4:
-        return new_sheet.min()
+        return int(new_sheet.min())
     return 0
 #------------------------------------------------SubFunc Part---------------------------------------------#
 
