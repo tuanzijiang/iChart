@@ -285,7 +285,7 @@ def get_chart_content(request):
 
     result.succeed()
     result.set("attri",attri_record)
-    result.set("result",bar_content)
+    result.set_result(bar_content)
     # print(attri_record)
     # print(bar_content)
     # print(result)
@@ -314,6 +314,29 @@ def get_column_content(request):
     result.set_result(sheet.tolist())
     result.succeed()
     return HttpResponse(result.finish())
+
+@csrf_exempt
+def set_sheet_column_type(request):
+    result = Result()
+    if not _session_detect(request):
+        result.not_log()
+        return HttpResponse(result.finish())
+    if not _post_detect(request,['sheet_id','types']):
+        result.post()
+        return HttpResponse(result.finish())
+    sheet_id = request.POST.get('sheet_id')
+    user_id = request.session['user_id']
+    state, file_path = _file_detect(sheet_id=sheet_id, user_id=user_id)
+    if state != 'Succeed':
+        result.state(state)
+        return HttpResponse(result.finish())
+    sheet = Sheet.objects.get(id=sheet_id)[0]
+    sheet.column_types = request.POST.get('types')
+    sheet.save()
+    result.succeed()
+    return HttpResponse(result.finish())
+
+
 #用于存储返回值
 class Result:
     result = {"a":"b"}
@@ -324,7 +347,7 @@ class Result:
         self.result[name] = value
 
     def finish(self):
-        print(self.result)
+        # print(self.result)
         return json.dumps(self.result)
 
     def succeed(self):
@@ -481,6 +504,8 @@ def _select_data_with_y(sheet,name,type,field,operator):
         new_sheet = _select_data_with_x(sheet,name,type,field)
         new_sheet = new_sheet[name]
         return int(new_sheet.count())
+    if type == 0:#文本
+        return str(new_sheet.max())
     if operator == 1:
         return int(new_sheet.mean())
     if operator == 2:
