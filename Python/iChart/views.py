@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from iChart.models import User, Sheet
+from iChart.models import User, Sheet ,Chart
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import json
@@ -162,7 +162,7 @@ def get_sheet_content(request):
     start_line = int(request.POST.get('start_line'))
     lines = int(request.POST.get('lines'))
     columns_json = request.POST.get('columns')
-    all = int(request.POST.get('all'))
+    isall = int(request.POST.get('all'))
 
     # return HttpResponse(columns_json)
     user_id = int(request.session['user_id'])
@@ -176,7 +176,7 @@ def get_sheet_content(request):
     excel = pd.ExcelFile(sheet_file_path)
     sheet = excel.parse(0)
     target_sheet = sheet.iloc[start_line:start_line+lines]
-    if not all:
+    if not isall:
         columns = json.loads(columns_json)
         target_sheet = target_sheet[columns]
     else:
@@ -274,9 +274,9 @@ def get_chart_content(request):
         row_content = []
         print(y_field)
         for field in xField:
-            new_sheet = _select_data_with_x(sheet=sheet, name=xAttri, type=xAttriKind, field=field)
+            new_sheet = _select_data_with_x(sheet=sheet, name=xAttri, x_type=xAttriKind, field=field)
             # print(new_sheet)
-            value = _select_data_with_y(sheet = new_sheet,name=yAttri,type =yAttriKind,field=y_field,operator=Operator)
+            value = _select_data_with_y(sheet = new_sheet,name=yAttri,y_type =yAttriKind,field=y_field,operator=Operator)
             row_content.append(value)
         bar_content.append(row_content)
     for field in xField:
@@ -336,10 +336,48 @@ def set_sheet_column_type(request):
     result.succeed()
     return HttpResponse(result.finish())
 
+def save_chart(request):
+    result = Result()
+    if not _session_detect(request):
+        result.not_log()
+        return HttpResponse(result.finish())
+    if not _post_detect(request,['sheet_id','chart_type','chart_content','chart_info','chart_name']):
+        result.post()
+        return HttpResponse(result.finish())
+    chart_content = request.POST.get('chart_content')
+    chart_info = request.POST.get('char_info')
+    chart_type = request.POST.get('chart_type')
+    chart_name = request.POST.get('chart_name')
+    sheet_id = request.POST.get('sheet_id')
+
+    user_id = request.session['user_id']
+
+    state, file_path = _file_detect(sheet_id,user_id)
+    if state != 'Succeed':
+        result.state(state)
+        return HttpResponse(result.finish())
+
+    chart_obj = Chart(sheet_id= sheet_id,name=chart_name,content=chart_content,info=chart_info,type=chart_type)
+    chart_obj.save()
+    chart_id = chart_obj.id
+
+    result.succeed()
+    result.set_result({"id":chart_id,"name":chart_name})
+    return HttpResponse(result.finish())
+
+@csrf_exempt
+def get_chart(request):
+    result = Result()
+    if not _session_detect(request):
+        result.not_log()
+        return HttpResponse(result.finish())
+    if not _post_detect(request,['sheet_id','chart_type','chart_content','chart_info','chart_name']):
+        result.post()
+        return HttpResponse(result.finish())
 
 #用于存储返回值
 class Result:
-    result = {"a":"b"}
+    result = {}
     def state(self,s):
         self.result['state'] = s
 
@@ -416,12 +454,12 @@ def _save_excel(request,file,name):
             sheet.to_excel(sheet_path,sheet_name=sheet_name,index=True,header=True)
     return sheet_number
 
-def _set_column_type(columns,type):
+def _set_column_type(columns,target):
     result = {}
     for key in columns:
         result[key] = 0 #默认为文本
-    for key in type:
-        result[key] = type[key]
+    for key in target:
+        result[key] = target[key]
     return result
 
 #保存csv文件
@@ -473,7 +511,7 @@ def _session_detect(request):
     return True
 
 
-def _select_data_with_x(sheet,name,type,field):
+def _select_data_with_x(sheet,name,x_type,field):
     if field['max'] == ' ' and field['min'] == ' ':
         return sheet
     if field['max'] == field['min'] :
@@ -498,13 +536,14 @@ def _select_data_with_x(sheet,name,type,field):
     return new_sheet
 
 #计数 0、平均数 1、中位数 2、最大值 3、最小值 4
-def _select_data_with_y(sheet,name,type,field,operator):
+#文本 0、数字 1、日期 2
+def _select_data_with_y(sheet,name,y_type,field,operator):
     new_sheet = sheet[name]
     if operator == 0:
-        new_sheet = _select_data_with_x(sheet,name,type,field)
+        new_sheet = _select_data_with_x(sheet,name,y_type,field)
         new_sheet = new_sheet[name]
         return int(new_sheet.count())
-    if type == 0:#文本
+    if y_type == 0:#文本
         return str(new_sheet.max())
     if operator == 1:
         return int(new_sheet.mean())
