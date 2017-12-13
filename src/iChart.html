@@ -156,7 +156,7 @@
                     <div class="iChart-hidden-attrSource-content-close" ng-click="attrListYAttriFlag=false"></div>
                 </div>
                 <div class="iChart-hidden-attrSource-content-fileBox">
-                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListYAttriCurrentFlag($index)">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListYAttriCurrentFlag($index,item)">
                         <div ng-class="attrListYAttriCurrentFlag===$index?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
                         <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
                     </div>

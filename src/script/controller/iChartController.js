@@ -447,14 +447,37 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
             console.log(req);
             console.log(req.result);
             $scope.xAttriKinds=req.result;
-            $scope.yAttriKinds=req.result;
         }).error(function (req) {
             console.log(req);
         });
     };
     //单项选择Y项
-    $scope.setAttrListYAttriCurrentFlag=function (num) {
+    $scope.setAttrListYAttriCurrentFlag=function (num,value) {
         $scope.attrListYAttriCurrentFlag=num;
+        $http({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/get_column_content',
+            withCredentials: true,
+            data: {
+                sheet_id:$scope.currentSheetId,
+                column:value
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }, transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                    str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+                }
+                return str.join("&");
+            }
+        }).success(function(req){
+            console.log(req);
+            console.log(req.result);
+            $scope.yAttriKinds=req.result;
+        }).error(function (req) {
+            console.log(req);
+        });
     };
     //设置聚类操作类型
     $scope.setAttrOperatorKind=function (num) {
