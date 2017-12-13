@@ -386,7 +386,7 @@ class Result:
         self.result[name] = value
 
     def finish(self):
-        # print(self.result)
+        print(self.result)
         return json.dumps(self.result)
 
     def succeed(self):
