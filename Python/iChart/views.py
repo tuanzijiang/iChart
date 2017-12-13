@@ -387,8 +387,9 @@ class Result:
 
     def finish(self):
         # print(self.result)
-        return json.dumps(self.result)
-
+        temp = json.dumps(self.result)
+        result = {}
+        return temp
     def succeed(self):
         self.result['state'] = 'Succeed'
 
