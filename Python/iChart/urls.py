@@ -31,7 +31,7 @@ urlpatterns = [
     url(r"^save_page$", views.save_page),
     url(r"^get_page$", views.get_page),
     url(r"^get_chart_content$",views.get_chart_content),
-    url(r"^get_column_content$",views.get_column_content),
-    url(r"^")
+    url(r"^get_column_content$",views.get_column_content)
+    # url(r"^")
 
 ]
