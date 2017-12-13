@@ -344,6 +344,7 @@ a.normal {
   font-family: 微软雅黑;
 }
 .right_part > .verify_box {
+  overflow: hidden;
   height: 100%;
   width: 100%;
   position: absolute;

@@ -45,6 +45,7 @@ html {
   flex: 1;
 }
 .header-login {
+  text-decoration: none;
   cursor: pointer;
   color: white;
   padding: .5em 1.5em;
