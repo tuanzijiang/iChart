@@ -21,7 +21,7 @@ from iChart import views
 urlpatterns = [
     url(r"^post_test$",views.post_test),
     url(r"^login$",views._log_in),
-    url(r"^newuser$", views._new_user),
+    url(r"^sign_up$", views._new_user),
     url(r"^upload$",views.upload_file),
     url(r"^test$", views.test),
     url(r"^log_in$", views.log_in),
@@ -31,6 +31,7 @@ urlpatterns = [
     url(r"^save_page$", views.save_page),
     url(r"^get_page$", views.get_page),
     url(r"^get_chart_content$",views.get_chart_content),
-    url(r"^get_column_content$",views.get_column_content)
+    url(r"^get_column_content$",views.get_column_content),
+    url(r"^")
 
 ]

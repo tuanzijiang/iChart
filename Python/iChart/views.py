@@ -375,6 +375,7 @@ def get_chart(request):
         result.post()
         return HttpResponse(result.finish())
 
+
 #用于存储返回值
 class Result:
     result = {}
@@ -561,17 +562,24 @@ def _select_data_with_y(sheet,name,y_type,field,operator):
 #用于生成测试用例
 @csrf_exempt
 def _new_user(request):
+    result = Result()
     account = request.POST.get('account')
     password = request.POST.get('password')
-    # new_user = User(account=account,password=password)
-    # new_user.save()
-    return HttpResponse(account)
+    same_user = User.objects.get(account=account)
+    if len(same_user)>0 :
+        result.state("Same Account")
+        return HttpResponse(result.finish())
+    new_user = User(account=account,password=password)
+    new_user.save()
+    request.session['user_id'] = new_user.id
+    result.succeed()
+    return HttpResponse(result.finish())
 
 #用于登录到测试用例
 @csrf_exempt
 def _log_in(request):
     id = request.POST.get('id')
-    request.session['user_id']=int(id)
+    request.session['user_id'] = 5
     return HttpResponse('success')
 
 #用于测试post
