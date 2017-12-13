@@ -563,6 +563,7 @@ def _select_data_with_y(sheet,name,y_type,field,operator):
 @csrf_exempt
 def _new_user(request):
     result = Result()
+    print(result.finish())
     account = request.POST.get('account')
     password = request.POST.get('password')
     print(account)
