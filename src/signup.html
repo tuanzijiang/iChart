@@ -52,10 +52,10 @@
 </div>
 <div class="login" id="login">
     <div class="line">
-        <input type="text" name="login_email"  required="required" placeholder="邮箱(E_mail)"  />
+        <input type="text" name="login_email"  required="required" placeholder="邮箱(E_mail)"  id="account_login"  />
     </div>
     <div class="lastline">
-        <input type="password" name="login_password1" required="required" placeholder="密码">
+        <input type="password" name="login_password1" required="required" placeholder="密码" id="password_login">
     </div>
     <div class="second_line">
         <button id="login_sub" onclick="login()">登录</button>
@@ -105,25 +105,51 @@
         }
         buttonController=true;
     }
+    function $params(obj) {
+        var str = [];
+        for (var p in obj) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+        return str.join("&");
+    }
     function login() {
         if(buttonController){
             console.log("regist");
-            var account=document.getElementById("account_register");
-            var password=document.getElementById("password_register");
+            var account=document.getElementById("account_register").value;
+            var password=document.getElementById("password_register").value;
+            var params1 = {
+                account: account,
+                password: password
+            };
             var xhr = new XMLHttpRequest();
             xhr.withCredentials = true;
             xhr.onreadystatechange=function () {
                 if(xhr.readyState===4 && xhr.status ===200){
-                    var JSON_obj=JSON.parse(xhr.responseText);
-                    var JSON_DOMs=JSON.parse(JSON_obj.result);
-                    console.log(JSON_DOMs);
+                    window.location.href="./iChart.html";
                 }
             };
-            xhr.open("POST", "http://127.0.0.1:8000/sign_up");
+            xhr.open("POST", "http://127.0.0.1:8000/sign_up",true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;");
             xhr.send('account='+account+'&password='+password);
         }
         else{
             console.log("login");
+            var account=document.getElementById("account_login").value;
+            var password=document.getElementById("password_login").value;
+            var params1 = {
+                account: account,
+                password: password
+            };
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState===4 && xhr.status ===200){
+                    window.location.href="./iChart.html";
+                }
+            };
+            xhr.open("POST", "http://127.0.0.1:8000/log_in",true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;");
+            xhr.send('account='+account+'&password='+password);
         }
     }
 </script>
