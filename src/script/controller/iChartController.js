@@ -1,6 +1,7 @@
 iChartApp.controller("iChartController", function ($scope,$state,$http) {
     $scope.mainOrSub=1;//select what page was shown in iChartApp
     $scope.iChart_hidden=0;//point to the kind of the iChartPage hidden
+    $scope.sheetsList=[];
     $scope.mainContentSwitch=function(flag) {
         switch (flag){
             case 0:
@@ -20,6 +21,40 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
                 break;
         }
     };
+
+    //获取sheets列表
+    $http({
+        method: 'post',
+        url: 'http://127.0.0.1:8000/sheets',
+        withCredentials: true,
+        data: {},
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }, transformRequest: function (obj) {
+            var str = [];
+            for (var s in obj) {
+                str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+            }
+            return str.join("&");
+        }
+    }).success(function(req){
+        $scope.sheetsList=[];
+        console.log(req.result);
+        for(var i=0;i<req.result.length;i++){
+            var item={}
+            item.id=req.result[i].id;
+            item.file_name=req.result[i].file_name;
+            $scope.sheetsList[i]=item;
+        }
+    }).error(function (req) {
+        console.log(req);
+    });
+    //设置当前选定的数据来源
+    $scope.setCurrentSheet=function (id,value) {
+        $scope.iChart_hidden=0;
+        $scope.$$childHead.$$nextSibling.$$nextSibling.$$nextSibling.updateSheetId(id);
+        $scope.$$childHead.$$nextSibling.sheetName=value;
+    }
 
     // $http({
     //     method:'post',
@@ -75,7 +110,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
 
     //data setting controller
     $scope.barItems=["item羊毛1","item羊毛2"];
-
+    $scope.sheetName="未选择";
 
     /**
      * 控制菜单打开与关闭
@@ -324,6 +359,7 @@ iChartApp.controller("iChartDataPController",function ($scope,$state,openLeftMen
 });
 
 iChartApp.controller("iChartBarController",function ($scope,$http) {
+    $scope.currentSheetId="";
     $scope.attrList=["羊毛1","纤维2","羊毛3","纤维4","羊毛5","纤维6"];//items displayed in attrList
     $scope.attrListKind=[0,0,0,1,2,3];
     $scope.getAttrOperatorCN=["计数","平均数","中位数","最大值","最小值"];
@@ -386,8 +422,35 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
         $scope.scaleYAttribCondition=tempCondition;
     };
     //单项选择X项
-    $scope.setAttrListXAttriCurrentFlag=function (num) {
+    $scope.setAttrListXAttriCurrentFlag=function (num,value) {
         $scope.attrListXAttriCurrentFlag=num;
+        console.log(value);
+        //获取列表单个字段
+        $http({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/get_column_content',
+            withCredentials: true,
+            data: {
+                sheet_id:$scope.currentSheetId,
+                column:value
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }, transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                    str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+                }
+                return str.join("&");
+            }
+        }).success(function(req){
+            console.log(req);
+            console.log(req.result);
+            $scope.xAttriKinds=req.result;
+            $scope.yAttriKinds=req.result;
+        }).error(function (req) {
+            console.log(req);
+        });
     };
     //单项选择Y项
     $scope.setAttrListYAttriCurrentFlag=function (num) {
@@ -453,7 +516,7 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
             withCredentials: true,
             data: {
                 info:JSON.stringify(sendInfo),
-                sheet_id: 3
+                sheet_id: $scope.currentSheetId
             },
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -470,61 +533,38 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
             console.log(req);
         });
     };
-
-    //获取初始化数据
-    //获取列表属性
-    $http({
-        method: 'post',
-        url: 'http://127.0.0.1:8000/sheet_columns',
-        withCredentials: true,
-        data: {
-            sheet_id:3,
-        },
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }, transformRequest: function (obj) {
-            var str = [];
-            for (var s in obj) {
-                str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+    //根据sheetId更新列表
+    $scope.updateSheetId=function (id) {
+        //获取初始化数据
+        //获取列表属性
+        console.log(id);
+        $scope.currentSheetId=id;
+        $http({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/sheet_columns',
+            withCredentials: true,
+            data: {
+                sheet_id:id,
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }, transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                    str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+                }
+                return str.join("&");
             }
-            return str.join("&");
-        }
-    }).success(function(req){
-        console.log(JSON.parse(req.result));
-        $scope.attrList=[];
-        for(var item in JSON.parse(req.result)){
-            $scope.attrList.push(item);
-        }
-    }).error(function (req) {
-        console.log(req);
-    });
-    //获取列表单个字段
-    $http({
-        method: 'post',
-        url: 'http://127.0.0.1:8000/get_column_content',
-        withCredentials: true,
-        data: {
-            sheet_id:3,
-            column:'一'
-        },
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }, transformRequest: function (obj) {
-            var str = [];
-            for (var s in obj) {
-                str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+        }).success(function(req){
+            console.log(JSON.parse(req.result));
+            $scope.attrList=[];
+            for(var item in JSON.parse(req.result)){
+                $scope.attrList.push(item);
             }
-            return str.join("&");
-        }
-    }).success(function(req){
-        console.log(req);
-        console.log(req.result);
-        $scope.xAttriKinds=req.result;
-        $scope.yAttriKinds=req.result;
-    }).error(function (req) {
-        console.log(req);
-    });
-
+        }).error(function (req) {
+            console.log(req);
+        });
+    };
 });
 
 

@@ -33,25 +33,9 @@
                 <div class="iChart-hidden-dataSource-content-close" ng-click="iChart_hidden=0"></div>
             </div>
             <div class="iChart-hidden-dataSource-content-fileBox">
-                <div class="iChart-hidden-dataSource-content-fileLine">
+                <div class="iChart-hidden-dataSource-content-fileLine" ng-repeat="item in sheetsList track by $index" ng-click="setCurrentSheet(item.id,item.file_name)">
                     <div class="iChart-hidden-dataSource-file-xlsx"></div>
-                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
-                </div>
-                <div class="iChart-hidden-dataSource-content-fileLine">
-                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
-                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
-                </div>
-                <div class="iChart-hidden-dataSource-content-fileLine">
-                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
-                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
-                </div>
-                <div class="iChart-hidden-dataSource-content-fileLine">
-                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
-                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
-                </div>
-                <div class="iChart-hidden-dataSource-content-fileLine">
-                    <div class="iChart-hidden-dataSource-file-xlsx"></div>
-                    <div class="iChart-hidden-dataSource-file-xlsx-name">网站订单分析</div>
+                    <div class="iChart-hidden-dataSource-file-xlsx-name">{{item.file_name}}</div>
                 </div>
             </div>
             <div class="iChart-hidden-dataSource-content-stateLine">
@@ -154,7 +138,7 @@
                     <div class="iChart-hidden-attrSource-content-close" ng-click="attrListXAttriFlag=false"></div>
                 </div>
                 <div class="iChart-hidden-attrSource-content-fileBox">
-                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListXAttriCurrentFlag($index)">
+                    <div class="iChart-hidden-attrSource-content-fileLine" ng-repeat="item in attrList track by $index" ng-click="setAttrListXAttriCurrentFlag($index,item)">
                         <div ng-class="attrListXAttriCurrentFlag===$index?'iChart-hidden-attrSource-file-attr':'iChart-hidden-attrSource-file-attr-inactive'"></div>
                         <div class="iChart-hidden-attrSource-file-attr-name">{{item}}</div>
                     </div>
