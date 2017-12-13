@@ -449,11 +449,11 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
         console.log($scope.$parent.$$childHead.$$nextSibling);
         $http({
             method: 'post',
-            url: 'http://127.0.0.1:8000/get_column_content',
+            url: 'http://127.0.0.1:8000/get_chart_content',
             withCredentials: true,
             data: {
-                sheet_id:3,
-                column:'一'
+                info:JSON.stringify(sendInfo),
+                sheet_id: 3
             },
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -465,9 +465,7 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
                 return str.join("&");
             }
         }).success(function(req){
-            console.log(JSON.parse(req.result));
-            $scope.xAttriKinds=JSON.parse(req.result);
-            $scope.yAttriKinds=JSON.parse(req.result);
+            console.log(req);
         }).error(function (req) {
             console.log(req);
         });
@@ -519,9 +517,10 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
             return str.join("&");
         }
     }).success(function(req){
-        console.log(JSON.parse(req.result));
-        $scope.xAttriKinds=JSON.parse(req.result);
-        $scope.yAttriKinds=JSON.parse(req.result);
+        console.log(req);
+        console.log(req.result);
+        $scope.xAttriKinds=req.result;
+        $scope.yAttriKinds=req.result;
     }).error(function (req) {
         console.log(req);
     });

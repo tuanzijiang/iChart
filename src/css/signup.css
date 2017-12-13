@@ -1,0 +1,399 @@
+/*
+CSS Reset
+http://meyerweb.com/eric/tools/css/reset/
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* particleground demo */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+#particles {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+h2 {
+  color: #00AFF0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+h1 {
+  margin: 0 0 30px 0;
+  font-size: 25px;
+  color: #434343;
+  font-family: "微软雅黑";
+}
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.btn:hover {
+  color: #005544;
+  border-color: #005544;
+}
+@media only screen and (max-width: 1000px) {
+  h1 {
+    font-size: 70px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  h1 {
+    font-size: 48px;
+  }
+  h1::after {
+    height: 8px;
+  }
+}
+@media only screen and (max-width: 568px) {
+  .intro {
+    padding: 0 10px;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  h1::after {
+    height: 6px;
+  }
+  p {
+    font-size: 18px;
+  }
+  .btn {
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  h1 {
+    font-size: 28px;
+  }
+  h1::after {
+    height: 4px;
+  }
+}
+.logo {
+  color: #0f88eb;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 30px;
+  font-size: 400%;
+}
+.logo img {
+  position: absolute;
+  width: 42%;
+  left: 30%;
+  height: 120px;
+}
+.third_line {
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  text-align: center;
+}
+.choose > a {
+  z-index: 99;
+  text-decoration: none;
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 20px;
+  font-family: 微软雅黑;
+  color: #0f88eb;
+}
+.choose > a.normal:hover {
+  color: #3a404d;
+}
+a.active {
+  border-bottom: 2px solid  #0f88eb;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+a.normal {
+  color: #666;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+.intro {
+  position: absolute;
+  left: 0;
+  top: 180px;
+  padding: 0 20px;
+  width: 100%;
+  text-align: center;
+}
+.intro > h1 {
+  font-size: 24px;
+}
+.regist {
+  display: inline-block;
+  position: absolute;
+  top: 250px;
+  margin: 20px  auto;
+  width: 298px;
+  left: calc(50% - 159px);
+}
+.login {
+  display: none;
+  position: absolute;
+  top: 250px;
+  margin: 20px  auto;
+  width: 298px;
+  left: calc(50% - 159px);
+}
+.line {
+  height: 47px;
+  width: 298px;
+}
+.lastline {
+  height: 47px;
+  width: 298px;
+}
+.lastline > input {
+  border: 1px solid #d5d5d5;
+  height: 47px;
+  width: 298px;
+  padding: 3px 10px;
+  font-family: 微软雅黑;
+}
+.line > input {
+  border: 1px solid #d5d5d5;
+  border-bottom: none;
+  height: 47px;
+  width: 298px;
+  padding: 3px 10px;
+  font-family: 微软雅黑;
+}
+.line > .left_part {
+  position: absolute;
+  border: 1px solid #d5d5d5;
+  border-right: none;
+  height: 47px;
+  width: 60%;
+  display: inline-block;
+  background-color: white;
+}
+.line > .right_part {
+  border: 1px solid #d5d5d5;
+  border-left: none;
+  position: absolute;
+  left: 60%;
+  background-color: white;
+  display: inline-block;
+  height: 47px;
+  width: 40%;
+}
+.left_part > input {
+  height: 100%;
+  width: 100%;
+  padding: 3px 10px;
+  border: none;
+  font-family: 微软雅黑;
+}
+.right_part > .verify_box {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.second_line > button {
+  width: 100%;
+  height: 100%;
+  background-color: #0f88eb;
+  color: #ffffff;
+  font-family: 微软雅黑;
+  border-radius: 3px;
+  border: none;
+}
+.second_line > button:hover {
+  width: 100%;
+  height: 100%;
+  background-color: #5babf0;
+  color: #ffffff;
+  font-family: 微软雅黑;
+  border-radius: 3px;
+  border: none;
+}
+.second_line {
+  margin-top: 25px;
+  height: 47px;
+  width: 298px;
+}
+.agreement_tip {
+  text-align: center;
+  margin-top: 25px;
+  color: #666;
+  font-family: 微软雅黑;
+  font-size: 10px;
+}
+.agreement_tip a {
+  color: #0f88eb;
+  text-decoration: none;
+}
+.foot {
+  position: absolute;
+  top: 600px;
+  color: #666;
+  width: 100%;
+  text-align: center;
+}
+.login > .agreement_tip {
+  font-size: 14px;
+  text-align: right;
+}
+.login > .agreement_tip > a {
+  color: #666;
+}
