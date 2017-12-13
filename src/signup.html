@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title> 登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/signup.css" />
+</head>
+<body >
+<div id="particles">
+</div>
+<div class="logo">
+    iChart
+</div>
+<div class="intro">
+    <h1>专注团队组建,定制你的专属团队</h1>
+</div>
+<div class="third_line">
+    <div class="choose">
+        <a href="#" class="normal" id="choose_left" onclick="switchForm_left()">登录</a>
+        <a href="#" class="active" id="choose_right" onclick="switchForm_right()">注册</a>
+    </div>
+</div>
+<div class="regist" id="regist">
+    <div class="line">
+        <input type="text" name="email"  required="required" placeholder="邮箱(E_mail)" />
+    </div>
+    <div class="line">
+        <input type="password" name="password1" required="required" placeholder="密码(至少6位)">
+    </div>
+    <div class="line">
+        <input type="password" name="password2" required="required" placeholder="重新输入密码">
+    </div>
+    <div class="line">
+        <div class="left_part">
+            <input type="text"  id="verify" placeholder="验证码">
+        </div><!--
+              --><div class="right_part">
+        <!-- <input type="text" name="checkcode" id="checkCode" class="unchanged" readonly="readonly" onclick="createCode()"> -->
+        <div class="verify_box">
+            <img src="./php/veri_code.php">
+        </div>
+    </div>
+    </div>
+    <div class="second_line">
+        <button id="register_sub">注册</button>
+    </div>
+    <p class="agreement_tip">
+        点击「注册」按钮，即代表你同意
+        <a href="#">Teambox服务协议</a>
+    </p>
+</div>
+<div class="login" id="login">
+    <div class="line">
+        <input type="text" name="login_email"  required="required" placeholder="邮箱(E_mail)" />
+    </div>
+    <div class="lastline">
+        <input type="password" name="login_password1" required="required" placeholder="密码">
+    </div>
+    <div class="second_line">
+        <button id="login_sub">登录</button>
+    </div>
+    <p class="agreement_tip">
+        <a href="#">无法登录？</a>
+    </p>
+</div>
+<p class="foot">
+    Copyright@ 2016Teambox（上海）有限公司.All rights reserved.&nbsp;&nbsp;
+    沪ICP备160131165号
+</p>
+</body>
+<script type='text/javascript' src='./script/jquery-3.2.1.min.js'></script>
+<script type='text/javascript' src='./script/jquery.particleground.min.js'></script>
+<script type='text/javascript' src='./script/demo.js'></script>
+<script type="text/javascript" src="./script/jquery.md5.js"></script>
+<script type="text/javascript">
+    function switchForm_left()
+    {
+        var left=document.getElementById("choose_left");
+        var right=document.getElementById("choose_right");
+        var regist=document.getElementById("regist");
+        var login=document.getElementById("login");
+        if(left.className!="active")
+        {
+            left.className="active";
+            right.className="normal";
+            regist.style.display="none";
+            login.style.display="inline-block";
+        }
+    }
+    function switchForm_right()
+    {
+        var left=document.getElementById("choose_left");
+        var right=document.getElementById("choose_right");
+        var regist=document.getElementById("regist");
+        var login=document.getElementById("login");
+        if(right.className!="active")
+        {
+            right.className="active";
+            left.className="normal";
+            regist.style.display="inline-block";
+            login.style.display="none";
+        }
+    }
+
+</script>
+</html>
