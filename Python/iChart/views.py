@@ -284,7 +284,7 @@ def get_chart_content(request):
         for field in xField:
             new_sheet = _select_data_with_x(sheet=sheet, name=xAttri, x_type=xAttriKind, field=field)
             # print(new_sheet)
-            value = _select_data_with_y(sheet = new_sheet,name=yAttri,y_type =yAttriKind,field=y_field,operator=Operator)
+            value = _select_data_with_y(sheet = new_sheet,name=yAttri,y_type =yAttriKind,field={"max":' ',"min":' ',"right":1,"left":1},operator=Operator)
             row_content.append(value)
         bar_content.append(row_content)
     for field in xField:
