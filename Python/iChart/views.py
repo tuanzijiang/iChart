@@ -565,10 +565,11 @@ def _new_user(request):
     result = Result()
     account = request.POST.get('account')
     password = request.POST.get('password')
-    same_user = User.objects.get(account=account)
-    if len(same_user)>0 :
-        result.state("Same Account")
-        return HttpResponse(result.finish())
+    print(account)
+    # same_user = User.objects.get(account=account)
+    # if len(same_user)>0 :
+    #     result.state("Same Account")
+    #     return HttpResponse(result.finish())
     new_user = User(account=account,password=password)
     new_user.save()
     request.session['user_id'] = new_user.id
