@@ -353,6 +353,13 @@ input:-webkit-autofill {
   bottom: 0;
   opacity: 0;
 }
+.menu-upload-wordcloud {
+  width: 70%;
+  margin: 1em auto;
+}
+.menu-upload-wordcloud > img {
+  width: 100%;
+}
 .editPage_workspace {
   width: 32em;
   min-height: 64em;
@@ -518,7 +525,6 @@ input:-webkit-autofill {
 .mainContent-attr-item-normal-barLine {
   width: 70%;
   margin: 0 auto;
-  height: 2em;
   line-height: 2em;
 }
 .mainContent-attr-item-normal-barName {
@@ -527,6 +533,28 @@ input:-webkit-autofill {
   color: white;
   line-height: 2em;
   font-size: 95%;
+}
+.mainContent-attr-item-normal-Selected {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background: url("../image/icon/iChartEditPage/selected.png") center center no-repeat;
+  background-size: 70% 70%;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+}
+.mainContent-attr-item-normal-unSelected {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background: url("../image/icon/iChartEditPage/unselected.png") center center no-repeat;
+  background-size: 75% 75%;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: 2px;
 }
 .mainContent-attr-item-normal-barInput {
   width: 100%;
@@ -617,6 +645,9 @@ input:-webkit-autofill {
 }
 .mainContent-attr-item-content-dataSetting {
   height: 11em;
+}
+.mainContent-attr-item-content-dataSetting2 {
+  height: 13em;
 }
 .workpage-main {
   height: 100%;
@@ -1342,4 +1373,10 @@ tr:nth-child(even) > td {
 .iChart-hidden-barSource-content-yAggregateBox-hideValue:hover {
   background: #666;
   color: white;
+}
+.show-test {
+  display: block;
+}
+.hidden-test {
+  display: none;
 }

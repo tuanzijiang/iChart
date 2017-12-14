@@ -100,7 +100,9 @@ input:-webkit-autofill {
 .menu-upload-pic{border-radius: 5px;width: 80%;margin: 1em auto;height: 2em;line-height: 2em;position: relative;color: white;background: #3DA8F5;}
 .menu-upload-pic > p{text-align: center;cursor: pointer;}
 #menu-upload-pic-input{position: absolute;top: 0;left: 0;right: 0;bottom: 0;opacity: 0;}
-
+//      |- leftMenu5(wordCloud)
+.menu-upload-wordcloud{width: 70%;margin: 1em auto;}
+.menu-upload-wordcloud > img{width: 100%;}
 //      |- workspace
 .editPage_workspace{width: 32em;min-height: 64em;background: white;margin: 10em auto;transition: all .5s;border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
 .editPage_workspace_item:hover{cursor: pointer;box-shadow: 0 0 0 1px #3DA8F5}
@@ -134,8 +136,10 @@ input:-webkit-autofill {
 .mainContent-attr-item-normal-dataSourceInput{display: inline-block;vertical-align:middle;float: right;position:relative;width: calc(~'100% - 5em');height: 2em;box-shadow: 0 1px 0 0 #3DA8F5;background: transparent;}
 .mainContent-attr-item-normal-dataSourceInput> .input-box{height: 2em;width: calc(~'100% - 2em');position: relative;float: left;}
 .input-pencil{position: relative;float: right;height: 2em;width: 2em;cursor: pointer;background: url("../image/icon/iChartEditPage/pencil.png") right center no-repeat;background-size: 50% 50%; }
-.mainContent-attr-item-normal-barLine{width: 70%;margin: 0 auto;height: 2em;line-height: 2em;}
+.mainContent-attr-item-normal-barLine{width: 70%;margin: 0 auto;line-height: 2em;}
 .mainContent-attr-item-normal-barName{display: inline-block;vertical-align: middle;color: white;line-height: 2em;font-size:95%;}
+.mainContent-attr-item-normal-Selected{display: inline-block;width: 2em;height: 2em;background: url("../image/icon/iChartEditPage/selected.png") center center no-repeat;background-size: 70% 70%;float: right;cursor: pointer;position: relative;top:2px;}
+.mainContent-attr-item-normal-unSelected{display: inline-block;width: 2em;height: 2em;background: url("../image/icon/iChartEditPage/unselected.png") center center no-repeat;background-size: 75% 75%;float: right;cursor: pointer;position: relative;top:2px;}
 .mainContent-attr-item-normal-barInput{width: 100%;height: 6em;box-shadow: 0 0 0 1px #3da8f5;overflow: auto;}
 .input-add{position: relative;display: inline-block;vertical-align: middle;height: 2em;width: 2em;cursor: pointer;background: url("../image/icon/iChartEditPage/add.png") center center no-repeat;background-size: 50% 50%; }
 .mainContent-attr-item-barInput-item{cursor: pointer;line-height: 2em;height: 2em;transition: all .3s;}
@@ -154,6 +158,7 @@ input:-webkit-autofill {
 //specific active height
 .mainContent-attr-item-content-headerName{height: 3em;}
 .mainContent-attr-item-content-dataSetting{height: 11em;}
+.mainContent-attr-item-content-dataSetting2{height: 13em;}
 
 
 //  |- workpage
@@ -289,3 +294,8 @@ tr:nth-child(even)>td{background: #414345;};
 .iChart-hidden-barSource-content-yAggregateBox-hide{width: 100%;font-size: 80%;color: #666;background: white;border:1px solid #666;border-top:none;cursor: pointer;position: absolute;z-index: 1;}
 .iChart-hidden-barSource-content-yAggregateBox-hideValue{background: white;transition: all .3s;padding: 0 0 0 1em;}
 .iChart-hidden-barSource-content-yAggregateBox-hideValue:hover{background: #666;color: white;}
+
+
+
+.show-test{display: block}
+.hidden-test{display: none}

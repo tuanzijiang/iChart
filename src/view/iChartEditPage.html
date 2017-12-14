@@ -67,6 +67,44 @@
                     </div>
                 </div>
             </div>
+            <div class="mainContent-attr-item" ng-show="attrsDataIsExieted[1]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsDataIsClose[1]=!attrsDataIsClose[1];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsDataIsClose[0]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox">数据设置</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsDataIsClose[1]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-dataSetting2'">
+                    <!--数据来源-->
+                    <div class="mainContent-attr-item-normal-dataSourceLine">
+                        <div class="mainContent-attr-item-normal-dataSourceName">数据来源</div>
+                        <div class="mainContent-attr-item-normal-dataSourceInput">
+                            <div class="input-box">
+                                <input id="input-dataSource" ng-model="sheetName" readonly>
+                            </div>
+                            <div class="input-pencil" ng-click="showHidden_DataSource()"></div>
+                        </div>
+                    </div>
+                    <!--柱-->
+                    <div class="mainContent-attr-item-normal-barLine">
+                        <div class="mainContent-attr-item-normal-barName">数值</div>
+                        <div class="input-add" ng-click="showHidden_Bar()"></div>
+                        <div class="mainContent-attr-item-normal-barInput">
+                            <div class="mainContent-attr-item-barInput-item" ng-repeat="barItem in barItems track by $index">
+                                <div class="mainContent-attr-item-barInput-itemName">{{barItem}}</div>
+                                <div class="mainContent-attr-item-barInput-itemDelete"></div>
+                                <div class="mainContent-attr-item-barInput-itemConfigure"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--xy轴交换-->
+                    <div class="mainContent-attr-item-normal-barLine">
+                        <div class="mainContent-attr-item-normal-barName">x轴与y轴倒置</div>
+                        <div ng-class="xyInvertFlag?'mainContent-attr-item-normal-Selected':'mainContent-attr-item-normal-unSelected'" ng-click="xyInvert()"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--设置-->
         <div class="mainContent-attr-content" ng-show="attrKindFlag===1">

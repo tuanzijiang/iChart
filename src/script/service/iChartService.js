@@ -125,11 +125,21 @@ iChartApp.service("changeTableAttr",function () {
                                 settingxAxis[0].data.push(kindName);
                             }
                         }
-                        var option={
-                            xAxis:settingxAxis,
-                            yAxis:settingyAxis,
-                            series: settingSeries
-                        };
+                        if($scope.xyInvertFlag){
+                            var option={
+                                xAxis:settingyAxis,
+                                yAxis:settingxAxis,
+                                series: settingSeries
+                            };
+                        }
+                        else{
+
+                            var option={
+                                xAxis:settingxAxis,
+                                yAxis:settingyAxis,
+                                series: settingSeries
+                            };
+                        }
                         if($scope.eleDomInfos[$scope.currentDomId]){
                             $scope.eleDomInfos[$scope.currentDomId].chartHandler.setOption(option);
                         }else{

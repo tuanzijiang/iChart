@@ -50,7 +50,6 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
         console.log(req);
     });
 
-
     //设置当前选定的数据来源
     $scope.setCurrentSheet=function (id,value) {
         $scope.iChart_hidden=0;
@@ -101,10 +100,11 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.attrKindFlag=0;//control which page will be shown between data and setting
 
     $scope.attrsIsExieted=[true,true,false,true];//document whether the attributes will be displayed in data part
-    $scope.attrsDataIsExieted=[true,true,false,true];//document whether the attributes will be displayed in setting part
+    $scope.attrsDataIsExieted=[false,true,false,true];//document whether the attributes will be displayed in setting part
 
     $scope.attrsIsClose=[];//属性是否关闭
     $scope.attrsDataIsClose=[];//数据属性是否关闭
+
 
     $scope.currentDomId="";//正在处理的DOM
     $scope.currentHoverID="";
@@ -112,7 +112,11 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     //data setting controller
     $scope.barItems=[];//柱的名称
     $scope.barValues=[];//柱的值
+    $scope.xyInvertFlag=false;
     $scope.sheetName="未选择";
+
+    //wordCloud
+    $scope.wordCloudFlag=false;
 
     /**
      * 控制菜单打开与关闭
@@ -175,7 +179,13 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
      * 点击一个表单元素
      */
     $scope.clickTableDom=function (id) {
-        $scope.currentDomId=id;
+        if($scope.currentDomId!==id){
+            $scope.currentDomId=id;
+            $scope.barItems=[];//柱的名称
+            $scope.barValues=[];//柱的值
+            $scope.xyInvertFlag=false;
+            $scope.sheetName="未选择";
+        }
         console.log($scope.currentDomId);
     };
     /**
@@ -220,8 +230,26 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     };
     /*上传词云文本*/
     uploadWordCloud=function (value) {
-        console.log(value);
+        $scope.showWordCloudDefault();
+        var img=document.getElementById("wordCloud_Default");
+        var canvas = document.createElement("canvas");
+        console.log(img.width);
+        canvas.width = 512;
+        canvas.height = 512;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, 512, 512);
+        var dataURL = canvas.toDataURL("image/png");
+        var img=new Image();
+        img.src=dataURL;
+        document.getElementById("editPage_workspace").appendChild(img);
+        $scope.eleDomInfos["editImage"+$scope.eleDomOrders.length]={"imgHandler":img,"kind":"img"};
+        $scope.eleDomOrders.push("editImage"+$scope.eleDomOrders.length);//记录顺序
+
     };
+    $scope.showWordCloudDefault=function () {
+        $scope.wordCloudFlag=true;
+    };
+
 
     /**
      * 控制属性栏显示种类的切换
@@ -260,6 +288,10 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.showHidden_Bar=function () {
         $scope.$parent.iChart_hidden=2;
     };
+    $scope.xyInvert=function () {
+        $scope.xyInvertFlag=!$scope.xyInvertFlag;
+        $scope.changeTableAttr(1,"bar");
+    }
 });
 
 iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adjustTableInfo) {
@@ -494,7 +526,6 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
         var sendInfo={};
         sendInfo.xAttri=$scope.attrList[$scope.attrListXAttriCurrentFlag];
         sendInfo.xAttriKind=$scope.attrListKind[$scope.attrListXAttriCurrentFlag];
-        sendInfo.xAttriSelf=0;
         sendInfo.xField=[];
         for(var i=0;i<$scope.attrListSelectState.length;i++){
             if($scope.attrListSelectState[i]){
@@ -518,6 +549,10 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
         sendInfo.yAttriKind=$scope.attrListKind[$scope.attrListYAttriCurrentFlag];
         sendInfo.Operator=$scope.attrOperatorKind;
         sendInfo.yField=[];
+        if(sendInfo.yAttri===sendInfo.xAttri)
+            sendInfo.xAttriSelf=1;
+        else
+            sendInfo.xAttriSelf=0;
         for(var i=0;i<$scope.attrListYAttribSelectState.length;i++){
             if($scope.attrListYAttribSelectState[i]){
                 var temp={};
