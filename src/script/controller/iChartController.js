@@ -204,7 +204,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
         addTextDom.addTextDom($scope,$compile,kind);
     };
 
-
+    /*上传图片*/
     uploadPic=function (value) {
         var reader = new FileReader();
         reader.readAsDataURL(value[0]);
@@ -215,6 +215,10 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
             $scope.eleDomInfos["editImage"+$scope.eleDomOrders.length]={"imgHandler":img,"kind":"img"};
             $scope.eleDomOrders.push("editImage"+$scope.eleDomOrders.length);//记录顺序
         }
+    };
+    /*上传词云文本*/
+    uploadWordCloud=function (value) {
+        console.log(value);
     };
 
     /**

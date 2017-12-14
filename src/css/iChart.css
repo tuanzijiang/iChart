@@ -232,6 +232,22 @@ input:-webkit-autofill {
   height: 100%;
   width: 100%;
 }
+.menu-model-items-box {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.menu-model-item {
+  margin: 1em 0;
+  width: 80%;
+  cursor: pointer;
+}
+.menu-model-items-title {
+  color: white;
+}
 .menu-title {
   margin: 0 auto;
   text-align: center;
