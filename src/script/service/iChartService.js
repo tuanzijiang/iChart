@@ -78,6 +78,81 @@ iChartApp.service("changeTableAttr",function () {
                 }
                 break;
             }
+            case 1: {//条形图增加值
+                switch (args[1]){
+                    case "bar":{
+                        var barItem=$scope.barItems;
+                        var barValues=$scope.barValues;
+                        var settingxAxis=[{
+                            type: 'category',
+                            data: []
+                        }];
+                        var settingyAxis=[{
+                            type: 'value'
+                        }];
+                        var settingSeries=[];
+                        for(var i=0;i<barItem.length;i++){
+                            var flag=false;
+                            var kindName=barItem[i].split("·")[2];
+                            for(var j=0;j<settingSeries.length;j++){
+                                if(settingSeries[j].name===kindName){
+                                    settingSeries[j].data.push(barValues[i]);
+                                    flag=true;
+                                }
+                            }
+                            //创建新结点
+                            if(!flag){
+                                var newSettingSerie={
+                                    name:kindName,
+                                    type:'bar',
+                                    data: [barValues[i]]
+                                };
+                                settingSeries.push(newSettingSerie);
+                            }
+                        }
+                        for(var i=0;i<barItem.length;i++){
+                            var flag=false;
+                            var kindName=barItem[i].split("·")[1];
+                            console.log(settingxAxis[0].data.length);
+                            for(var j=0;j<settingxAxis[0].data.length;j++){
+                                if(settingxAxis[0].data[j]===kindName){
+                                    console.log("true");
+                                    flag=true;
+                                }
+                            }
+                            //创建新结点
+                            if(!flag){
+                                settingxAxis[0].data.push(kindName);
+                            }
+                        }
+                        var option={
+                            xAxis:settingxAxis,
+                            yAxis:settingyAxis,
+                            series: settingSeries
+                        };
+                        if($scope.eleDomInfos[$scope.currentDomId]){
+                            $scope.eleDomInfos[$scope.currentDomId].chartHandler.setOption(option);
+                        }else{
+                            console.log("没有选中任何元素");
+                        }
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                // var option={
+                //     title:{
+                //         text: document.getElementById(args[1]).value
+                //     }
+                // };
+                // if($scope.eleDomInfos[$scope.currentDomId]){
+                //     $scope.eleDomInfos[$scope.currentDomId].chartHandler.setOption(option);
+                // }
+                // else{
+                //     console.log("没有选中任何元素");
+                // }
+                // break;
+            }
             default:
                 break;
         }
@@ -162,7 +237,6 @@ iChartApp.service("changeTextAttr",function () {
             case 0: {//修改文字尺寸
                 var newNode=document.createElement("span");
                 newNode.style.fontWeight='600';
-                console.log(document.getElementById(args[1]).value);
                 console.log(window.getSelection().getRangeAt(0).surroundContents(newNode));
                 break;
             }

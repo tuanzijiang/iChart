@@ -49,13 +49,14 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
     }).error(function (req) {
         console.log(req);
     });
+
+
     //设置当前选定的数据来源
     $scope.setCurrentSheet=function (id,value) {
         $scope.iChart_hidden=0;
         $scope.$$childHead.$$nextSibling.$$nextSibling.$$nextSibling.updateSheetId(id);
         $scope.$$childHead.$$nextSibling.sheetName=value;
     }
-
     // $http({
     //     method:'post',
     //     url:'http://127.0.0.1:8000/log_in',
@@ -109,7 +110,8 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.currentHoverID="";
 
     //data setting controller
-    $scope.barItems=["item羊毛1","item羊毛2"];
+    $scope.barItems=[];//柱的名称
+    $scope.barValues=[];//柱的值
     $scope.sheetName="未选择";
 
     /**
@@ -258,7 +260,6 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.showHidden_Bar=function () {
         $scope.$parent.iChart_hidden=2;
     };
-
 });
 
 iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adjustTableInfo) {
@@ -556,6 +557,11 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
             }
         }).success(function(req){
             console.log(req);
+            for(var i=0;i<req.attri.length;i++){
+                $scope.$parent.$$childHead.$$nextSibling.barItems.push(req.attri[i].xAttri+"·"+req.attri[i].xField.min+"·"+req.yAttri.yAttri);
+                $scope.$parent.$$childHead.$$nextSibling.barValues.push(req.result[0][i]);
+            }
+            $scope.$parent.$$childHead.$$nextSibling.changeTableAttr(1,"bar");
         }).error(function (req) {
             console.log(req);
         });
@@ -617,8 +623,6 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
 //         .otherwise({redirectTo:'/leftMenu1'})
 // }]);
 
-
-
 // $timeout(function () {
 //     loadStep.loadStep($scope,"30%","10s");
 // }, 0);
@@ -632,7 +636,6 @@ iChartApp.controller("iChartBarController",function ($scope,$http) {
 // $timeout(function () {
 //     loadStep.loadStep($scope,"100%","1s");
 // }, 5000);
-
 
 // $timeout(function () {
 //     closeLeftMenu.closeLeftMenu();
