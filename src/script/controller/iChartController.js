@@ -218,6 +218,18 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.addTextDom=function (kind) {
         addTextDom.addTextDom($scope,$compile,kind);
     };
+    /**
+     * 点击一个文本元素
+     */
+    $scope.clickTextDom=function (id) {
+        if($scope.currentDomId!==id){
+            $scope.currentDomId=id;
+            $scope.barItems=[];//柱的名称
+            $scope.barValues=[];//柱的值
+            $scope.xyInvertFlag=false;
+            $scope.sheetName="未选择";
+        }
+    };
 
     /*上传图片*/
     uploadPic=function (value) {
@@ -226,6 +238,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
         reader.onload = function(e){
             var img=new Image();
             img.src=this.result;
+            img.style.cssText="display:inherit;";
             document.getElementById("editPage_workspace").appendChild(img);
             $scope.eleDomInfos["editImage"+$scope.eleDomOrders.length]={"imgHandler":img,"kind":"img"};
             $scope.eleDomOrders.push("editImage"+$scope.eleDomOrders.length);//记录顺序
@@ -302,6 +315,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
 iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adjustTableInfo) {
     //$http result
     $scope.xlss_name=[];
+    $scope.files_name=[];
     $scope.xlss_id=[];
     $scope.dbs_name=["iChart1","iChart2","iChart3","iChart4"];
 
@@ -320,8 +334,10 @@ iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adj
             return str.join("&");
         }
     }).success(function(req){
+        console.log(req);
         for(var i in req.result){
             $scope.xlss_name.push(req.result[i].sheet_name);
+            $scope.files_name.push(req.result[i].file_name);
             $scope.xlss_id.push(req.result[i].id);
         }
     }).error(function (req) {
@@ -367,7 +383,7 @@ iChartApp.controller("iChartWorkPController",function ($scope,$timeout,$http,adj
     //获取单个表格的保存值
     $scope.getSheet=function (id) {
         var xlssId=$scope.xlss_id[id];
-        console.log(id);
+        document.getElementById("table-name").innerHTML=$scope.files_name[id]
         $http({
             method: 'post',
             url: 'http://127.0.0.1:8000/sheet_content',

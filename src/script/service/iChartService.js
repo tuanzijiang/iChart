@@ -229,11 +229,12 @@ iChartApp.service("scanTable",function () {
 iChartApp.service("addTextDom",function () {
    this.addTextDom=function ($scope,$compile,kind) {
        var editTestNode=$compile('<p ng-click="clickTextDom(\'editText'+$scope.eleDomOrders.length+'\')"   contenteditable="true">'+kind+'</p>')($scope);
-       editTestNode.attr("id","editTable"+$scope.eleDomOrders.length);//设置dom元素的id
+       editTestNode.attr("id","editText"+$scope.eleDomOrders.length);//设置dom元素的id
        editTestNode.attr("class","editPage_workspace_item");
        console.log(editTestNode);
        console.log(kind);
        editTestNode[0].style.fontFamily=kind;
+       editTestNode[0].style.cssText="line-height: 1.5;padding: 2em;";
        document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
        $scope.eleDomInfos["editText"+$scope.eleDomOrders.length]={"pHandler":editTestNode[0],"kind":"p"};
        $scope.eleDomOrders.push("editText"+$scope.eleDomOrders.length);//记录顺序
@@ -257,15 +258,18 @@ iChartApp.service("changeTextAttr",function () {
                 break;
             }
             case 1: {
-                console.log($scope.currentDomId);
+                console.log(document.getElementById($scope.currentDomId).style);
                 if(args[1]===0){//左对齐
                     $scope.fontPosition=0;
+                    document.getElementById($scope.currentDomId).style.cssText=document.getElementById($scope.currentDomId).style.cssText+"text-align:left";
                 }
                 else if(args[1]===1){
                     $scope.fontPosition=1;
+                    document.getElementById($scope.currentDomId).style.cssText=document.getElementById($scope.currentDomId).style.cssText+"text-align:center";
                 }
                 else{
                     $scope.fontPosition=2;
+                    document.getElementById($scope.currentDomId).style.cssText=document.getElementById($scope.currentDomId).style.cssText+"text-align:right";
                 }
                 break;
             }
