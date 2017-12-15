@@ -99,10 +99,10 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.eleDomInfos={};//document some information of elements added
     $scope.attrKindFlag=0;//control which page will be shown between data and setting
 
-    $scope.attrsIsExieted=[true,true,false,true];//document whether the attributes will be displayed in data part
+    $scope.attrsIsExieted=[true,true,true,true];//document whether the attributes will be displayed in data part
     $scope.attrsDataIsExieted=[false,true,false,true];//document whether the attributes will be displayed in setting part
 
-    $scope.attrsIsClose=[];//属性是否关闭
+    $scope.attrsIsClose=[true,true,true];//属性是否关闭
     $scope.attrsDataIsClose=[];//数据属性是否关闭
 
 

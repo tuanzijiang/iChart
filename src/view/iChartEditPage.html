@@ -142,6 +142,14 @@
                         </div>
                     </div>
                     <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">字体</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">16</div>
+                            <div class="mainContent-attr-item-content-txtContent-add"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
                         <div class="mainContent-attr-item-content-txtName">对齐</div>
                         <div class="mainContent-attr-item-content-txtContent">
                             <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
@@ -151,6 +159,217 @@
                     </div>
                     <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
                         <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <!--测试-->
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[2]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[2]=!attrsIsClose[2];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="">坐标x轴</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-fontStyle'">
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">粗细</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu" ng-click="changeTextAttr(0,'minu');"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">{{fontWeight}}</div>
+                            <div class="mainContent-attr-item-content-txtContent-add" ng-click="changeTextAttr(0,'add');"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">对齐</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontMiddle" ng-class="fontPosition===1?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,1)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontRight" ng-class="fontPosition===2?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,2)"></div>
+                        </div>
+                    </div>
+                    <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
+                    <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[2]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[2]=!attrsIsClose[2];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="">坐标y轴</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-fontStyle'">
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">粗细</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu" ng-click="changeTextAttr(0,'minu');"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">{{fontWeight}}</div>
+                            <div class="mainContent-attr-item-content-txtContent-add" ng-click="changeTextAttr(0,'add');"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">对齐</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontMiddle" ng-class="fontPosition===1?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,1)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontRight" ng-class="fontPosition===2?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,2)"></div>
+                        </div>
+                    </div>
+                    <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
+                    <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[2]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[2]=!attrsIsClose[2];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="">图表样式</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-fontStyle'">
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">粗细</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu" ng-click="changeTextAttr(0,'minu');"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">{{fontWeight}}</div>
+                            <div class="mainContent-attr-item-content-txtContent-add" ng-click="changeTextAttr(0,'add');"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">对齐</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontMiddle" ng-class="fontPosition===1?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,1)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontRight" ng-class="fontPosition===2?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,2)"></div>
+                        </div>
+                    </div>
+                    <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
+                    <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[2]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[2]=!attrsIsClose[2];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="">文字样式</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-fontStyle'">
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">粗细</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu" ng-click="changeTextAttr(0,'minu');"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">{{fontWeight}}</div>
+                            <div class="mainContent-attr-item-content-txtContent-add" ng-click="changeTextAttr(0,'add');"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">对齐</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontMiddle" ng-class="fontPosition===1?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,1)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontRight" ng-class="fontPosition===2?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,2)"></div>
+                        </div>
+                    </div>
+                    <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
+                    <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[2]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[2]=!attrsIsClose[2];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="">图例设置</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-fontStyle'">
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">粗细</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu" ng-click="changeTextAttr(0,'minu');"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">{{fontWeight}}</div>
+                            <div class="mainContent-attr-item-content-txtContent-add" ng-click="changeTextAttr(0,'add');"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">对齐</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontMiddle" ng-class="fontPosition===1?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,1)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontRight" ng-class="fontPosition===2?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,2)"></div>
+                        </div>
+                    </div>
+                    <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
+                    <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[2]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[2]=!attrsIsClose[2];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="">图片样式</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-fontStyle'">
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">粗细</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu" ng-click="changeTextAttr(0,'minu');"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">{{fontWeight}}</div>
+                            <div class="mainContent-attr-item-content-txtContent-add" ng-click="changeTextAttr(0,'add');"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">对齐</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontMiddle" ng-class="fontPosition===1?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,1)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontRight" ng-class="fontPosition===2?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,2)"></div>
+                        </div>
+                    </div>
+                    <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
+                    <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="mainContent-attr-item" ng-show="attrsIsExieted[2]">
+                <div class="mainContent-attr-item-normal-title" ng-click="attrsIsClose[2]=!attrsIsClose[2];">
+                    <div class="mainContent-attr-item-normal-titleBox_arround">
+                        <div class="mainContent-attr-item-normal-titleBox_A" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-normal-titleBox_B':''" ></div>
+                    </div>
+                    <div class="mainContent-attr-item-normal-titleBox" ng-click="">词云设置</div>
+                    <div class="mainContent-attr-item-normal-titleBox_arround"></div>
+                </div>
+                <div class="mainContent-attr-item-content" ng-class="attrsIsClose[2]==true?'mainContent-attr-item-content-inactive':'mainContent-attr-item-content-fontStyle'">
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">粗细</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-minu" ng-click="changeTextAttr(0,'minu');"></div>
+                            <div class="mainContent-attr-item-content-txtContent-content">{{fontWeight}}</div>
+                            <div class="mainContent-attr-item-content-txtContent-add" ng-click="changeTextAttr(0,'add');"></div>
+                        </div>
+                    </div>
+                    <div class="mainContent-attr-item-content-txtLine">
+                        <div class="mainContent-attr-item-content-txtName">对齐</div>
+                        <div class="mainContent-attr-item-content-txtContent">
+                            <div class="mainContent-attr-item-content-txtContent-fontLeft " ng-class="fontPosition===0?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,0)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontMiddle" ng-class="fontPosition===1?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,1)"></div>
+                            <div class="mainContent-attr-item-content-txtContent-fontRight" ng-class="fontPosition===2?'mainContent-attr-item-content-txtContent-fontActive':''" ng-click="changeTextAttr(1,2)"></div>
+                        </div>
+                    </div>
+                    <!--<div class="mainContent-attr-item-normal-input-box-headerName">-->
+                    <!--<input id="input-fontWeight" ng-change="changeTextAttr(0,'input-fontWeight');" ng-model="fontWeight">-->
                     <!--</div>-->
                 </div>
             </div>

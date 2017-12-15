@@ -256,18 +256,17 @@ iChartApp.service("changeTextAttr",function () {
                 window.getSelection().getRangeAt(0).surroundContents(newNode);
                 break;
             }
-            case 1: {//修改文字对齐方式
+            case 1: {
+                console.log($scope.currentDomId);
                 if(args[1]===0){//左对齐
                     $scope.fontPosition=0;
                 }
                 else if(args[1]===1){
                     $scope.fontPosition=1;
-                }else{
+                }
+                else{
                     $scope.fontPosition=2;
                 }
-                var newNode=document.createElement("span");
-                newNode.style.fontWeight=$scope.fontWeight;
-                window.getSelection().getRangeAt(0).surroundContents(newNode);
                 break;
             }
             default:
