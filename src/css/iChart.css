@@ -619,12 +619,43 @@ input:-webkit-autofill {
   width: 4em;
   height: 100%;
 }
+.mainContent-attr-item-content-txtContent-fontLeft {
+  height: 2em;
+  width: 2em;
+  background: url("../image/icon/iChartEditPage/fontLeft.png") center center no-repeat;
+  background-size: 70% 60%;
+  cursor: pointer;
+  margin: 0 .5em 0 0;
+  border: 1px solid transparent;
+}
+.mainContent-attr-item-content-txtContent-fontMiddle {
+  height: 2em;
+  width: 2em;
+  background: url("../image/icon/iChartEditPage/fontMiddle.png") center center no-repeat;
+  background-size: 70% 60%;
+  cursor: pointer;
+  margin: 0 .5em 0 0;
+  border: 1px solid transparent;
+}
+.mainContent-attr-item-content-txtContent-fontRight {
+  height: 2em;
+  width: 2em;
+  background: url("../image/icon/iChartEditPage/fontRight.png") center center no-repeat;
+  background-size: 70% 60%;
+  cursor: pointer;
+  margin: 0 .5em 0 0;
+  border: 1px solid transparent;
+}
+.mainContent-attr-item-content-txtContent-fontActive {
+  border: 1px solid white;
+  border-radius: 5px;
+}
 .mainContent-attr-item-content-txtContent {
   flex: 1;
   height: 100%;
   display: flex;
   flex-direction: row;
-  align-content: center;
+  align-items: center;
 }
 .mainContent-attr-item-content-txtContent-minu {
   height: 2.5em;
@@ -642,6 +673,9 @@ input:-webkit-autofill {
 }
 .mainContent-attr-item-content-headerName {
   height: 3em;
+}
+.mainContent-attr-item-content-fontStyle {
+  height: 7em;
 }
 .mainContent-attr-item-content-dataSetting {
   height: 11em;
@@ -819,6 +853,8 @@ input:-webkit-autofill {
   margin: 0 0 0 1em;
   user-select: none;
   cursor: pointer;
+  text-decoration: none;
+  color: white;
 }
 .table-operation-icon-1 {
   display: inline-block;
@@ -925,6 +961,179 @@ tr:nth-child(even) > td {
   margin: 1em auto 1.5em;
   color: white;
   text-align: center;
+}
+.dataPage-main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.dataPage-menus {
+  width: 5em;
+  height: calc(100% - 1.4em);
+  margin: .7em 0 0 0;
+  border-right: 1.5px solid #363d3f;
+  box-shadow: 1em 0 2em -1em rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.dataPage-content {
+  height: 100%;
+  flex: 1;
+  overflow: auto;
+}
+.dataPage-menus-item {
+  margin: .5em auto;
+  color: #aaa;
+  cursor: pointer;
+  line-height: 3em;
+  text-align: center;
+  width: 100%;
+}
+.dataPage-menus-item:hover {
+  background: rgba(128, 128, 128, 0.4);
+  transition: all .5s;
+}
+.dataPage-content-item-headers {
+  width: 80%;
+  margin: 3em auto 0;
+  box-shadow: 0 -0.5em 1em -0.5em rgba(0, 0, 0, 0.2) inset;
+  line-height: 2.5em;
+  height: 2.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #363d3f;
+}
+.dataPage-content-item-flag1 {
+  height: 1.7em;
+  width: 1em;
+  background: #fff;
+  border-radius: .5em;
+}
+.dataPage-content-item-flag2 {
+  height: 1.7em;
+  width: 1em;
+  background: #3DA8F5;
+  border-radius: .5em;
+}
+.dataPage-content-item-flag3 {
+  height: 1.7em;
+  width: 1em;
+  background: #f69465;
+  border-radius: .5em;
+}
+.dataPage-content-item-flag4 {
+  height: 1.7em;
+  width: 1em;
+  background: #9ed18b;
+  border-radius: .5em;
+}
+.dataPage-content-item-name {
+  color: #aaa;
+  font-size: 120%;
+  margin: 0 0 0 1em;
+}
+.dataPage-content-item-more {
+  color: #aaa;
+  font-size: 120%;
+  cursor: pointer;
+}
+.dataPage-content-item-space {
+  display: flex;
+  height: 100%;
+  flex: 1;
+}
+.dataPage-content-item-main {
+  width: 80%;
+  margin: 1em auto 0;
+  line-height: 8em;
+  height: 8em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dataPage-content-item-mainPart {
+  height: 7em;
+  width: 8em;
+  margin: 0 1em;
+}
+.dataPage-content-item-mainPart-part1 {
+  border-radius: 50% 50%;
+  height: 5em;
+  width: 5em;
+  background: yellow;
+  margin: 0 auto;
+}
+.dataPage-content-item-mainPart-part2 {
+  text-align: center;
+  width: 8em;
+  line-height: 2.5em;
+  height: 2.5em;
+  color: white;
+  overflow: hidden;
+}
+.dataPage-content-item-mainPart-part1-0 {
+  background: url("../image/icon/iChartDataPage/default/default1.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-2 {
+  background: url("../image/icon/iChartDataPage/default/default2.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-3 {
+  background: url("../image/icon/iChartDataPage/default/default3.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-4 {
+  background: url("../image/icon/iChartDataPage/default/default4.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-5 {
+  background: url("../image/icon/iChartDataPage/default/default5.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-6 {
+  background: url("../image/icon/iChartDataPage/default/default6.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-7 {
+  background: url("../image/icon/iChartDataPage/default/default7.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-8 {
+  background: url("../image/icon/iChartDataPage/default/default8.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-9 {
+  background: url("../image/icon/iChartDataPage/default/default9.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-10 {
+  background: url("../image/icon/iChartDataPage/default/default10.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-11 {
+  background: url("../image/icon/iChartDataPage/default/default11.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-12 {
+  background: url("../image/icon/iChartDataPage/default/default12.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-13 {
+  background: url("../image/icon/iChartDataPage/default/default13.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-14 {
+  background: url("../image/icon/iChartDataPage/default/default14.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.dataPage-content-item-mainPart-part1-1 {
+  background: url("../image/icon/iChartDataPage/default/default15.png") center center no-repeat;
+  background-size: 100% 100%;
 }
 .iChart-hidden-dataSource-content {
   display: block;

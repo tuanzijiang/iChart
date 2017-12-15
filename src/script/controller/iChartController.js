@@ -91,7 +91,7 @@ iChartApp.controller("iChartController", function ($scope,$state,$http) {
 });
 
 
-iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$http,scanTable,changeTableAttr,changeTextAttr,addTableDom,addTextDom,openLeftMenu,closeLeftMenu) {
+iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$http,$timeout,scanTable,changeTableAttr,changeTextAttr,addTableDom,addTextDom,openLeftMenu,closeLeftMenu) {
     /**
      * initial the  page
      */
@@ -114,6 +114,9 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     $scope.barValues=[];//柱的值
     $scope.xyInvertFlag=false;
     $scope.sheetName="未选择";
+    //normal setting font
+    $scope.fontWeight=500;
+    $scope.fontPosition=0;//0--left,1--middle,2--right
 
     //wordCloud
     $scope.wordCloudFlag=false;
@@ -230,7 +233,9 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
     };
     /*上传词云文本*/
     uploadWordCloud=function (value) {
-        $scope.showWordCloudDefault();
+        $timeout(function () {
+            $scope.showWordCloudDefault();
+        },0);
         var img=document.getElementById("wordCloud_Default");
         var canvas = document.createElement("canvas");
         console.log(img.width);

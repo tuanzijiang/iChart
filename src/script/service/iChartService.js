@@ -245,9 +245,29 @@ iChartApp.service("changeTextAttr",function () {
     this.changeTextAttr=function ($scope,args) {
         switch (args[0]){
             case 0: {//修改文字尺寸
+                if(args[1]==="add"){
+                    $scope.fontWeight=$scope.fontWeight+100;
+                }
+                else{
+                    $scope.fontWeight=$scope.fontWeight-100;
+                }
                 var newNode=document.createElement("span");
-                newNode.style.fontWeight='600';
-                console.log(window.getSelection().getRangeAt(0).surroundContents(newNode));
+                newNode.style.fontWeight=$scope.fontWeight;
+                window.getSelection().getRangeAt(0).surroundContents(newNode);
+                break;
+            }
+            case 1: {//修改文字对齐方式
+                if(args[1]===0){//左对齐
+                    $scope.fontPosition=0;
+                }
+                else if(args[1]===1){
+                    $scope.fontPosition=1;
+                }else{
+                    $scope.fontPosition=2;
+                }
+                var newNode=document.createElement("span");
+                newNode.style.fontWeight=$scope.fontWeight;
+                window.getSelection().getRangeAt(0).surroundContents(newNode);
                 break;
             }
             default:

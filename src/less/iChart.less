@@ -151,12 +151,17 @@ input:-webkit-autofill {
 //文字样式
 .mainContent-attr-item-content-txtLine{width: 70%;line-height: 2.5em;height: 2.5em;display: flex;flex-direction: row;align-items: center;margin: 0 auto;justify-content: center;color: white;}
 .mainContent-attr-item-content-txtName{width: 4em;height: 100%;};
-.mainContent-attr-item-content-txtContent{flex: 1;height: 100%;display:flex;flex-direction: row;align-content: center;};
+.mainContent-attr-item-content-txtContent-fontLeft{height: 2em;width: 2em;background: url("../image/icon/iChartEditPage/fontLeft.png") center center no-repeat;background-size: 70% 60%;cursor:pointer;margin: 0 .5em 0 0;border:1px solid transparent;}
+.mainContent-attr-item-content-txtContent-fontMiddle{height: 2em;width: 2em;background: url("../image/icon/iChartEditPage/fontMiddle.png") center center no-repeat;background-size: 70% 60%;cursor:pointer;margin: 0 .5em 0 0;border:1px solid transparent;}
+.mainContent-attr-item-content-txtContent-fontRight{height: 2em;width: 2em;background: url("../image/icon/iChartEditPage/fontRight.png") center center no-repeat;background-size: 70% 60%;cursor:pointer;margin: 0 .5em 0 0;border:1px solid transparent;}
+.mainContent-attr-item-content-txtContent-fontActive{border:1px solid white;border-radius: 5px;}
+.mainContent-attr-item-content-txtContent{flex: 1;height: 100%;display:flex;flex-direction: row;align-items: center;};
 .mainContent-attr-item-content-txtContent-minu{height: 2.5em;width: 2.5em;background: url("../image/icon/iChartEditPage/minu.png") center center no-repeat;background-size: 50% 50%;cursor: pointer;}
 .mainContent-attr-item-content-txtContent-add{height: 2.5em;width: 2.5em;background: url("../image/icon/iChartEditPage/add.png") center center no-repeat;background-size: 50% 50%;cursor: pointer;}
 
 //specific active height
 .mainContent-attr-item-content-headerName{height: 3em;}
+.mainContent-attr-item-content-fontStyle{height: 7em;}
 .mainContent-attr-item-content-dataSetting{height: 11em;}
 .mainContent-attr-item-content-dataSetting2{height: 13em;}
 
@@ -193,7 +198,7 @@ input:-webkit-autofill {
 .table-attrs{width: 90%;margin: 1em auto;border-bottom: 1px solid #363d3f;box-shadow: 0 -.5em 1em -.5em hsla(0,0%,0%,.2) inset;}
 .table-name-line{height: 4em;line-height: 4em;color: white;position: relative}
 .table-name{display: inline-block;font-size: 140%;}
-.table-operation-name{display: inline-block;float: right;margin: 0 0 0 1em;user-select: none;cursor: pointer;}
+.table-operation-name{display: inline-block;float: right;margin: 0 0 0 1em;user-select: none;cursor: pointer;text-decoration: none;color: white;}
 .table-operation-icon-1{display: inline-block;float: right;height: 2em;width: 2em;vertical-align: middle;background: url("../image/icon/iChartWorkPage/save1.png") right center no-repeat;background-size: 60% 60%;position: relative;top: calc(~"50% - 1em");}
 .table-operation-icon-2{display: inline-block;float: right;height: 2em;width: 2em;vertical-align: middle;background: url("../image/icon/iChartWorkPage/save2.png") right center no-repeat;background-size: 60% 60%;position: relative;top: calc(~"50% - 1em");}
 .table-operation-icon-3{display: inline-block;float: right;height: 2em;width: 2em;vertical-align: middle;background: url("../image/icon/iChartWorkPage/save3.png") right center no-repeat;background-size: 60% 60%;position: relative;top: calc(~"50% - 1em");}
@@ -215,7 +220,40 @@ tr:nth-child(even)>td{background: #414345;};
 
 .table-page-control{height: 3em;width: 90%;margin:1em auto 1.5em;color: white;text-align: center;}
 
-
+//  |- dataSource
+.dataPage-main{height: 100%;width: 100%;display: flex;flex-direction: row;}
+.dataPage-menus{width: 5em;height: calc(~"100% - 1.4em");margin: .7em 0 0 0;border-right: 1.5px solid #363d3f;box-shadow: 1em 0 2em -1em hsla(0,0%,0%,.4);display: flex;flex-direction: column;justify-content: center;align-items: center;}
+.dataPage-content{height: 100%;flex: 1;overflow: auto;}
+.dataPage-menus-item{margin: .5em auto;color: #aaa;cursor: pointer;line-height: 3em;text-align: center;width: 100%;}
+.dataPage-menus-item:hover{background: hsla(0,0%,50%,.4);transition: all .5s;}
+.dataPage-content-item-headers{width: 80%;margin: 3em auto 0;box-shadow: 0 -0.5em 1em -0.5em rgba(0, 0, 0, 0.2) inset;line-height: 2.5em;height: 2.5em;display: flex;flex-direction: row;align-items: center;border-bottom: 1px solid #363d3f;}
+.dataPage-content-item-flag1{height: 1.7em;width: 1em;background: #fff;border-radius: .5em;}
+.dataPage-content-item-flag2{height: 1.7em;width: 1em;background: #3DA8F5;border-radius: .5em;}
+.dataPage-content-item-flag3{height: 1.7em;width: 1em;background: #f69465;border-radius: .5em;}
+.dataPage-content-item-flag4{height: 1.7em;width: 1em;background: #9ed18b;border-radius: .5em;}
+.dataPage-content-item-name{color: #aaa;font-size: 120%;margin: 0 0 0 1em;}
+.dataPage-content-item-more{color: #aaa;font-size: 120%;cursor: pointer}
+.dataPage-content-item-space{display: flex;height: 100%;flex: 1;}
+.dataPage-content-item-main{width: 80%;margin: 1em auto 0;line-height: 8em;height: 8em;display: flex;flex-direction: row;align-items: center;}
+.dataPage-content-item-mainPart{height: 7em;width: 8em;margin: 0 1em;}
+.dataPage-content-item-mainPart-part1{border-radius: 50% 50%;height: 5em;width: 5em;background: yellow;margin: 0 auto;}
+.dataPage-content-item-mainPart-part2{overflow: hidden;text-align:center;width: 8em;line-height: 2.5em;height: 2.5em;color: white;overflow: hidden;}
+//test
+.dataPage-content-item-mainPart-part1-0{background: url("../image/icon/iChartDataPage/default/default1.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-2{background: url("../image/icon/iChartDataPage/default/default2.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-3{background: url("../image/icon/iChartDataPage/default/default3.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-4{background: url("../image/icon/iChartDataPage/default/default4.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-5{background: url("../image/icon/iChartDataPage/default/default5.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-6{background: url("../image/icon/iChartDataPage/default/default6.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-7{background: url("../image/icon/iChartDataPage/default/default7.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-8{background: url("../image/icon/iChartDataPage/default/default8.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-9{background: url("../image/icon/iChartDataPage/default/default9.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-10{background: url("../image/icon/iChartDataPage/default/default10.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-11{background: url("../image/icon/iChartDataPage/default/default11.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-12{background: url("../image/icon/iChartDataPage/default/default12.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-13{background: url("../image/icon/iChartDataPage/default/default13.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-14{background: url("../image/icon/iChartDataPage/default/default14.png") center center no-repeat;background-size: 100% 100%;}
+.dataPage-content-item-mainPart-part1-1{background: url("../image/icon/iChartDataPage/default/default15.png") center center no-repeat;background-size: 100% 100%;}
 
 //  |- iChart-hidden-dataSource-content
 .iChart-hidden-dataSource-content{display: block;width: 33em;height: 23em;background: white;border-radius: 5px;}
