@@ -238,7 +238,7 @@ iChartApp.controller("iChartEditPController",function ($scope,$state,$compile,$h
         reader.onload = function(e){
             var img=new Image();
             img.src=this.result;
-            img.style.cssText="display:inherit;";
+            img.style.cssText="display:inherit;margin: 0 auto;";
             document.getElementById("editPage_workspace").appendChild(img);
             $scope.eleDomInfos["editImage"+$scope.eleDomOrders.length]={"imgHandler":img,"kind":"img"};
             $scope.eleDomOrders.push("editImage"+$scope.eleDomOrders.length);//记录顺序

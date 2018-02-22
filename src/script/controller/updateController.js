@@ -92,6 +92,7 @@ updateApp.controller("updateLoadController",function ($scope,$state,$http) {
         //上传完成
         function uploadComplete(evt) {
             /* This event is raised when the server send back a response */
+            console.log(evt.target.responseText);
             var JSON_obj=JSON.parse(evt.target.responseText);
             console.log(JSON_obj);
             console.log(JSON_obj.result.id);

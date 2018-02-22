@@ -233,8 +233,7 @@ iChartApp.service("addTextDom",function () {
        editTestNode.attr("class","editPage_workspace_item");
        console.log(editTestNode);
        console.log(kind);
-       editTestNode[0].style.fontFamily=kind;
-       editTestNode[0].style.cssText="line-height: 1.5;padding: 2em;";
+       editTestNode[0].style.cssText="line-height: 1.5;padding: 2em;font-family:"+kind;
        document.getElementById("editPage_workspace").appendChild(editTestNode[0]);
        $scope.eleDomInfos["editText"+$scope.eleDomOrders.length]={"pHandler":editTestNode[0],"kind":"p"};
        $scope.eleDomOrders.push("editText"+$scope.eleDomOrders.length);//记录顺序
